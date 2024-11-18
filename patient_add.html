@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPro Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for the analytics chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--to show percentage on Doughnut  -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="./assets/css/style.css?v=1.0.2" rel="stylesheet">
+
+    <script src="./assets/js/script.js?v=1.0.2"></script>
+</head>
+
+<body class="bg-gray-100">
+    <div class="min-h-screen flex transition-all">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-visible transition-all text-white p-4 sidebar"
+            style="background-color: rgb(23 37 78);">
+            <div class="flex items-center justify-center mb-6 bg-white text-primary rounded-xl h-24">
+                <img src="assets/images/LogoIcon.png" alt="Logo" class="mr-3">
+                <h2 class="text-2xl font-bold sidebar-text">MEDAIPRO</h2>
+            </div>
+            <ul>
+                <li id="tab-dashboard" class="tab active p-4 mb-2 rounded cursor-pointer" onclick="changeTab('index')">
+                    <i class="material-icons align-middle">dashboard</i>
+                    <span class="ml-2 sidebar-text">Dashboard</span>
+                </li>
+                <li id="tab-recordings" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('recordings')">
+                    <i class="material-icons align-middle">mic</i>
+                    <span class="ml-2 sidebar-text">Recordings</span>
+                </li>
+                <!-- Patients -->
+                <li id="tab-patients" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-patients')">
+                    <i class="material-icons align-middle">people</i>
+                    <span class="ml-2 sidebar-text">Patients</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+                <!-- Sub-Tabs (Initially Hidden) -->
+                <ul id="sub-tabs-patients" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patients')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">All Patients</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patient_add')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Add New Patient</a>
+                    </li>
+                </ul>
+                <!-- Appointments -->
+                <li id="tab-appointments" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-appointments')">
+                    <i class="material-icons align-middle">event</i>
+                    <span class="ml-2 sidebar-text">Appointments</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+                <ul id="sub-tabs-appointments" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('appointments')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">All Appointments</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('add_appointment')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Add New Appointment</a>
+                    </li>
+                </ul>
+                <!-- Consultation -->
+                <li id="tab-consultation" class="tab p-4 mb-2 rounded cursor-pointer"
+                    onclick="changeTab('consultation')">
+                    <i class="material-icons align-middle">local_hospital</i>
+                    <span class="ml-2 sidebar-text">Consultation</span>
+                </li>
+                <!-- Prescriptions -->
+                <li id="tab-prescriptions" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-prescriptions')">
+                    <i class="material-icons align-middle">description</i>
+                    <span class="ml-2 sidebar-text">Prescriptions</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+                <ul id="sub-tabs-prescriptions" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('prescriptions')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">All Prescriptions</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('add_prescriptions')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Create New</a>
+                    </li>
+                </ul>
+                <!-- Labs -->
+                <li id="tab-labs" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('labs')">
+                    <i class="material-icons align-middle">science</i>
+                    <span class="ml-2 sidebar-text">Labs/Radiology</span>
+                </li>
+                <!-- AI Support -->
+                <li id="tab-ai" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('ai')">
+                    <i class="material-icons align-middle">smart_toy</i>
+                    <span class="ml-2 sidebar-text">AI Support</span>
+                </li>
+                <!-- Doctors -->
+                <li id="tab-doctors" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('doctors')">
+                    <i class="material-icons align-middle">medical_services</i>
+                    <span class="ml-2 sidebar-text">Doctors</span>
+                </li>
+                <!-- Super Bills -->
+                <li id="tab-super-bills" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('super-bills')">
+                    <i class="material-icons align-middle">receipt</i>
+                    <span class="ml-2 sidebar-text">Super Bills</span>
+                </li>
+                <!-- Customizations -->
+                <li id="tab-customizations" class="tab p-4 mb-2 rounded cursor-pointer"
+                    onclick="changeTab('customizations')">
+                    <i class="material-icons align-middle">tune</i>
+                    <span class="ml-2 sidebar-text">Customizations</span>
+                </li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <div id="main-content" class="main-content-collapsed transition-all bg-gray-100 p-0">
+            <div class="flex justify-between items-center mb-6 bg-white p-6 shadow ">
+                <div class="flex">
+                    <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer"
+                        onclick="toggleSidebar()">menu</span>
+                    <h1 class="text-2xl font-semibold text-[#585858]">Dashboard</h1>
+                </div>
+                <!-- Profile Section -->
+                <div class="flex items-center">
+                    <span class="material-icons notifications text-gray-500 mr-4 cursor-pointer">notifications</span>
+                    <div class="flex items-center space-x-4">
+                        <img src="assets/images/flag.png" alt="flag" class="w-8 h-6">
+                        <img src="assets/images/profile.png" alt="profile" class="rounded-full w-10 h-10">
+                        <span class="text-gray-600 font-medium bg-grey rounded-full px-5 py-2">Jennifer Perry</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Top Bar with Menu Button -->
+            <!-- Dashboard Content -->
+            <div id="patient_add" class="tab-content">
+                <div class="flex justify-end mb-4 gap-2">
+
+                    <button
+                        class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
+                    <button
+                        class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Save</button>
+                </div>
+                <div class="bg-white shadow-md rounded-2xl pb-4">
+                    <div
+                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                        <h2 class="text-lg font-medium">Add New Patient</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="patientName" class="block text-gray-700 text-nowrap my-auto">Patient
+                                Name:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="patientName" type="text"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                    placeholder="Enter Patient's Name">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="mobileNumber" class="block text-gray-700 text-nowrap my-auto">Mobile
+                                Number:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="mobileNumber" type="text"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                    placeholder="Enter Mobile Number">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="emailId" class="block text-gray-700 text-nowrap my-auto">Email ID:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="emailId" type="email"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                    placeholder="Enter Email ID">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="dob" class="block text-gray-700 text-nowrap my-auto">Date of Birth:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="dob" type="date"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                    placeholder="Enter Date of Birth">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label class="block text-gray-700 text-nowrap my-auto">Gender:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <label
+                                    class="mr-2 px-3 py-1 border border-transparent bg-grey2 text-lg w-full text-center rounded-full text-muted cursor-pointer hover:bg-primary hover:text-white transition-all duration-150">
+                                    <input id="genderMale" type="radio" name="gender" value="male" class="hidden"
+                                        onclick="document.querySelectorAll('input[name=gender]').forEach(el => el.parentElement.classList.remove('bg-primary', 'text-white')); this.parentElement.classList.toggle('bg-primary', this.checked); this.parentElement.classList.toggle('text-white', this.checked);">
+                                    Male
+                                </label>
+                                <label
+                                    class="mr-2 px-3 py-1 border border-transparent bg-grey2 text-lg w-full text-center rounded-full text-muted cursor-pointer hover:bg-primary hover:text-white transition-all duration-150">
+                                    <input id="genderFemale" type="radio" name="gender" value="female" class="hidden"
+                                        onclick="document.querySelectorAll('input[name=gender]').forEach(el => el.parentElement.classList.remove('bg-primary', 'text-white')); this.parentElement.classList.toggle('bg-primary', this.checked); this.parentElement.classList.toggle('text-white', this.checked);">
+                                    Female
+                                </label>
+                                <label
+                                    class="mr-2 px-3 py-1 border border-transparent bg-grey2 text-lg w-full text-center rounded-full text-muted cursor-pointer hover:bg-primary hover:text-white transition-all duration-150">
+                                    <input id="genderOther" type="radio" name="gender" value="other" class="hidden"
+                                        onclick="document.querySelectorAll('input[name=gender]').forEach(el => el.parentElement.classList.remove('bg-primary', 'text-white')); this.parentElement.classList.toggle('bg-primary', this.checked); this.parentElement.classList.toggle('text-white', this.checked);">
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="bloodGroup" class="block text-gray-700 text-nowrap my-auto">Blood Group:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <select id="bloodGroup"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                                    <option value="" disabled selected>Select Blood Group</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="heightFeet" class="block text-gray-700 text-nowrap my-auto">Height:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <div class="flex gap-2 mt-1">
+                                    <input id="heightFeet" type="number" min="0" max="8"
+                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
+                                    <span class="flex items-center pr-3 text-muted">Feet</span>
+                                </div>
+                                <div class="flex gap-2 mt-1 ml-2">
+                                    <input id="heightInches" type="number" min="0" max="11"
+                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
+                                    <span class="flex items-center pr-3 text-muted">Inches</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="weightFeet" class="block text-gray-700 text-nowrap my-auto">Weight:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <div class="flex gap-2 mt-1">
+                                    <input id="weightFeet" type="number" min="0" max="8"
+                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
+                                    <span class="flex items-center pr-3 text-muted">Kilo</span>
+                                </div>
+                                <div class="flex gap-2 mt-1 ml-2">
+                                    <input id="weightInches" type="number" min="0" max="11"
+                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
+                                    <span class="flex items-center pr-3 text-muted">Grams</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="disease" class="block text-gray-700 text-nowrap my-auto">Disease:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="disease" type="text"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                    placeholder="Enter Disease">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="doctor" class="block text-gray-700 text-nowrap my-auto">Doctor:
+                                <span class="text-muted">(Optional)</span></label>
+                            <div class="flex items-center w-full col-span-2">
+                                <select id="doctor"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                                    <option value="" disabled selected>Select Doctor</option>
+                                    <option value="dr_smith">Dr. Smith</option>
+                                    <option value="dr_jones">Dr. Jones</option>
+                                    <option value="dr_williams">Dr. Williams</option>
+                                    <option value="dr_brown">Dr. Brown</option>
+                                    <option value="dr_johnson">Dr. Johnson</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="doctor" class="block text-gray-700 text-nowrap mb-auto mt-3">Doctor:
+                                <span class="text-muted">(Optional)</span></label>
+                            <div class="flex items-center w-full col-span-2">
+                                <textarea id="patientAddress"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-2xl"
+                                    placeholder="Enter Address" rows="6" cols="30"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Chart.js Script for Analytics -->
+    <script src="./assets/js/function.js?v=1.0.2"></script>
+</body>
+
+</html>

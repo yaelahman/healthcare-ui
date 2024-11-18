@@ -51,7 +51,7 @@
                         <a href="#" class="text-sm sidebar-text">All Patients</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
-                        onclick="changeTab('new_patient')">
+                        onclick="changeTab('patient_add')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
                         <a href="#" class="text-sm sidebar-text">Add New Patient</a>
                     </li>
@@ -148,13 +148,52 @@
             </div>
             <!-- Top Bar with Menu Button -->
             <!-- Dashboard Content -->
-            <div id="patients" class="tab-content hidden">
-                <div class="p-4 rounded-lg bg-white shadow-md">
-                    <div class="flex justify-between items-center mb-4">
+            <div id="patients" class="tab-content">
+                <div class="mb-3 grid grid-cols-1 md:grid-cols-3 md:gap-4">
+                    <div class="mb-3">
+                        <label for="search">Search</label>
+                        <div class="relative mt-2">
+                            <input type="text" placeholder="Search by Name or Date of Birth"
+                                class="w-full rounded-full pe-4 ps-10 py-3 border-grey focus:outline-grey2">
+                            <span
+                                class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">search</span>
+
+                            <button
+                                class="absolute right-2 top-[6px] px-5 py-2 text-sm rounded-full text-white bg-primary ">Search</button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="search">Disease or Allergy</label>
+                        <div class="relative mt-2 text-muted">
+                            <select
+                                class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
+                                <option value="" disabled selected>Search by Disease</option>
+                                <!-- Add options here -->
+                            </select>
+                            <i
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">arrow_drop_down</i>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="search">Doctor Name</label>
+                        <div class="relative mt-2 text-muted">
+                            <select
+                                class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
+                                <option value="" disabled selected>Search by Doctor Name</option>
+                                <!-- Add options here -->
+                            </select>
+                            <i
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">arrow_drop_down</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white shadow-md rounded-2xl pb-4">
+                    <div
+                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
                         <h2 class="text-lg font-medium">All Patients</h2>
                     </div>
                     <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white overflow-x-auto">
+                        <table class="min-w-full bg-white overflow-x-auto text-nowrap">
                             <thead>
                                 <tr>
                                     <th class="py-2 px-4 border-b text-start font-medium">Patient Name <i
@@ -169,10 +208,12 @@
                             </thead>
                             <tbody class="text-body">
                                 <tr>
-                                    <td class="py-2 px-4 border-b flex items-center">
-                                        <img src="assets/images/profile.png" alt="profile"
-                                            class="w-10 h-10 rounded-full mr-3">
-                                        <span>John Doe</span>
+                                    <td class="py-2 px-4 border-b ">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <span>Michael Brown</span>
+                                        </div>
                                     </td>
                                     <td class="py-2 px-4 border-b">01/01/1980</td>
                                     <td class="py-2 px-4 border-b">Male</td>
@@ -201,10 +242,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="py-2 px-4 border-b flex items-center">
-                                        <img src="assets/images/profile.png" alt="profile"
-                                            class="w-10 h-10 rounded-full mr-3">
-                                        <span>Jane Smith</span>
+                                    <td class="py-2 px-4 border-b ">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <span>Michael Brown</span>
+                                        </div>
                                     </td>
                                     <td class="py-2 px-4 border-b">02/02/1990</td>
                                     <td class="py-2 px-4 border-b">Female</td>
@@ -232,10 +275,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="py-2 px-4 border-b flex items-center">
-                                        <img src="assets/images/profile.png" alt="profile"
-                                            class="w-10 h-10 rounded-full mr-3">
-                                        <span>Emily Johnson</span>
+                                    <td class="py-2 px-4 border-b ">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <span>Michael Brown</span>
+                                        </div>
                                     </td>
                                     <td class="py-2 px-4 border-b">03/03/1985</td>
                                     <td class="py-2 px-4 border-b">Female</td>
@@ -264,10 +309,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="py-2 px-4 border-b flex items-center">
-                                        <img src="assets/images/profile.png" alt="profile"
-                                            class="w-10 h-10 rounded-full mr-3">
-                                        <span>Michael Brown</span>
+                                    <td class="py-2 px-4 border-b ">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <span>Michael Brown</span>
+                                        </div>
                                     </td>
                                     <td class="py-2 px-4 border-b">04/04/1975</td>
                                     <td class="py-2 px-4 border-b">Male</td>
@@ -298,6 +345,14 @@
                                 <!-- Add more rows as needed -->
                             </tbody>
                         </table>
+                        <div class="flex justify-end items-center mt-4 mx-4">
+                            <div class="space-x-1">
+                                <span>Page</span>
+                                <button
+                                    class="px-4 border border-muted rounded-full text-muted hover:bg-muted hover:text-white transition-all duration-150">1</button>
+                                <span>of 100</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

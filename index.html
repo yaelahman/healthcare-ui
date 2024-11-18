@@ -13,9 +13,9 @@
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   <link href="./assets/css/style.css?v=1.0.0" rel="stylesheet">
+   <link href="./assets/css/style.css?v=1.0.1" rel="stylesheet">
 
-   <script src="./assets/js/script.js?v=1.0.0"></script>
+   <script src="./assets/js/script.js?v=1.0.1"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -206,7 +206,8 @@
             <div class="grid grid-cols-3 gap-4">
                <!-- First row, first and second columns -->
                <div class="bg-white rounded-[20px] shadow-lg">
-                  <div class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey">
+                  <div
+                     class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
                      <h3 class="text-xl font-semibold">Analytics</h3>
                      <div class="relative inline-block">
                         <button id="dropdownButton" class="text-primary font-medium flex items-center">
@@ -234,8 +235,9 @@
                   </div>
                </div>
                <div class="bg-white rounded-[20px] shadow-lg">
-                  <div class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey">
-                     <h2 class="text-xl font-medium">Diseases Chart</h2>
+                  <div
+                     class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                     <h2 class="text-lg font-medium">Diseases Chart</h2>
                      <!-- Dropdown for "This Month" -->
                      <div class="relative inline-block">
                         <button id="rangeDropdownButton" class="text-primary font-medium flex items-center">
@@ -277,8 +279,9 @@
                </div>
                <!-- This cell will merge with the row below (spans 2 rows) -->
                <div class="bg-white rounded-[20px] shadow-lg row-span-2">
-                  <div class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey">
-                     <h2 class="text-xl font-medium">Appointments</h2>
+                  <div
+                     class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                     <h2 class="text-lg font-medium">Appointments</h2>
                      <span class="text-primary font-medium cursor-pointer">Upcoming</span>
                   </div>
                   <div class="p-4">
@@ -461,7 +464,8 @@
                </div>
                <!-- Second row, first and second columns -->
                <div class="bg-white rounded-[20px] shadow-lg">
-                  <div class="flex justify-between items-center mb-4 p-4 border-b-2 rounded-t-2xl bg-grey">
+                  <div
+                     class="flex justify-between items-center mb-4 p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
                      <h3 class="text-xl font-semibold">Reminders</h3>
                      <span class="material-icons add_circle text-gray-400">add_circle</span>
                   </div>
@@ -502,7 +506,8 @@
                   </div>
                </div>
                <div class="bg-white rounded-[20px] shadow-lg">
-                  <div class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey">
+                  <div
+                     class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
                      <h3 class="text-xl font-semibold">Recent Lab Results</h3>
                      <p class="text-blue-500">Upcoming</p>
                   </div>
@@ -659,14 +664,15 @@
          <div id="recordings" class="tab-content hidden">
 
             <div class="grid md:gap-4 md:grid-cols-3">
-               <div class="flex flex-column">
+               <div class="flex flex-col">
+                  <!-- Current Patient -->
                   <div class="bg-white rounded-[20px] shadow-lg mb-4">
-                     <div class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey">
-                        <h2 class="text-xl font-medium">Current Patient</h2>
+                     <div
+                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                        <h2 class="text-lg font-medium">Current Patient</h2>
                         <span class="text-red-500">SKIP</span>
                      </div>
                      <div class="p-4">
-                        <!-- Current Patient -->
                         <div class="relative">
                            <div class="absolute top-1 right-0">
                               <a class="text-darkBlue" href="">View Profile</a>
@@ -715,11 +721,48 @@
 
                      </div>
                   </div>
+                  <!-- Recordings -->
+                  <div class="bg-white min-h-[200px] rounded-[20px] shadow-lg mb-4">
+                     <div
+                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                        <h2 class="text-lg font-medium">Recordings</h2>
+                        <h2 class="text-lg font-medium">Time</h2>
+                     </div>
+                     <div class="relative">
+                        <div class="flex justify-content-between border-b px-3 pt-4 pb-2">
+                           <div class="flex gap-2 w-full">
+                              <span
+                                 class="inline-block bg-danger text-white rounded-full p-1 h-8 w-8 flex items-center justify-center">
+                                 <i class="material-icons">play_arrow</i>
+                              </span>
+                              <div class="text-medium text-start">
+                                 <p class="leading-none">Recording 1</p>
+                                 <span class="text-muted text-sm">Just Now</span>
+                              </div>
+                           </div>
+                           <span class="text-muted text-sm text-nowrap my-auto">4 mins 35 secs</span>
+                        </div>
+                     </div>
+                     <div class="flex justify-content-between border-b px-3 pt-4 pb-2">
+                        <div class="flex gap-2 w-full">
+                           <span
+                              class="inline-block bg-danger text-white rounded-full p-1 h-8 w-8 flex items-center justify-center">
+                              <i class="material-icons">play_arrow</i>
+                           </span>
+                           <div class="text-medium text-start">
+                              <p class="leading-none">Recording 2</p>
+                              <span class="text-muted text-sm">6 Mins Ago</span>
+                           </div>
+                        </div>
+                        <span class="text-muted text-sm text-nowrap my-auto">9 mins 36 secs</span>
+                     </div>
+                  </div>
                </div>
                <!-- Recordings Output -->
                <div class="bg-white rounded-[20px] shadow-lg mb-4 col-span-2">
-                  <div class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey">
-                     <h2 class="text-xl font-medium">Recordings Output</h2>
+                  <div
+                     class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                     <h2 class="text-lg font-medium">Recordings Output</h2>
                   </div>
                   <div class="p-4">
 

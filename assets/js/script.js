@@ -3,8 +3,11 @@ tailwind.config = {
         extend: {
             colors: {
                 primary: '#002952',
-                badgeGrey: '#F4F7F9',
-                cardHeader: '#F4F7F9',
+                danger: '#CF0000',
+                heading: '#242424',
+                body: '#585858',
+                grey: '#F4F7F9',
+                grey2: '#EAECEF',
                 darkBlue: '#002952',
                 black: '#111111',
                 muted: '#8A94A4'

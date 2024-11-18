@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>MediPro Dashboard</title>
+   <!-- Tailwind CSS -->
+   <script src="https://cdn.tailwindcss.com"></script>
+   <!-- Chart.js for the analytics chart -->
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <!--to show percentage on Doughnut  -->
+   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link href="./assets/css/style.css" rel="stylesheet">
+
+   <script src="./assets/js/script.js"></script>
+</head>
+
+<body class="bg-gray-100">
+   <div class="min-h-screen flex transition-all">
+      <!-- Sidebar -->
+      <div id="sidebar" class="sidebar-visible transition-all text-white p-4 sidebar"
+         style="background-color: rgb(23 37 78);">
+         <div class="flex items-center justify-center mb-6 bg-white text-primary rounded-xl h-24">
+            <img src="assets/images/LogoIcon.png" alt="Logo" class="mr-3">
+            <h2 class="text-2xl font-bold sidebar-text">MEDAIPRO</h2>
+         </div>
+         <ul>
+            <li id="tab-dashboard" class="tab active p-4 mb-2 rounded cursor-pointer" onclick="changeTab('dashboard')">
+               <i class="material-icons align-middle">dashboard</i>
+               <span class="ml-2 sidebar-text">Dashboard</span>
+            </li>
+            <li id="tab-recordings" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('recordings')">
+               <i class="material-icons align-middle">mic</i>
+               <span class="ml-2 sidebar-text">Recordings</span>
+            </li>
+            <!-- Patients -->
+            <li id="tab-patients" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+               onclick="toggleSubTabs('sub-tabs-patients')">
+               <i class="material-icons align-middle">people</i>
+               <span class="ml-2 sidebar-text">Patients</span>
+               <i class="material-icons ml-auto">expand_more</i>
+            </li>
+            <!-- Sub-Tabs (Initially Hidden) -->
+            <ul id="sub-tabs-patients" class="hidden pl-6 space-y-2">
+               <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                  onclick="changeTab('patients')">
+                  <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                  <a href="#" class="text-sm sidebar-text">All Patients</a>
+               </li>
+               <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                  onclick="changeTab('new_patient')">
+                  <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                  <a href="#" class="text-sm sidebar-text">Add New Patient</a>
+               </li>
+            </ul>
+            <!-- Appointments -->
+            <li id="tab-appointments" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+               onclick="toggleSubTabs('sub-tabs-appointments')">
+               <i class="material-icons align-middle">event</i>
+               <span class="ml-2 sidebar-text">Appointments</span>
+               <i class="material-icons ml-auto">expand_more</i>
+            </li>
+            <ul id="sub-tabs-appointments" class="hidden pl-6 space-y-2">
+               <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                  onclick="changeTab('appointments')">
+                  <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                  <a href="#" class="text-sm sidebar-text">All Appointments</a>
+               </li>
+               <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                  onclick="changeTab('add_appointment')">
+                  <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                  <a href="#" class="text-sm sidebar-text">Add New Appointment</a>
+               </li>
+            </ul>
+            <!-- Consultation -->
+            <li id="tab-consultation" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('consultation')">
+               <i class="material-icons align-middle">local_hospital</i>
+               <span class="ml-2 sidebar-text">Consultation</span>
+            </li>
+            <!-- Prescriptions -->
+            <li id="tab-prescriptions" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+               onclick="toggleSubTabs('sub-tabs-prescriptions')">
+               <i class="material-icons align-middle">description</i>
+               <span class="ml-2 sidebar-text">Prescriptions</span>
+               <i class="material-icons ml-auto">expand_more</i>
+            </li>
+            <ul id="sub-tabs-prescriptions" class="hidden pl-6 space-y-2">
+               <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                  onclick="changeTab('prescriptions')">
+                  <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                  <a href="#" class="text-sm sidebar-text">All Prescriptions</a>
+               </li>
+               <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                  onclick="changeTab('add_prescriptions')">
+                  <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                  <a href="#" class="text-sm sidebar-text">Create New</a>
+               </li>
+            </ul>
+            <!-- Labs -->
+            <li id="tab-labs" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('labs')">
+               <i class="material-icons align-middle">science</i>
+               <span class="ml-2 sidebar-text">Labs/Radiology</span>
+            </li>
+            <!-- AI Support -->
+            <li id="tab-ai" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('ai')">
+               <i class="material-icons align-middle">smart_toy</i>
+               <span class="ml-2 sidebar-text">AI Support</span>
+            </li>
+            <!-- Doctors -->
+            <li id="tab-doctors" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('doctors')">
+               <i class="material-icons align-middle">medical_services</i>
+               <span class="ml-2 sidebar-text">Doctors</span>
+            </li>
+            <!-- Super Bills -->
+            <li id="tab-super-bills" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('super-bills')">
+               <i class="material-icons align-middle">receipt</i>
+               <span class="ml-2 sidebar-text">Super Bills</span>
+            </li>
+            <!-- Customizations -->
+            <li id="tab-customizations" class="tab p-4 mb-2 rounded cursor-pointer"
+               onclick="changeTab('customizations')">
+               <i class="material-icons align-middle">tune</i>
+               <span class="ml-2 sidebar-text">Customizations</span>
+            </li>
+         </ul>
+      </div>
+      <!-- Main Content -->
+      <div id="main-content" class="main-content-collapsed transition-all bg-gray-100 p-0">
+         <div class="flex justify-between items-center mb-6 bg-white p-6 shadow ">
+            <div class="flex">
+               <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer"
+                  onclick="toggleSidebar()">menu</span>
+               <h1 class="text-2xl font-semibold text-[#585858]">Dashboard</h1>
+            </div>
+            <!-- Profile Section -->
+            <div class="flex items-center">
+               <span class="material-icons notifications text-gray-500 mr-4 cursor-pointer">notifications</span>
+               <div class="flex items-center space-x-4">
+                  <img src="assets/images/flag.png" alt="flag" class="w-8 h-6">
+                  <img src="assets/images/profile.png" alt="profile" class="rounded-full w-10 h-10">
+                  <span class="text-gray-600 font-medium bg-badgeGrey rounded-full px-5 py-2">Jennifer Perry</span>
+               </div>
+            </div>
+         </div>
+         <!-- Top Bar with Menu Button -->
+         <!-- Dashboard Content -->
+         <div id="dashboard" class="tab-content">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+               <!-- Total Patients Card -->
+               <div class="p-4 rounded-lg bg-gradient-to-r from-orange-400 to-red-500 text-white shadow-md">
+                  <div class="flex justify-between">
+                     <div>
+                        <p class="text-lg font-semibold">Total Patients</p>
+                        <p class="text-4xl font-bold">645</p>
+                     </div>
+                     <div class="flex flex-col items-center">
+                        <span class="material-icons text-6xl opacity-50">person</span>
+                        <p class="text-sm mt-2">145 ↑ vs Last Month</p>
+                     </div>
+                  </div>
+               </div>
+               <!-- New Patients Card -->
+               <div class="p-4 rounded-lg bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-md">
+                  <div class="flex justify-between">
+                     <div>
+                        <p class="text-lg font-semibold">New Patients</p>
+                        <p class="text-4xl font-bold">145</p>
+                     </div>
+                     <div class="flex flex-col items-center">
+                        <span class="material-icons text-6xl opacity-50">person_add</span>
+                        <p class="text-sm mt-2">15 ↑ vs Yesterday</p>
+                     </div>
+                  </div>
+               </div>
+               <!-- Total Appointments Card -->
+               <div class="p-4 rounded-lg bg-gradient-to-r from-pink-400 to-pink-600 text-white shadow-md">
+                  <div class="flex justify-between">
+                     <div>
+                        <p class="text-lg font-semibold">Total Appointments</p>
+                        <p class="text-4xl font-bold">105</p>
+                     </div>
+                     <div class="flex flex-col items-center">
+                        <span class="material-icons text-6xl opacity-50">favorite</span>
+                        <p class="text-sm mt-2">10 ↑ vs Yesterday</p>
+                     </div>
+                  </div>
+               </div>
+               <!-- Online Appointments Card -->
+               <div class="p-4 rounded-lg bg-gradient-to-r from-purple-400 to-purple-600 text-white shadow-md">
+                  <div class="flex justify-between">
+                     <div>
+                        <p class="text-lg font-semibold">Online Appointments</p>
+                        <p class="text-4xl font-bold">45</p>
+                     </div>
+                     <div class="flex flex-col items-center">
+                        <span class="material-icons text-6xl opacity-50">chat</span>
+                        <p class="text-sm mt-2">5 ↑ vs Yesterday</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <br>
+            <div class="grid grid-cols-3 gap-4">
+               <!-- First row, first and second columns -->
+               <div class="bg-white rounded-[20px] shadow-lg">
+                  <div class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-cardHeader">
+                     <h3 class="text-xl font-semibold">Analytics</h3>
+                     <div class="relative inline-block">
+                        <button id="dropdownButton" class="text-primary font-medium flex items-center">
+                           Weekly
+                           <span class="material-icons ml-1">expand_more</span>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <ul id="dropdownMenu" class="hidden absolute bg-white shadow-md mt-2 rounded-lg p-2 w-32">
+                           <li class="py-1 cursor-pointer hover:bg-gray-100" onclick="loadWeeklyData()">Weekly</li>
+                           <li class="py-1 cursor-pointer hover:bg-gray-100" onclick="loadMonthlyData()">Monthly</li>
+                           <li class="py-1 cursor-pointer hover:bg-gray-100" onclick="loadYearlyData()">Yearly</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="p-4">
+                     <!-- Buttons for Patients -->
+                     <div class="flex space-x-2 mb-4">
+                        <button id="totalPatientsBtn" class="px-4 py-2 bg-primary text-white rounded-lg"
+                           style="border-radius: 1.5rem;">Total Patients</button>
+                        <button id="newPatientsBtn" class="px-4 py-2 bg-[#F4F7F9] text-primary rounded-lg"
+                           style="border-radius: 1.5rem;">New Patients</button>
+                     </div>
+                     <!-- Chart.js Canvas -->
+                     <canvas id="analyticsChart" style="width: 100%; height: 400px;"></canvas>
+                  </div>
+               </div>
+               <div class="bg-white rounded-[20px] shadow-lg">
+                  <div class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-cardHeader">
+                     <h2 class="text-xl font-semibold">Diseases Chart</h2>
+                     <!-- Dropdown for "This Month" -->
+                     <div class="relative inline-block">
+                        <button id="rangeDropdownButton" class="text-primary font-medium flex items-center">
+                           This Week
+                           <span class="material-icons ml-1">expand_more</span>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <ul id="rangeDropdownMenu"
+                           class="absolute right-0 bg-white shadow-md mt-2 rounded-lg p-2 w-32 z-10">
+                           <li class="py-1 cursor-pointer hover:bg-gray-100" onclick="updateChartData('weekly')">This
+                              Week</li>
+                           <li class="py-1 cursor-pointer hover:bg-gray-100" onclick="updateChartData('monthly')">This
+                              Month</li>
+                           <li class="py-1 cursor-pointer hover:bg-gray-100" onclick="updateChartData('yearly')">This
+                              Year</li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="p-4">
+                     <!-- Doughnut Chart with fixed size -->
+                     <div class="relative" style="width: 300px; height: 300px; margin: 0 auto;">
+                        <canvas id="diseasesChartCanvas" width="200" height="200"></canvas>
+                        <!-- Center text inside doughnut chart -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                           <div class="text-center">
+                              <h2 class="text-xl font-bold" id="patientCountDisplay">1000</h2>
+                              <p class="text-gray-500">Patients</p>
+                           </div>
+                        </div>
+                     </div>
+
+                     <!-- Chart Legend -->
+                     <div class="mt-6">
+                        <ul id="diseaseLegendList">
+                           <!-- The legend is dynamically updated -->
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <!-- This cell will merge with the row below (spans 2 rows) -->
+               <div class="bg-white rounded-[20px] shadow-lg row-span-2">
+                  <div class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-cardHeader">
+                     <h2 class="text-xl font-semibold">Appointments</h2>
+                     <span class="text-primary font-medium cursor-pointer">Upcoming</span>
+                  </div>
+                  <div class="p-4">
+                     <!-- Appointment 1 -->
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex items-center">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="text-sm text-gray-500">3:00 PM</div>
+                           <div class="text-sm">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <!-- Appointment 2 -->
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex items-center">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-500 mr-2"></span>
+                              <span class="font-semibold">Diana Andre</span>
+                              <span class="text-sm text-gray-500 ml-1">• Diabetic</span>
+                           </div>
+                           <div class="text-sm text-gray-500">3:00 PM</div>
+                           <div class="text-sm">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <!-- Appointment 3 -->
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex items-center">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-purple-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Esther</span>
+                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="text-sm text-gray-500">3:00 PM</div>
+                           <div class="text-sm">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <!-- Appointment 4 -->
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex items-center">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-pink-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="text-sm text-gray-500">3:00 PM</div>
+                           <div class="text-sm">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <!-- Appointment 5 -->
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex items-center">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="text-sm text-gray-500">3:00 PM</div>
+                           <div class="text-sm">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <!-- Appointment 5 -->
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex items-center">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="text-sm text-gray-500">3:00 PM</div>
+                           <div class="text-sm">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <!-- Appointment 5 -->
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex items-center">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="text-sm text-gray-500">3:00 PM</div>
+                           <div class="text-sm">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <!-- Appointment 5 -->
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex items-center">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="text-sm text-gray-500">3:00 PM</div>
+                           <div class="text-sm">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex items-center">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="text-sm text-gray-500">3:00 PM</div>
+                           <div class="text-sm">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex items-center">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="text-sm text-gray-500">3:00 PM</div>
+                           <div class="text-sm">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                  </div>
+
+                  <div class="flex justify-between items-center border-b py-3">
+                     <div>
+                        <div class="flex items-center">
+                           <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
+                           <span class="font-semibold">Temitope Joshua</span>
+                           <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                        </div>
+                        <div class="text-sm text-gray-500">3:00 PM</div>
+                        <div class="text-sm">
+                           <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                           <a href="#" class="text-blue-500">Recordings</a>
+                        </div>
+                     </div>
+                     <a href="#" class="text-red-500">Skip</a>
+                  </div>
+
+               </div>
+               <!-- Second row, first and second columns -->
+               <div class="bg-white rounded-[20px] shadow-lg">
+                  <div class="flex justify-between items-center mb-4 p-4 border-b-2 rounded-t-2xl bg-cardHeader">
+                     <h3 class="text-xl font-semibold">Reminders</h3>
+                     <span class="material-icons add_circle text-gray-400">add_circle</span>
+                  </div>
+                  <div class="p-4">
+                     <ul>
+                        <li class="border-b py-3">
+                           <div class="flex justify-between">
+                              <p class="font-semibold">Upcoming Appointment</p>
+                              <p class="text-gray-500">3:00 PM</p>
+                           </div>
+                           <p class="text-gray-500 text-sm">Dr. Williams, your next appointment with Mrs. Taylor is in
+                              15 minutes.</p>
+                        </li>
+                        <li class="border-b py-3">
+                           <div class="flex justify-between">
+                              <p class="font-semibold">Medication Review Due</p>
+                              <p class="text-gray-500">3:00 PM</p>
+                           </div>
+                           <p class="text-gray-500 text-sm">You have 30 minutes left to review Mr. Adams' medication
+                              list.</p>
+                        </li>
+                        <li class="border-b py-3">
+                           <div class="flex justify-between">
+                              <p class="font-semibold">Surgery Preparation</p>
+                              <p class="text-gray-500">3:00 PM</p>
+                           </div>
+                           <p class="text-gray-500 text-sm">Prepare for Mr. Patel's surgery in 30 minutes.</p>
+                        </li>
+                        <li class="border-b py-3">
+                           <div class="flex justify-between">
+                              <p class="font-semibold">Patient Follow-Up Call</p>
+                              <p class="text-gray-500">3:00 PM</p>
+                           </div>
+                           <p class="text-gray-500 text-sm">Follow up with Mr. Brown about his treatment progress in 15
+                              minutes.</p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="bg-white rounded-[20px] shadow-lg">
+                  <div class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-cardHeader">
+                     <h3 class="text-xl font-semibold">Recent Lab Results</h3>
+                     <p class="text-blue-500">Upcoming</p>
+                  </div>
+                  <div class="p-4">
+                     <table class="w-full text-left">
+                        <thead>
+                           <tr class="text-gray-500">
+                              <th class="pb-3">Report/Test Name</th>
+                              <th class="pb-3">Lab Name</th>
+                              <th class="pb-3">Patient Name</th>
+                              <th class="pb-3">Test Date & Time</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="border-t">
+                              <td class="py-3">Echocardiogram</td>
+                              <td class="py-3 flex items-center"><span
+                                    class="inline-block w-6 h-6 bg-orange-500 text-white rounded-full text-center mr-2">Q</span>
+                                 Quest Diagnostics</td>
+                              <td class="py-3">Arman soni</td>
+                              <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                           </tr>
+                           <tr class="border-t">
+                              <td class="py-3">X-Ray (Shoulder)</td>
+                              <td class="py-3 flex items-center"><span
+                                    class="inline-block w-6 h-6 bg-blue-500 text-white rounded-full text-center mr-2">L</span>
+                                 LabCorp</td>
+                              <td class="py-3">Arman soni</td>
+                              <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                           </tr>
+                           <tr class="border-t">
+                              <td class="py-3">X-Ray (Arms)</td>
+                              <td class="py-3 flex items-center"><span
+                                    class="inline-block w-6 h-6 bg-purple-500 text-white rounded-full text-center mr-2">M</span>
+                                 Mayo Clinic Lab</td>
+                              <td class="py-3">Arman soni</td>
+                              <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                           </tr>
+                           <tr class="border-t">
+                              <td class="py-3">Echocardiogram</td>
+                              <td class="py-3 flex items-center"><span
+                                    class="inline-block w-6 h-6 bg-teal-500 text-white rounded-full text-center mr-2">A</span>
+                                 ARUP Laboratories</td>
+                              <td class="py-3">Arman soni</td>
+                              <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                           </tr>
+                           <tr class="border-t">
+                              <td class="py-3">Echocardiogram</td>
+                              <td class="py-3 flex items-center"><span
+                                    class="inline-block w-6 h-6 bg-pink-500 text-white rounded-full text-center mr-2">B</span>
+                                 BioReference Lab</td>
+                              <td class="py-3">Arman soni</td>
+                              <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <!-- All pop-ups here -->
+            <!-- Add Reminder Popup -->
+            <div id="reminderPopup"
+               class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50 hidden">
+               <div class="bg-white rounded-lg p-6 shadow-lg w-full max-w-md relative">
+                  <span class="absolute top-4 right-4 text-gray-600 cursor-pointer text-2xl"
+                     onclick="closePopup('reminderPopup')">&times;</span>
+                  <h3 class="text-xl font-semibold mb-4">Add Reminder</h3>
+                  <div class="mb-4">
+                     <label for="title" class="block text-gray-700">Title:</label>
+                     <input id="title" type="text" class="w-full mt-1 p-2 border rounded-lg"
+                        placeholder="Add Your Title Here">
+                  </div>
+                  <div class="mb-4">
+                     <label for="date" class="block text-gray-700">Date:</label>
+                     <input id="date" type="text" class="w-full mt-1 p-2 border rounded-lg"
+                        placeholder="August 25, 2024">
+                  </div>
+                  <div class="mb-4">
+                     <label for="time" class="block text-gray-700">Time:</label>
+                     <input id="time" type="text" class="w-full mt-1 p-2 border rounded-lg" placeholder="12:00 PM">
+                  </div>
+                  <div class="mb-4">
+                     <label for="description" class="block text-gray-700">Description:</label>
+                     <textarea id="description" class="w-full mt-1 p-2 border rounded-lg"
+                        placeholder="Add Description Here"></textarea>
+                  </div>
+                  <div class="mb-4">
+                     <label for="notify" class="block text-gray-700">Notify Before:</label>
+                     <select id="notify" class="w-full mt-1 p-2 border rounded-lg">
+                        <option>30 Mins</option>
+                        <option>1 Hour</option>
+                        <option>2 Hours</option>
+                     </select>
+                  </div>
+                  <div class="flex justify-end">
+                     <button class="bg-red-500 text-white px-4 py-2 rounded-lg mr-2"
+                        onclick="closePopup('reminderPopup')">Cancel</button>
+                     <button class="bg-blue-600 text-white px-4 py-2 rounded-lg">Schedule</button>
+                  </div>
+               </div>
+            </div>
+            <!-- Notifications Popup -->
+            <!-- Notifications Popup -->
+            <div id="notificationsPopup" class="absolute right-0 mt-2 bg-white rounded-lg shadow-lg z-50 hidden"
+               style="margin-top:-73em;margin-left: 42em;">
+               <div class="p-4 border-b flex justify-between items-center">
+                  <h3 class="text-lg font-semibold">Notifications</h3>
+                  <a href="#" class="text-blue-500 text-sm">Mark all as read</a>
+               </div>
+               <ul class="max-h-80 overflow-y-auto">
+                  <li class="flex justify-between items-center p-4 border-b">
+                     <div class="flex items-center space-x-3">
+                        <span class="material-icons text-orange-500">person_add</span>
+                        <div>
+                           <p class="font-bold">New patient Added</p>
+                           <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur.</p>
+                        </div>
+                     </div>
+                     <span class="text-sm text-gray-500">Just Now</span>
+                  </li>
+                  <li class="flex justify-between items-center p-4 border-b">
+                     <div class="flex items-center space-x-3">
+                        <span class="material-icons text-blue-500">check_circle</span>
+                        <div>
+                           <p class="font-bold">Your leave is approved</p>
+                           <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur.</p>
+                        </div>
+                     </div>
+                     <span class="text-sm text-gray-500">3 Mins Ago</span>
+                  </li>
+                  <li class="flex justify-between items-center p-4 border-b">
+                     <div class="flex items-center space-x-3">
+                        <span class="material-icons text-pink-500">description</span>
+                        <div>
+                           <p class="font-bold">Patient report generated</p>
+                           <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur.</p>
+                        </div>
+                     </div>
+                     <span class="text-sm text-gray-500">10 Mins Ago</span>
+                  </li>
+                  <li class="flex justify-between items-center p-4 border-b">
+                     <div class="flex items-center space-x-3">
+                        <span class="material-icons text-purple-500">mail</span>
+                        <div>
+                           <p class="font-bold">Please check your mail</p>
+                           <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur.</p>
+                        </div>
+                     </div>
+                     <span class="text-sm text-gray-500">15 Mins Ago</span>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div id="recordings" class="tab-content hidden">
+
+            <div class="grid grid-cols-2 gap-4">
+               <div class="bg-white rounded-[20px] shadow-lg">
+                  <div class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-cardHeader">
+                     <h2 class="text-xl font-semibold">Current Patient</h2>
+                     <!-- Dropdown for "This Month" -->
+                     <span class="text-red-500">SKIP</span>
+                  </div>
+                  <div class="p-4">
+                     <!-- Current Patient -->
+                     <div class="relative">
+                        <div class="flex">
+                           <img src="./assets/images/johnson.png" class="rounded-xl" alt="">
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+               <div class="bg-white rounded-lg shadow-md p-4">
+                  <h3 class="text-lg font-semibold">Recording Details</h3>
+                  <p class="text-gray-600">Access detailed information about each recording.</p>
+               </div>
+            </div>
+         </div>
+         <div id="patients" class="tab-content hidden">All Patients Content Here</div>
+         <div id="new_patient" class="tab-content hidden">Add New Patient Content Here</div>
+         <div id="appointments" class="tab-content hidden">All Appointments Content Here</div>
+         <div id="add_appointment" class="tab-content hidden">Add New Appointment Content Here</div>
+         <div id="consultation" class="tab-content hidden">Consultation Content Here</div>
+         <div id="prescriptions" class="tab-content hidden">All Prescriptions Content Here</div>
+         <div id="add_prescriptions" class="tab-content hidden">Create New Prescription Content Here</div>
+         <div id="labs" class="tab-content hidden">Labs Content Here</div>
+         <div id="ai" class="tab-content hidden">AI Support Content Here</div>
+         <div id="doctors" class="tab-content hidden">Doctors Content Here</div>
+         <div id="super-bills" class="tab-content hidden">Super Bills Content Here</div>
+         <div id="customizations" class="tab-content hidden">Customizations Content Here</div>
+      </div>
+   </div>
+
+
+
+
+   <!-- Chart.js Script for Analytics -->
+   <script>
+      var ctx = document.getElementById('analyticsChart').getContext('2d');
+      var chart; // Store chart instance
+
+      // Initial load with total patients data
+      function loadTotalPatientsData() {
+         if (chart) chart.destroy(); // Clear previous chart
+
+         chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+               labels: ['Sep 10', 'Sep 11', 'Sep 12', 'Sep 13', 'Sep 14', 'Sep 15', 'Sep 16'],
+               datasets: [{
+                  label: 'Total Patients',
+                  borderColor: 'blue',
+                  data: [100, 120, 105, 140, 115, 100, 150],
+                  fill: false,
+                  tension: 0.1,
+                  pointBackgroundColor: 'white',
+                  pointBorderWidth: 2
+               }]
+            },
+            options: {
+               responsive: true,
+               plugins: {
+                  legend: {
+                     display: false
+                  }
+               },
+               scales: {
+                  y: {
+                     beginAtZero: false,
+                     min: 80,
+                     max: 160
+                  }
+               }
+            }
+         });
+      }
+
+      // Load new patients data
+      function loadNewPatientsData() {
+         if (chart) chart.destroy(); // Clear previous chart
+
+         chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+               labels: ['Sep 10', 'Sep 11', 'Sep 12', 'Sep 13', 'Sep 14', 'Sep 15', 'Sep 16'],
+               datasets: [{
+                  label: 'New Patients',
+                  backgroundColor: 'green',
+                  data: [30, 40, 25, 50, 45, 60, 75],
+               }]
+            },
+            options: {
+               responsive: true,
+               plugins: {
+                  legend: {
+                     display: false
+                  }
+               },
+               scales: {
+                  y: {
+                     beginAtZero: true
+                  }
+               }
+            }
+         });
+      }
+
+      // Weekly, Monthly, Yearly data loaders
+      function loadWeeklyData() {
+         document.getElementById('dropdownButton').innerText = 'Weekly';
+         loadTotalPatientsData();
+         toggleDropdown(); // Close dropdown
+      }
+
+      function loadMonthlyData() {
+         document.getElementById('dropdownButton').innerText = 'Monthly';
+         loadTotalPatientsData();
+         toggleDropdown(); // Close dropdown
+      }
+
+      function loadYearlyData() {
+         document.getElementById('dropdownButton').innerText = 'Yearly';
+         loadTotalPatientsData();
+         toggleDropdown(); // Close dropdown
+      }
+
+      // Event listeners for buttons
+      document.getElementById('totalPatientsBtn').addEventListener('click', loadTotalPatientsData);
+      document.getElementById('newPatientsBtn').addEventListener('click', loadNewPatientsData);
+
+      // Initial load of the total patients chart
+      loadTotalPatientsData();
+
+      // Toggle dropdown visibility
+      function toggleDropdown() {
+         const menu = document.getElementById('dropdownMenu');
+         menu.classList.toggle('hidden');
+      }
+
+      document.getElementById('dropdownButton').addEventListener('click', toggleDropdown);
+   </script>
+
+   <!-- Chart.js Script for Diseases Chart -->
+   <script>
+      var diseasesCtx = document.getElementById('diseasesChartCanvas').getContext('2d');
+      var diseasesChart; // Store chart instance here
+
+      const chartData = {
+         weekly: {
+            labels: ['Cholesterol', 'Diabetic', 'Low Blood Pressure', 'Malaria', 'Others'],
+            data: [100, 50, 40, 30, 10],
+            totalPatients: 230
+         },
+         monthly: {
+            labels: ['Cholesterol', 'Diabetic', 'Low Blood Pressure', 'Malaria', 'Others'],
+            data: [420, 200, 180, 150, 50],
+            totalPatients: 1000
+         },
+         yearly: {
+            labels: ['Cholesterol', 'Diabetic', 'Low Blood Pressure', 'Malaria', 'Others'],
+            data: [5000, 3000, 2500, 2000, 1000],
+            totalPatients: 13500
+         }
+      };
+
+      // Load the doughnut chart
+      function loadDiseasesChart(data, labels) {
+         if (diseasesChart) diseasesChart.destroy(); // Clear previous chart
+
+         diseasesChart = new Chart(diseasesCtx, {
+            type: 'doughnut',
+            data: {
+               labels: labels,
+               datasets: [{
+                  data: data,
+                  backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF8C00', '#9ACD32'],
+                  hoverOffset: 4
+               }]
+            },
+            options: {
+               responsive: true,
+               layout: {
+                  padding: {
+                     top: 20,
+                     bottom: 20,
+                     left: 50,
+                     right: 50
+                  }
+               },
+               plugins: {
+                  legend: {
+                     display: false // Disable default legend
+                  },
+                  datalabels: {
+                     color: '#000',  // Label text color
+                     font: {
+                        weight: 'bold',
+                        size: 14
+                     },
+                     formatter: function (value, context) {
+                        const dataset = context.chart.data.datasets[0];
+                        const total = dataset.data.reduce((acc, val) => acc + val, 0);
+                        const percentage = (value / total * 100).toFixed(1) + '%';
+                        return percentage;
+                     },
+                     anchor: 'end',  // Position the label outside the slice
+                     align: 'end', // Align it on the outside of the slice
+                  }
+               }
+            },
+            plugins: [ChartDataLabels]
+         });
+
+         updateLegend(labels, data);
+      }
+
+      // Update custom legend
+      function updateLegend(labels, data) {
+         const legendContainer = document.getElementById('diseaseLegendList');
+         legendContainer.innerHTML = ''; // Clear existing legend
+
+         labels.forEach((label, index) => {
+            legendContainer.innerHTML += `
+              <li class="flex items-center mb-2">
+                  <span class="inline-block w-3 h-3 rounded-full" style="background-color: ${diseasesChart.data.datasets[0].backgroundColor[index]}; margin-right: 0.5rem;"></span>
+                  ${label} <span class="ml-auto text-gray-500">${data[index]} (${((data[index] / data.reduce((a, b) => a + b)) * 100).toFixed(2)}%)</span>
+              </li>
+          `;
+         });
+      }
+
+      // Update diseases chart based on time period
+      function updateChartData(period) {
+         const { labels, data, totalPatients } = chartData[period];
+
+         // Update the chart with new data
+         document.getElementById('patientCountDisplay').innerText = totalPatients;
+         loadDiseasesChart(data, labels);
+
+         // Update the dropdown button text with the selected period
+         const dropdownButton = document.getElementById('rangeDropdownButton');
+         if (period === 'weekly') {
+            dropdownButton.innerHTML = 'This Week <span class="material-icons ml-1">expand_more</span>';
+         } else if (period === 'monthly') {
+            dropdownButton.innerHTML = 'This Month <span class="material-icons ml-1">expand_more</span>';
+         } else if (period === 'yearly') {
+            dropdownButton.innerHTML = 'Yearly <span class="material-icons ml-1">expand_more</span>';
+         }
+
+         toggleRangeDropdown(); // Close dropdown after selection
+      }
+
+      // Toggle dropdown visibility
+      function toggleRangeDropdown() {
+         const menu = document.getElementById('rangeDropdownMenu');
+         menu.classList.toggle('hidden');
+      }
+
+      document.getElementById('rangeDropdownButton').addEventListener('click', toggleRangeDropdown);
+
+
+      // Initial load of the diseases chart (monthly)
+      updateChartData('monthly');
+   </script>
+
+
+
+
+   <script>
+      function showPopup(popupId) {
+         document.getElementById(popupId).style.display = 'flex';
+      }
+
+      function closePopup(popupId) {
+         document.getElementById(popupId).style.display = 'none';
+      }
+
+      // To open popups on click
+      document.querySelector('.material-icons.add_circle').onclick = function () {
+         showPopup('reminderPopup');
+      };
+
+      document.querySelector('.notifications').onclick = function () {
+         const popup = document.getElementById('notificationsPopup');
+         popup.classList.toggle('hidden');
+      };
+
+      document.addEventListener('click', function (event) {
+         const popup = document.getElementById('notificationsPopup');
+         const notificationIcon = document.querySelector('.notifications');
+
+         if (!popup.contains(event.target) && !notificationIcon.contains(event.target)) {
+            popup.classList.add('hidden');
+         }
+      });
+
+
+   </script>
+</body>
+
+</html>

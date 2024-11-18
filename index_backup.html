@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPro Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for the analytics chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        .tab:hover {
+            background-color: #0d1a44;
+            color: white;
+        }
+        .tab:active {
+            background-color: #0d1a44; /* Darker blue on hover */
+            color: white;
+        }
+        .text-blue-700 {
+            color: rgb(255 255 255) !important;
+        }
+        .bg-blue-900 {
+            background-color: rgb(36 57 116) !important;
+        }
+        .bg-blue-700 {
+            background-color: rgb(36 57 116) !important;
+        }
+        .hover\:bg-blue-700:hover {
+            background-color: rgb(36 57 116) !important;
+        }
+        .active-tab {
+            background-color: #1d4ed8; /* Tailwind Blue 700 */
+            color: white;
+        }
+    </style>
+    <script>
+        function changeTab(tabName) {
+            // Hide all sections
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            // Show the clicked tab
+            document.getElementById(tabName).classList.remove('hidden');
+
+            // Update active tab style
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('bg-blue-700', 'text-white');
+                tab.classList.add('text-blue-700', 'hover:bg-blue-700', 'hover:text-white');
+            });
+
+            // Set clicked tab as active
+            document.getElementById(`tab-${tabName}`).classList.add('bg-blue-700', 'text-white');
+            document.getElementById(`tab-${tabName}`).classList.remove('hover:bg-blue-700', 'hover:text-white');
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <div class="w-1/5 text-white p-4" style="background-color: rgb(23 37 78);">
+            <div class="flex items-center mb-6">
+                <img src="https://via.placeholder.com/40" alt="Logo" class="mr-3">
+                <h2 class="text-2xl font-bold">MEDAIPRO</h2>
+            </div>
+            <ul>
+                <li id="tab-dashboard" class="tab bg-blue-900 text-white p-4 mb-2 rounded cursor-pointer" onclick="changeTab('dashboard')">
+                    <i class="material-icons align-middle">dashboard</i> <span class="ml-2">Dashboard</span>
+                </li>
+                <li id="tab-recordings" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('recordings')">
+                    <i class="material-icons align-middle">mic</i> <span class="ml-2">Recordings</span>
+                </li>
+                <li id="tab-patients" class="tab p-4 mb-2 rounded cursor-pointer flex items-center" onclick="toggleSubTabs()">
+                    <i class="material-icons align-middle">people</i>
+                    <span class="ml-2">Patients</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+
+                <!-- Sub-Tabs (Initially Hidden) -->
+                <ul id="sub-tabs" class="hidden pl-6 space-y-2">
+                    <!-- Sub-tab with dot icon -->
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center" onclick="changeTab('patients')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i> <!-- Dot Icon -->
+                        <a href="#" class="text-sm">Patient</a>
+                    </li>
+                    <!-- Sub-tab with dot icon -->
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center" onclick="changeTab('new_patient')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i> <!-- Dot Icon -->
+                        <a href="#" class="text-sm">Add New Patient</a>
+                    </li>
+                </ul>
+                
+
+                <li id="tab-appointments" class="tab p-4 mb-2 rounded cursor-pointer flex items-center" onclick="toggleAppointments()">
+                    <i class="material-icons align-middle">event</i>
+                    <span class="ml-2">Appointments</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+                <!-- Sub-Tabs (Initially Hidden) -->
+                <ul id="appointment-sub-tabs" class="hidden pl-6 space-y-2">
+                    <!-- Sub-tab with dot icon -->
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center" onclick="changeTab('appointments')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i> <!-- Dot Icon -->
+                        <a href="#" class="text-sm">All Appointments</a>
+                    </li>
+                    <!-- Sub-tab with dot icon -->
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center" onclick="changeTab('add_appointment')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i> <!-- Dot Icon -->
+                        <a href="#" class="text-sm">Add New Appointment</a>
+                    </li>
+                </ul>
+
+
+                <li id="tab-consultation" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('consultation')">
+                    <i class="material-icons align-middle">local_hospital</i> <span class="ml-2">Consultation</span>
+                </li>
+
+                <li id="tab-prescriptions" class="tab p-4 mb-2 rounded cursor-pointer flex items-center" onclick="togglePrescriptions()">
+                    <i class="material-icons align-middle">event</i>
+                    <span class="ml-2">Prescriptions</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+
+                <!-- Sub-Tabs (Initially Hidden) -->
+                <ul id="prescriptions-sub-tabs" class="hidden pl-6 space-y-2">
+                    <!-- Sub-tab with dot icon -->
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center" onclick="changeTab('prescriptions')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i> <!-- Dot Icon -->
+                        <a href="#" class="text-sm">All Prescriptions</a>
+                    </li>
+                    <!-- Sub-tab with dot icon -->
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center" onclick="changeTab('add_prescriptions')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i> <!-- Dot Icon -->
+                        <a href="#" class="text-sm">Create New</a>
+                    </li>
+                </ul>
+
+
+                <li id="tab-labs" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('labs')">
+                    <i class="material-icons align-middle">science</i> <span class="ml-2">Labs/Radiology</span>
+                </li>
+                <li id="tab-ai" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('ai')">
+                    <i class="material-icons align-middle">smart_toy</i> <span class="ml-2">AI Support</span>
+                </li>
+                <li id="tab-doctors" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('doctors')">
+                    <i class="material-icons align-middle">medical_services</i> <span class="ml-2">Doctors</span>
+                </li>
+                <li id="tab-super-bills" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('super-bills')">
+                    <i class="material-icons align-middle">receipt</i> <span class="ml-2">Super Bills</span>
+                </li>
+                <li id="tab-customizations" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('customizations')">
+                    <i class="material-icons align-middle">tune</i> <span class="ml-2">Customizations</span>
+                </li>
+                
+                <li id="tab-security" class="tab p-4 mb-2 rounded cursor-pointer flex items-center" onclick="toggleSecurity()">
+                  <i class="material-icons align-middle">event</i>
+                  <span class="ml-2">Security</span>
+                  <i class="material-icons ml-auto">expand_more</i>
+                </li>
+
+                <!-- Sub-Tabs (Initially Hidden) -->
+                <ul id="security-sub-tabs" class="hidden pl-6 space-y-2">
+                  <!-- Sub-tab with dot icon -->
+                  <li class="text-gray-300 hover:text-white cursor-pointer flex items-center" onclick="changeTab('hipaa_compliance')">
+                      <i class="material-icons text-xs mr-2">fiber_manual_record</i> <!-- Dot Icon -->
+                      <a href="#" class="text-sm">HIPAA Compliance</a>
+                  </li>
+                  <!-- Sub-tab with dot icon -->
+                  <li class="text-gray-300 hover:text-white cursor-pointer flex items-center" onclick="changeTab('user_access_control')">
+                      <i class="material-icons text-xs mr-2">fiber_manual_record</i> <!-- Dot Icon -->
+                      <a href="#" class="text-sm">User Access Control</a>
+                  </li>
+              </ul>
+
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="w-4/5 bg-gray-100 p-6">
+            <!-- Dashboard Content -->
+            <div id="dashboard" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <!-- Total Patients Card -->
+                    <div class="p-4 rounded-lg bg-gradient-to-r from-orange-400 to-red-500 text-white shadow-md">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-lg font-semibold">Total Patients</p>
+                                <p class="text-4xl font-bold">645</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="material-icons text-6xl opacity-50">person</span>
+                                <p class="text-sm mt-2">145 ↑ vs Last Month</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- New Patients Card -->
+                    <div class="p-4 rounded-lg bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-md">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-lg font-semibold">New Patients</p>
+                                <p class="text-4xl font-bold">145</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="material-icons text-6xl opacity-50">person_add</span>
+                                <p class="text-sm mt-2">15 ↑ vs Yesterday</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Total Appointments Card -->
+                    <div class="p-4 rounded-lg bg-gradient-to-r from-pink-400 to-pink-600 text-white shadow-md">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-lg font-semibold">Total Appointments</p>
+                                <p class="text-4xl font-bold">105</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="material-icons text-6xl opacity-50">favorite</span>
+                                <p class="text-sm mt-2">10 ↑ vs Yesterday</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Online Appointments Card -->
+                    <div class="p-4 rounded-lg bg-gradient-to-r from-purple-400 to-purple-600 text-white shadow-md">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-lg font-semibold">Online Appointments</p>
+                                <p class="text-4xl font-bold">45</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="material-icons text-6xl opacity-50">chat</span>
+                                <p class="text-sm mt-2">5 ↑ vs Yesterday</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br>
+                
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Analytics Section -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <div class="flex justify-between mb-4">
+                            <h3 class="text-xl font-semibold">Analytics</h3>
+                            <p class="text-blue-500">Weekly</p>
+                        </div>
+                        <div class="flex space-x-2 mb-4">
+                            <button class="px-4 py-2 bg-blue-900 text-white rounded-lg">Blood Pressure</button>
+                            <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Heart Rate</button>
+                            <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Respiration Rate</button>
+                            <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">+1</button>
+                        </div>
+                        <!-- Chart.js Canvas -->
+                        <canvas id="analyticsChart" class="w-full h-40"></canvas>
+                    </div>
+            
+                    <!-- Appointments/Lab Tests Section -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <div class="flex justify-between mb-4">
+                            <h3 class="text-xl font-semibold">Appointments/Lab Tests</h3>
+                            <p class="text-blue-500">Upcoming</p>
+                        </div>
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-gray-500">
+                                    <th class="pb-3">Report/Test Name</th>
+                                    <th class="pb-3">Lab Name</th>
+                                    <th class="pb-3">Test Date & Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-t">
+                                    <td class="py-3">Echocardiogram</td>
+                                    <td class="py-3 flex items-center"><span class="inline-block w-6 h-6 bg-orange-500 text-white rounded-full text-center mr-2">Q</span> Quest Diagnostics</td>
+                                    <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                                </tr>
+                                <tr class="border-t">
+                                    <td class="py-3">X-Ray (Shoulder)</td>
+                                    <td class="py-3 flex items-center"><span class="inline-block w-6 h-6 bg-blue-500 text-white rounded-full text-center mr-2">L</span> LabCorp</td>
+                                    <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                                </tr>
+                                <tr class="border-t">
+                                    <td class="py-3">X-Ray (Arms)</td>
+                                    <td class="py-3 flex items-center"><span class="inline-block w-6 h-6 bg-purple-500 text-white rounded-full text-center mr-2">M</span> Mayo Clinic Lab</td>
+                                    <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                                </tr>
+                                <tr class="border-t">
+                                    <td class="py-3">Echocardiogram</td>
+                                    <td class="py-3 flex items-center"><span class="inline-block w-6 h-6 bg-teal-500 text-white rounded-full text-center mr-2">A</span> ARUP Laboratories</td>
+                                    <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                                </tr>
+                                <tr class="border-t">
+                                    <td class="py-3">Echocardiogram</td>
+                                    <td class="py-3 flex items-center"><span class="inline-block w-6 h-6 bg-pink-500 text-white rounded-full text-center mr-2">B</span> BioReference Lab</td>
+                                    <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+                <!-- Chart.js Script -->
+                <script>
+                    var ctx = document.getElementById('analyticsChart').getContext('2d');
+                    var chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['Sep 10', 'Sep 11', 'Sep 12', 'Sep 13', 'Sep 14', 'Sep 15', 'Sep 16'],
+                            datasets: [{
+                                label: 'Blood Pressure',
+                                borderColor: 'red',
+                                data: [100, 120, 105, 140, 115, 100, 150],
+                                fill: false,
+                                tension: 0.1,
+                                pointBackgroundColor: 'white',
+                                pointBorderWidth: 2
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: false,
+                                    min: 80,
+                                    max: 160
+                                }
+                            },
+                            plugins: {
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            return context.raw + 'mmHg';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                </script>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Reminders Section -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold">Reminders</h3>
+                        <span class="material-icons text-gray-400">add_circle</span>
+                    </div>
+                    <ul>
+                        <li class="border-b py-3">
+                            <div class="flex justify-between">
+                                <p class="font-semibold">Upcoming Appointment</p>
+                                <p class="text-gray-500">3:00 PM</p>
+                            </div>
+                            <p class="text-gray-500 text-sm">Dr. Williams, your next appointment with Mrs. Taylor is in 15 minutes.</p>
+                        </li>
+                        <li class="border-b py-3">
+                            <div class="flex justify-between">
+                                <p class="font-semibold">Medication Review Due</p>
+                                <p class="text-gray-500">3:00 PM</p>
+                            </div>
+                            <p class="text-gray-500 text-sm">You have 30 minutes left to review Mr. Adams' medication list.</p>
+                        </li>
+                        <li class="border-b py-3">
+                            <div class="flex justify-between">
+                                <p class="font-semibold">Surgery Preparation</p>
+                                <p class="text-gray-500">3:00 PM</p>
+                            </div>
+                            <p class="text-gray-500 text-sm">Prepare for Mr. Patel's surgery in 30 minutes.</p>
+                        </li>
+                        <li class="border-b py-3">
+                            <div class="flex justify-between">
+                                <p class="font-semibold">Patient Follow-Up Call</p>
+                                <p class="text-gray-500">3:00 PM</p>
+                            </div>
+                            <p class="text-gray-500 text-sm">Follow up with Mr. Brown about his treatment progress in 15 minutes.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Medications Section -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Medications</h3>
+                    <table class="w-full">
+                        <thead>
+                            <tr class="text-gray-500">
+                                <th class="text-left pb-3">Medicine Name</th>
+                                <th class="text-left pb-3">Frequency</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-t">
+                                <td class="py-3">Econochlor</td>
+                                <td class="py-3">1-0-1</td>
+                            </tr>
+                            <tr class="border-t">
+                                <td class="py-3">Desmopressin tabs</td>
+                                <td class="py-3">1-1-1</td>
+                            </tr>
+                            <tr class="border-t">
+                                <td class="py-3">Gentamicin-topical</td>
+                                <td class="py-3">0-0-1</td>
+                            </tr>
+                            <tr class="border-t">
+                                <td class="py-3">Shermorelin</td>
+                                <td class="py-3">1-0-0</td>
+                            </tr>
+                            <tr class="border-t">
+                                <td class="py-3">Kevzara Sarilumab</td>
+                                <td class="py-3">1-0-1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Reports/Documents Section -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Reports/Documents</h3>
+                    <ul>
+                        <li class="border-b py-3 flex justify-between items-center">
+                            <span>Blood Report</span>
+                            <div class="flex space-x-4 text-gray-400">
+                                <span class="material-icons cursor-pointer">cloud_download</span>
+                                <span class="material-icons cursor-pointer">delete</span>
+                            </div>
+                        </li>
+                        <li class="border-b py-3 flex justify-between items-center">
+                            <span>Urine Report</span>
+                            <div class="flex space-x-4 text-gray-400">
+                                <span class="material-icons cursor-pointer">cloud_download</span>
+                                <span class="material-icons cursor-pointer">delete</span>
+                            </div>
+                        </li>
+                        <li class="border-b py-3 flex justify-between items-center">
+                            <span>X-Ray Files</span>
+                            <div class="flex space-x-4 text-gray-400">
+                                <span class="material-icons cursor-pointer">cloud_download</span>
+                                <span class="material-icons cursor-pointer">delete</span>
+                            </div>
+                        </li>
+                        <li class="border-b py-3 flex justify-between items-center">
+                            <span>Doctor Prescription</span>
+                            <div class="flex space-x-4 text-gray-400">
+                                <span class="material-icons cursor-pointer">cloud_download</span>
+                                <span class="material-icons cursor-pointer">delete</span>
+                            </div>
+                        </li>
+                        <li class="border-b py-3 flex justify-between items-center">
+                            <span>Medical Claim Document</span>
+                            <div class="flex space-x-4 text-gray-400">
+                                <span class="material-icons cursor-pointer">cloud_download</span>
+                                <span class="material-icons cursor-pointer">delete</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            </div>
+
+            <!-- Other Tab Content (Blank for now) -->
+            <div id="recordings" class="tab-content hidden">
+                    <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center">
+            <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer">menu</span>
+            <h1 class="text-2xl font-semibold">Recordings</h1>
+        </div>
+        <div class="flex items-center">
+            <span class="material-icons text-gray-500 mr-4 cursor-pointer">notifications</span>
+            <div class="flex items-center space-x-2">
+                <img src="https://via.placeholder.com/30" alt="flag" class="w-6 h-6">
+                <img src="https://via.placeholder.com/40" alt="profile" class="rounded-full w-10 h-10">
+                <span class="text-gray-600 font-medium">Jennifer Perry</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex flex-col md:flex-row gap-4">
+        <!-- Left Side: Current Patient and Recordings -->
+        <div class="flex flex-col w-full md:w-1/3 gap-4" style="width: 40%;">
+            <!-- Current Patient Section -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="flex justify-between mb-4">
+                    <h3 class="text-lg font-semibold">Current Patient</h3>
+                    <button class="text-red-500 font-semibold">SKIP</button>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/80" alt="Patient Image" class="rounded-full mr-4 w-16 h-16">
+                        <div>
+                            <h4 class="text-lg font-bold">Henry Johnson</h4>
+                            <p class="text-gray-500 text-sm">Date of Birth: <span class="text-black">May 20, 2000</span></p>
+                            <p class="text-gray-500 text-sm">Appointment Date & Time: <span class="text-black">August 12, 2025 - 2:00PM</span></p>
+                        </div>
+                    </div>
+                    <a href="#" class="text-blue-500 font-semibold text-sm">View profile</a>
+                </div>
+
+                <!-- Patient Info -->
+                <div class="grid grid-cols-5 gap-2 text-center mb-4">
+                    <div class="bg-gray-100 p-2 rounded-lg">
+                        <p class="text-gray-500 text-xs">Gender</p>
+                        <p class="font-semibold text-sm">Male</p>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-lg">
+                        <p class="text-gray-500 text-xs">Age</p>
+                        <p class="font-semibold text-sm">26 Years</p>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-lg">
+                        <p class="text-gray-500 text-xs">Weight</p>
+                        <p class="font-semibold text-sm">68Kg</p>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-lg">
+                        <p class="text-gray-500 text-xs">Height</p>
+                        <p class="font-semibold text-sm">5ft 9in</p>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-lg">
+                        <p class="text-gray-500 text-xs">Blood Group</p>
+                        <p class="font-semibold text-sm">O+</p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex justify-end space-x-4">
+                    <button class="px-4 py-2 bg-white border border-blue-900 text-blue-900 font-semibold rounded-lg">Finish Consultation</button>
+                    <button class="px-4 py-2 bg-blue-900 text-white font-semibold rounded-lg">Start Recording</button>
+                </div>                
+            </div>
+
+            <!-- Recordings Section -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-lg font-semibold mb-4">Recordings</h3>
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="text-gray-500 text-sm">
+                            <th class="pb-3">Recordings</th>
+                            <th class="pb-3">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-t">
+                            <td class="py-3 flex items-center">
+                                <span class="material-icons text-red-500 mr-2">play_circle_filled</span>
+                                Recording 1
+                                <p class="text-gray-500 text-xs ml-2">Just Now</p>
+                            </td>
+                            <td class="py-3">4 mins 35 secs</td>
+                        </tr>
+                        <tr class="border-t">
+                            <td class="py-3 flex items-center">
+                                <span class="material-icons text-red-500 mr-2">play_circle_filled</span>
+                                Recording 2
+                                <p class="text-gray-500 text-xs ml-2">6 Mins Ago</p>
+                            </td>
+                            <td class="py-3">9 mins 36 secs</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="mt-4 px-4 py-2 bg-gray-300 text-gray-700 font-semibold rounded-lg w-full">Analyse & Generate</button>
+            </div>
+        </div>
+
+        <!-- Right Side: Recordings Output with Full Height -->
+        <div class="flex-1">
+            <div class="bg-white p-6 rounded-lg shadow-lg h-full">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold">Recordings Output</h3>
+                    <a href="#" class="text-blue-500 font-semibold">Update Data in Profile</a>
+                </div>
+
+                <!-- Subjective Section -->
+                <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                    <h4 class="font-semibold">Subjective</h4>
+                    <p class="text-gray-500 text-sm">
+                        Patient John Doe, a 35-year-old male, reports experiencing persistent headaches for the past two weeks. 
+                        He describes the pain as a throbbing sensation on the left side of his head, which worsens with physical activity.
+                        He also notes symptoms of nausea and sensitivity to light. He rates the pain as 7 out of 10.
+                    </p>
+                </div>
+
+                <!-- Objective Section -->
+                <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                    <h4 class="font-semibold">Objective</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-semibold">Vitals:</p>
+                            <ul class="text-gray-500 text-sm">
+                                <li>BP: [e.g., 120/80 mmHg]</li>
+                                <li>HR: [e.g., 72 bpm]</li>
+                                <li>RR: [e.g., 16 breaths/min]</li>
+                                <li>Temp: [e.g., 98.6°F]</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Exam:</p>
+                            <ul class="text-gray-500 text-sm">
+                                <li>Neurological: [e.g., "Cranial nerves intact"]</li>
+                                <li>Head: [e.g., "No tenderness"]</li>
+                                <li>Eyes: [e.g., "Pupils reactive, no papilledema"]</li>
+                                <li>Neck: [e.g., "No lymphadenopathy"]</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assessment Section -->
+                <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                    <h4 class="font-semibold">Assessment</h4>
+                    <ul class="text-gray-500 text-sm">
+                        <li>Likely diagnosis: Migraine without aura</li>
+                        <li>Differential: Tension headache, sinusitis</li>
+                    </ul>
+                </div>
+
+                <!-- Plan Section -->
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <h4 class="font-semibold">Plan</h4>
+                    <ul class="text-gray-500 text-sm">
+                        <li>Medications:</li>
+                        <li>• Sumatriptan 50 mg: Take at the onset of headaches</li>
+                        <li>• Consider preventive medication: Propranolol or Topiramate if headaches are frequent</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+            <div id="patients" class="tab-content hidden">
+                <!-- Top Navigation -->
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex items-center">
+                        <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer">menu</span>
+                        <h1 class="text-2xl font-semibold">All Patients</h1>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="material-icons text-gray-500 mr-4 cursor-pointer" onclick="toggleModal(true)">notifications</span>
+                        <div class="flex items-center space-x-2">
+                            <img src="https://via.placeholder.com/30" alt="flag" class="w-6 h-6">
+                            <img src="https://via.placeholder.com/40" alt="profile" class="rounded-full w-10 h-10">
+                            <span class="text-gray-600 font-medium">Jennifer Perry</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Search and Filter Section -->
+                <div class="bg-white p-4 rounded-lg shadow-lg mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Search Bar -->
+                        <div class="flex items-center border border-gray-300 rounded-lg p-2">
+                            <span class="material-icons text-gray-500">search</span>
+                            <input type="text" placeholder="Search by Name or Date of Birth" class="w-full focus:outline-none pl-2">
+                        </div>
+                        <!-- Disease or Allergy Dropdown -->
+                        <div class="flex items-center border border-gray-300 rounded-lg p-2">
+                            <select class="w-full focus:outline-none">
+                                <option>Select by Disease</option>
+                                <option>Typhoid</option>
+                                <option>Cholera</option>
+                                <option>Fever</option>
+                                <option>Infection</option>
+                            </select>
+                        </div>
+                        <!-- Doctor Name Dropdown -->
+                        <div class="flex items-center border border-gray-300 rounded-lg p-2">
+                            <select class="w-full focus:outline-none">
+                                <option>Select by Doctor Name</option>
+                                <option>Dr. John Doe</option>
+                                <option>Dr. Smith</option>
+                                <option>Dr. Jane</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Patient List -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold">All Patients</h2>
+                        <p class="text-gray-500">Total 1460 Patients Found</p>
+                    </div>
+                    <table class="w-full table-auto text-left">
+                        <thead>
+                            <tr class="text-gray-500">
+                                <th class="pb-3">Patient Name</th>
+                                <th class="pb-3">Date of Birth</th>
+                                <th class="pb-3">Gender</th>
+                                <th class="pb-3">Disease</th>
+                                <th class="pb-3">Mobile Number</th>
+                                <th class="pb-3">Email</th>
+                                <th class="pb-3">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Row 1 -->
+                            <tr class="border-t">
+                                <td class="py-3 flex items-center">
+                                    <img src="https://via.placeholder.com/40" alt="Patient" class="rounded-full w-10 h-10 mr-2">
+                                    Edna Gilbert
+                                </td>
+                                <td class="py-3">May 20, 2000</td>
+                                <td class="py-3">Male</td>
+                                <td class="py-3">
+                                    <span class="bg-yellow-100 text-yellow-500 px-2 py-1 rounded-lg">Typhoid</span>
+                                </td>
+                                <td class="py-3">+91 95005-68754</td>
+                                <td class="py-3">ednagilbert@gmail.com</td>
+                                <td class="py-3 flex items-center space-x-2">
+                                    <button class="px-4 py-2 border border-blue-900 text-blue-900 rounded-lg">View Profile</button>
+                                    <span class="material-icons text-gray-500 cursor-pointer">more_vert</span>
+                                </td>
+                            </tr>
+            
+                            <!-- Row 2 -->
+                            <tr class="border-t">
+                                <td class="py-3 flex items-center">
+                                    <img src="https://via.placeholder.com/40" alt="Patient" class="rounded-full w-10 h-10 mr-2">
+                                    Edna Gilbert
+                                </td>
+                                <td class="py-3">May 20, 2000</td>
+                                <td class="py-3">Female</td>
+                                <td class="py-3">
+                                    <span class="bg-blue-100 text-blue-500 px-2 py-1 rounded-lg">Cholera</span>
+                                </td>
+                                <td class="py-3">+91 95005-68754</td>
+                                <td class="py-3">ednagilbert@gmail.com</td>
+                                <td class="py-3 flex items-center space-x-2">
+                                    <button class="px-4 py-2 border border-blue-900 text-blue-900 rounded-lg">View Profile</button>
+                                    <span class="material-icons text-gray-500 cursor-pointer">more_vert</span>
+                                </td>
+                            </tr>
+            
+                            <!-- Add more rows as needed -->
+                            <!-- Row 3 -->
+                            <tr class="border-t">
+                                <td class="py-3 flex items-center">
+                                    <img src="https://via.placeholder.com/40" alt="Patient" class="rounded-full w-10 h-10 mr-2">
+                                    Edna Gilbert
+                                </td>
+                                <td class="py-3">May 20, 2000</td>
+                                <td class="py-3">Male</td>
+                                <td class="py-3">
+                                    <span class="bg-pink-100 text-pink-500 px-2 py-1 rounded-lg">Fever</span>
+                                </td>
+                                <td class="py-3">+91 95005-68754</td>
+                                <td class="py-3">ednagilbert@gmail.com</td>
+                                <td class="py-3 flex items-center space-x-2">
+                                    <button class="px-4 py-2 border border-blue-900 text-blue-900 rounded-lg">View Profile</button>
+                                    <span class="material-icons text-gray-500 cursor-pointer">more_vert</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                    <!-- Pagination -->
+                    <div class="flex justify-between items-center mt-6">
+                        <p class="text-gray-500">Page <strong>1</strong> of <strong>100</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="new_patient" class="tab-content hidden">
+                <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center">
+            <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer">menu</span>
+            <h1 class="text-2xl font-semibold">All Patients</h1>
+        </div>
+        <div class="flex items-center">
+            <span class="material-icons text-gray-500 mr-4 cursor-pointer">notifications</span>
+            <div class="flex items-center space-x-2">
+                <img src="https://via.placeholder.com/30" alt="flag" class="w-6 h-6">
+                <img src="https://via.placeholder.com/40" alt="profile" class="rounded-full w-10 h-10">
+                <span class="text-gray-600 font-medium">Jennifer Perry</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New Patient Form -->
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-lg font-semibold">Add New Patient</h2>
+            <div class="space-x-4">
+                <button class="px-4 py-2 border border-red-500 text-red-500 rounded-lg hover:bg-red-100">Cancel</button>
+                <button class="px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800">Save</button>
+            </div>
+        </div>
+
+        <!-- Form Grid -->
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Patient's Name -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Patient's Name:</label>
+                <input type="text" placeholder="Enter Patient's Name" class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+            </div>
+
+            <!-- Mobile Number -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Mobile Number:</label>
+                <input type="text" placeholder="Enter Patient's Mobile Number" class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+            </div>
+
+            <!-- Email ID -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Email ID:</label>
+                <input type="text" placeholder="Enter Patient's Email ID" class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+            </div>
+
+            <!-- Add Date of Birth -->
+            <div class="flex flex-col relative">
+                <label class="text-gray-600 mb-2">Add Date of Birth:</label>
+                <input type="date" placeholder="August 25, 2024" class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+                <span class="material-icons absolute right-2 top-10 text-gray-400">calendar_today</span>
+            </div>
+
+            <!-- Gender -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Gender:</label>
+                <div class="flex space-x-4">
+                    <button type="button" class="px-4 py-2 bg-blue-900 text-white rounded-lg">Male</button>
+                    <button type="button" class="px-4 py-2 bg-gray-200 text-gray-600 rounded-lg">Female</button>
+                    <button type="button" class="px-4 py-2 bg-gray-200 text-gray-600 rounded-lg">Others</button>
+                </div>
+            </div>
+
+            <!-- Blood Group -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Blood Group:</label>
+                <select class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+                    <option>Select Patient's Blood Group</option>
+                    <option>A+</option>
+                    <option>B+</option>
+                    <option>O+</option>
+                    <option>AB+</option>
+                </select>
+            </div>
+
+            <!-- Height -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Height:</label>
+                <div class="flex space-x-2">
+                    <input type="number" placeholder="5" class="w-16 p-2 rounded-lg border border-gray-300 focus:outline-none">
+                    <span class="self-center text-gray-600">Feet</span>
+                    <input type="number" placeholder="6" class="w-16 p-2 rounded-lg border border-gray-300 focus:outline-none">
+                    <span class="self-center text-gray-600">Inches</span>
+                </div>
+            </div>
+
+            <!-- Weight -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Weight:</label>
+                <div class="flex space-x-2">
+                    <input type="number" placeholder="65" class="w-16 p-2 rounded-lg border border-gray-300 focus:outline-none">
+                    <span class="self-center text-gray-600">Kilo</span>
+                    <input type="number" placeholder="450" class="w-20 p-2 rounded-lg border border-gray-300 focus:outline-none">
+                    <span class="self-center text-gray-600">Grams</span>
+                </div>
+            </div>
+
+            <!-- Disease -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Disease:</label>
+                <input type="text" placeholder="Enter Disease Name" class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+            </div>
+
+            <!-- Doctor (Optional) -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Doctor (Optional):</label>
+                <select class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+                    <option>Select Doctor Name</option>
+                    <option>Dr. John Doe</option>
+                    <option>Dr. Smith</option>
+                </select>
+            </div>
+
+            <!-- Residential Address -->
+            <div class="flex flex-col col-span-2">
+                <label class="text-gray-600 mb-2">Residential Address:</label>
+                <textarea placeholder="Enter Address Here" class="p-2 rounded-lg border border-gray-300 focus:outline-none h-24"></textarea>
+            </div>
+        </form>
+    </div>
+    </div>
+
+    
+    
+    <div id="appointments" class="tab-content hidden">
+                <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center">
+            <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer">menu</span>
+            <h1 class="text-2xl font-semibold">All Appointments</h1>
+        </div>
+        <div class="flex items-center">
+            <span class="material-icons text-gray-500 mr-4 cursor-pointer">notifications</span>
+            <div class="flex items-center space-x-2">
+                <img src="https://via.placeholder.com/30" alt="flag" class="w-6 h-6">
+                <img src="https://via.placeholder.com/40" alt="profile" class="rounded-full w-10 h-10">
+                <span class="text-gray-600 font-medium">Jennifer Perry</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Filters -->
+    <div class="bg-white p-4 rounded-lg shadow-lg mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <!-- Search Field -->
+            <div class="flex items-center border border-gray-300 rounded-lg p-2">
+                <span class="material-icons text-gray-500">search</span>
+                <input type="text" placeholder="Search by Patient's Name or Date of Birth" class="w-full focus:outline-none pl-2">
+            </div>
+
+            <!-- Select by Disease -->
+            <div class="flex items-center border border-gray-300 rounded-lg p-2">
+                <select class="w-full focus:outline-none">
+                    <option>Select by Disease</option>
+                    <option>Typhoid</option>
+                    <option>Cholera</option>
+                    <option>Fever</option>
+                    <option>Malaria</option>
+                </select>
+            </div>
+
+            <!-- Select by Date -->
+            <div class="flex items-center border border-gray-300 rounded-lg p-2 relative">
+                <input type="date" class="w-full focus:outline-none">
+                <span class="material-icons absolute right-2 top-3 text-gray-400">calendar_today</span>
+            </div>
+
+            <!-- Search Button -->
+            <div>
+                <button class="px-6 py-2 bg-blue-900 text-white rounded-lg w-full">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Appointments Table -->
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold">All Appointments</h2>
+            <p class="text-gray-500">Upcoming</p>
+        </div>
+
+        <table class="w-full table-auto">
+            <thead>
+                <tr class="text-left text-gray-500">
+                    <th class="pb-3">Patient Name</th>
+                    <th class="pb-3">Date of Birth</th>
+                    <th class="pb-3">Mobile Number</th>
+                    <th class="pb-3">Disease</th>
+                    <th class="pb-3">Date & Time</th>
+                    <th class="pb-3">Status</th>
+                    <th class="pb-3">Full Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Row -->
+                <tr class="border-t">
+                    <td class="py-3 flex items-center">
+                        <img src="https://via.placeholder.com/40" alt="Patient" class="rounded-full w-10 h-10 mr-2">
+                        Edna Gilbert
+                    </td>
+                    <td class="py-3">May 20, 2000</td>
+                    <td class="py-3">+91 95005-68754</td>
+                    <td class="py-3">
+                        <span class="bg-yellow-100 text-yellow-500 px-2 py-1 rounded-lg">Typhoid</span>
+                    </td>
+                    <td class="py-3">August 20, 2024 - 12:40PM</td>
+                    <td class="py-3">-</td>
+                    <td class="py-3 flex items-center space-x-2">
+                        <button class="px-4 py-1 border border-orange-500 text-orange-500 rounded-lg">Start</button>
+                        <span class="material-icons text-gray-500 cursor-pointer">more_vert</span>
+                    </td>
+                </tr>
+
+                <!-- Add more rows here -->
+
+                <!-- Sample Row with Status "In Progress" -->
+                <tr class="border-t">
+                    <td class="py-3 flex items-center">
+                        <img src="https://via.placeholder.com/40" alt="Patient" class="rounded-full w-10 h-10 mr-2">
+                        Edna Gilbert
+                    </td>
+                    <td class="py-3">May 20, 2000</td>
+                    <td class="py-3">+91 95005-68754</td>
+                    <td class="py-3">
+                        <span class="bg-blue-100 text-blue-500 px-2 py-1 rounded-lg">Cholera</span>
+                    </td>
+                    <td class="py-3">August 20, 2024 - 12:40PM</td>
+                    <td class="py-3 text-blue-500">In Progress</td>
+                    <td class="py-3 flex items-center space-x-2">
+                        <button class="px-4 py-1 border border-blue-500 text-blue-500 rounded-lg">View</button>
+                        <span class="material-icons text-gray-500 cursor-pointer">more_vert</span>
+                    </td>
+                </tr>
+
+                <!-- Sample Row with Status "Rejected" -->
+                <tr class="border-t">
+                    <td class="py-3 flex items-center">
+                        <img src="https://via.placeholder.com/40" alt="Patient" class="rounded-full w-10 h-10 mr-2">
+                        Edna Gilbert
+                    </td>
+                    <td class="py-3">May 20, 2000</td>
+                    <td class="py-3">+91 95005-68754</td>
+                    <td class="py-3">
+                        <span class="bg-pink-100 text-pink-500 px-2 py-1 rounded-lg">Fever</span>
+                    </td>
+                    <td class="py-3">August 20, 2024 - 12:40PM</td>
+                    <td class="py-3 text-red-500">Rejected</td>
+                    <td class="py-3 flex items-center space-x-2">
+                        <button class="px-4 py-1 border border-gray-300 text-gray-400 rounded-lg" disabled>Start</button>
+                        <span class="material-icons text-gray-500 cursor-pointer">more_vert</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="flex justify-between items-center mt-6">
+            <p class="text-gray-500">Page <strong>1</strong> of <strong>100</strong></p>
+        </div>
+    </div>
+
+    </div>
+
+
+
+            <div id="add_appointment" class="tab-content hidden">
+                    <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center">
+            <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer">menu</span>
+            <h1 class="text-2xl font-semibold">Schedule New Appointment</h1>
+        </div>
+        <div class="flex items-center">
+            <span class="material-icons text-gray-500 mr-4 cursor-pointer">notifications</span>
+            <div class="flex items-center space-x-2">
+                <img src="https://via.placeholder.com/30" alt="flag" class="w-6 h-6">
+                <img src="https://via.placeholder.com/40" alt="profile" class="rounded-full w-10 h-10">
+                <span class="text-gray-600 font-medium">Jennifer Perry</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <!-- Title and Buttons -->
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-lg font-semibold">Schedule New Appointment</h2>
+            <div class="space-x-4">
+                <button class="px-4 py-2 border border-red-500 text-red-500 rounded-lg hover:bg-red-100">Cancel</button>
+                <button class="px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800">Schedule</button>
+            </div>
+        </div>
+
+        <!-- Form Grid -->
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Patient's Name -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Patient's Name:</label>
+                <input type="text" placeholder="Enter Patient's Name" class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+            </div>
+
+            <!-- Mobile Number -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Mobile Number:</label>
+                <input type="text" placeholder="Enter Patient's Mobile Number" class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="flex flex-col relative">
+                <label class="text-gray-600 mb-2">Date of Birth:</label>
+                <input type="text" placeholder="May 20,2000" class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+                <span class="material-icons absolute right-2 top-10 text-gray-400">calendar_today</span>
+            </div>
+
+            <!-- Email ID -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Email ID:</label>
+                <input type="text" placeholder="Enter Patient's Email ID" class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+            </div>
+
+            <!-- Date -->
+            <div class="flex flex-col relative">
+                <label class="text-gray-600 mb-2">Date:</label>
+                <input type="text" placeholder="August 25, 2024" class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+                <span class="material-icons absolute right-2 top-10 text-gray-400">calendar_today</span>
+            </div>
+
+            <!-- Time -->
+            <div class="flex flex-col relative">
+                <label class="text-gray-600 mb-2">Time:</label>
+                <input type="text" placeholder="12:00PM" class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+                <span class="material-icons absolute right-2 top-10 text-gray-400">schedule</span>
+            </div>
+
+            <!-- Disease (Optional) -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Disease <span class="text-gray-400">(Optional)</span>:</label>
+                <select class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+                    <option>Select Disease</option>
+                    <option>Typhoid</option>
+                    <option>Cholera</option>
+                    <option>Fever</option>
+                    <option>Malaria</option>
+                </select>
+            </div>
+
+            <!-- Reason of Visit -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Reason of Visit:</label>
+                <textarea placeholder="Enter the reason of visit here" class="p-2 rounded-lg border border-gray-300 focus:outline-none h-24"></textarea>
+            </div>
+
+            <!-- Doctor Name -->
+            <div class="flex flex-col">
+                <label class="text-gray-600 mb-2">Doctor Name:</label>
+                <select class="p-2 rounded-lg border border-gray-300 focus:outline-none">
+                    <option>Select Doctor Name</option>
+                    <option>Dr. John Doe</option>
+                    <option>Dr. Smith</option>
+                    <option>Dr. Jane Doe</option>
+                </select>
+            </div>
+        </form>
+    </div>
+            </div>
+
+
+            <div id="consultation" class="tab-content hidden">
+                <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center">
+            <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer">menu</span>
+            <h1 class="text-2xl font-semibold">Consultation Delivery</h1>
+        </div>
+        <div class="flex items-center">
+            <span class="material-icons text-gray-500 mr-4 cursor-pointer">notifications</span>
+            <div class="flex items-center space-x-2">
+                <img src="https://via.placeholder.com/30" alt="flag" class="w-6 h-6">
+                <img src="https://via.placeholder.com/40" alt="profile" class="rounded-full w-10 h-10">
+                <span class="text-gray-600 font-medium">Jennifer Perry</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex space-x-4 mb-6">
+        <button id="efax-tab" class="px-6 py-2 rounded-lg active-tab" onclick="showTab('efax')">eFax Delivery</button>
+        <button id="email-tab" class="px-6 py-2 rounded-lg text-gray-700" onclick="showTab('email')">Email Delivery</button>
+    </div>
+
+    <!-- Main Container -->
+    <div id="efax-content" class="flex justify-between">
+        <!-- History Sidebar -->
+        <div class="bg-white w-1/3 p-6 rounded-lg shadow-lg mr-6">
+            <h2 class="text-xl font-semibold mb-4">History</h2>
+            <!-- Single History Entry -->
+            <div class="mb-4">
+                <div class="flex items-center mb-2">
+                    <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-full mr-3">
+                    <div>
+                        <h3 class="font-semibold">Medcure Support</h3>
+                        <p class="text-sm text-gray-600">Lorem ipsum dolor sit amet, consect...</p>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-500">September, 05, 2024</p>
+            </div>
+            <!-- Repeat the above block for more history items -->
+        </div>
+
+        <!-- eFax Sending Form -->
+        <div class="bg-white w-2/3 p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-6">Sending eFax</h2>
+            <form>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="text-sm text-gray-600">Recipient eFax Number:</label>
+                        <input type="text" placeholder="Add eFax Number Here" class="w-full p-2 border border-gray-300 rounded">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Recipient Name:</label>
+                        <input type="text" placeholder="Enter the Recipient's Name" class="w-full p-2 border border-gray-300 rounded">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Subject:</label>
+                        <input type="text" placeholder="Enter your Subject Here" class="w-full p-2 border border-gray-300 rounded">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm text-gray-600">Consultation Document:</label>
+                    <div class="flex items-center p-2 border border-gray-300 rounded">
+                        <span class="material-icons text-gray-500 mr-2">attach_file</span>
+                        <span class="mr-2">Drag or Browse Consultation Document Here</span>
+                        <button class="px-4 py-2 bg-blue-500 text-white rounded">Browse</button>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label class="text-sm text-gray-600">Custom Message:</label>
+                    <textarea placeholder="Type your message here" class="w-full p-2 border border-gray-300 rounded h-32"></textarea>
+                </div>
+                <div class="flex justify-end mt-6">
+                    <button type="submit" class="px-6 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Email Delivery Content (Hidden by Default) -->
+    <div id="email-content" class="flex justify-between hidden">
+        <!-- History Sidebar -->
+        <div class="bg-white w-1/3 p-6 rounded-lg shadow-lg mr-6">
+            <h2 class="text-xl font-semibold mb-4">History</h2>
+            <!-- Single History Entry -->
+            <div class="mb-4">
+                <div class="flex items-center mb-2">
+                    <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-full mr-3">
+                    <div>
+                        <h3 class="font-semibold">Medcure Support</h3>
+                        <p class="text-sm text-gray-600">Lorem ipsum dolor sit amet, consect...</p>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-500">September, 05, 2024</p>
+            </div>
+            <!-- Repeat the above block for more history items -->
+        </div>
+
+        <!-- Email Sending Form -->
+        <div class="bg-white w-2/3 p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-6">Sending Email</h2>
+            <form>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="text-sm text-gray-600">Recipient Email Address:</label>
+                        <input type="text" placeholder="Add Recipient Email Address Here" class="w-full p-2 border border-gray-300 rounded">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Recipient Name:</label>
+                        <input type="text" placeholder="Enter the Recipient's Name" class="w-full p-2 border border-gray-300 rounded">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-600">Subject:</label>
+                        <input type="text" placeholder="Enter your Subject Here" class="w-full p-2 border border-gray-300 rounded">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm text-gray-600">Consultation Document:</label>
+                    <div class="flex items-center p-2 border border-gray-300 rounded">
+                        <span class="material-icons text-gray-500 mr-2">attach_file</span>
+                        <span class="mr-2">Drag or Browse Consultation Document Here</span>
+                        <button class="px-4 py-2 bg-blue-500 text-white rounded">Browse</button>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label class="text-sm text-gray-600">Custom Message:</label>
+                    <textarea placeholder="Type your message here" class="w-full p-2 border border-gray-300 rounded h-32"></textarea>
+                </div>
+                <div class="flex justify-end mt-6">
+                    <button type="submit" class="px-6 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+            </div>
+
+            <div id="prescriptions" class="tab-content hidden">
+                  <!-- Main Container -->
+  <div class="flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="flex justify-between items-center bg-white p-4 shadow-md">
+      <div class="flex items-center space-x-4">
+        <span class="material-icons text-gray-600 cursor-pointer">menu</span>
+        <h1 class="text-lg font-bold">Prescriptions</h1>
+      </div>
+      <div class="flex items-center space-x-6">
+        <span class="material-icons text-gray-600">notifications</span>
+        <img src="https://via.placeholder.com/40" alt="User Profile" class="rounded-full">
+        <div class="flex flex-col">
+          <span class="font-semibold">Jennifer Perry</span>
+          <span class="material-icons text-gray-500">flag</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Search & Filter Section -->
+    <div class="flex justify-between p-6 bg-white shadow-md mt-4">
+      <div class="flex space-x-4">
+        <div class="relative">
+          <input type="text" placeholder="Search by Patient's Name or Date of Birth" class="border border-gray-300 rounded-lg py-2 px-4 w-96">
+          <span class="absolute right-3 top-2.5 material-icons text-gray-400">search</span>
+        </div>
+        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Search</button>
+      </div>
+
+      <div class="flex space-x-4">
+        <select class="border border-gray-300 rounded-lg py-2 px-4 w-64">
+          <option>Select by Disease</option>
+          <option>Typhoid</option>
+          <option>Cholera</option>
+        </select>
+        <div class="relative">
+          <input type="text" placeholder="Select by Date" class="border border-gray-300 rounded-lg py-2 px-4 w-64">
+          <span class="absolute right-3 top-2.5 material-icons text-gray-400">calendar_today</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prescription Table -->
+    <div class="p-6 bg-white shadow-md mt-4 rounded-lg">
+      <h2 class="text-xl font-bold mb-4">All Prescriptions</h2>
+      <table class="w-full table-auto text-left">
+        <thead class="border-b">
+          <tr>
+            <th class="pb-3">Patient Name</th>
+            <th class="pb-3">Date of Birth</th>
+            <th class="pb-3">Disease</th>
+            <th class="pb-3">Date & Time</th>
+            <th class="pb-3">Refill in</th>
+            <th class="pb-3">Refill Request</th>
+            <th class="pb-3">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example Row -->
+          <tr class="border-b">
+            <td class="py-4 flex items-center space-x-3">
+              <img src="https://via.placeholder.com/40" alt="Patient" class="rounded-full">
+              <span>Edna Gilbert</span>
+            </td>
+            <td class="py-4">May 20, 2000</td>
+            <td class="py-4">
+              <span class="bg-orange-200 text-orange-600 px-3 py-1 rounded-full">Typhoid</span>
+            </td>
+            <td class="py-4">August 20, 2024 - 12:40 PM</td>
+            <td class="py-4">4 Days</td>
+            <td class="py-4">
+              <button class="border border-blue-600 text-blue-600 px-4 py-1 rounded-lg hover:bg-blue-600 hover:text-white">Send Request</button>
+            </td>
+            <td class="py-4 flex items-center space-x-2">
+              <span class="material-icons text-gray-600 cursor-pointer">cloud_download</span>
+              <span class="material-icons text-gray-600 cursor-pointer">delete</span>
+              <span class="material-icons text-gray-600 cursor-pointer">more_vert</span>
+            </td>
+          </tr>
+          <!-- Repeat Rows as needed -->
+          <tr class="border-b">
+            <td class="py-4 flex items-center space-x-3">
+              <img src="https://via.placeholder.com/40" alt="Patient" class="rounded-full">
+              <span>Edna Gilbert</span>
+            </td>
+            <td class="py-4">May 20, 2000</td>
+            <td class="py-4">
+              <span class="bg-blue-200 text-blue-600 px-3 py-1 rounded-full">Cholera</span>
+            </td>
+            <td class="py-4">August 20, 2024 - 12:40 PM</td>
+            <td class="py-4">3 Days</td>
+            <td class="py-4">
+              <button class="border border-blue-600 text-blue-600 px-4 py-1 rounded-lg hover:bg-blue-600 hover:text-white">Send Request</button>
+            </td>
+            <td class="py-4 flex items-center space-x-2">
+              <span class="material-icons text-gray-600 cursor-pointer">cloud_download</span>
+              <span class="material-icons text-gray-600 cursor-pointer">delete</span>
+              <span class="material-icons text-gray-600 cursor-pointer">more_vert</span>
+            </td>
+          </tr>
+          <!-- More Rows -->
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="flex justify-between items-center mt-4">
+        <div class="text-sm text-gray-600">Page <span class="font-bold">1</span> of 100</div>
+        <div class="flex items-center space-x-2">
+          <button class="bg-gray-200 text-gray-600 px-4 py-1 rounded-lg">Previous</button>
+          <button class="bg-gray-200 text-gray-600 px-4 py-1 rounded-lg">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+            </div>
+
+            <div id="add_prescriptions" class="tab-content hidden">
+               <!-- Main Container -->
+  <div class="container mx-auto py-6 px-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center bg-white p-4 shadow rounded-md mb-6">
+      <div class="flex items-center space-x-2">
+        <span class="material-icons cursor-pointer">menu</span>
+        <h1 class="text-lg font-semibold">Create New Prescription</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="material-icons text-gray-600">notifications</span>
+        <img src="https://via.placeholder.com/40" alt="User" class="rounded-full">
+        <div class="flex items-center space-x-1">
+          <span class="material-icons">flag</span>
+          <p class="font-semibold">Jennifer Perry</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="bg-white shadow rounded-md p-4 flex justify-between items-center mb-6">
+      <div class="flex items-center space-x-4">
+        <button class="bg-blue-700 text-white px-4 py-2 rounded-md flex items-center space-x-2">
+          <span class="material-icons">email</span>
+          <span>Send via Email to</span>
+          <select class="ml-2 bg-transparent text-white border-none">
+            <option>Patient</option>
+            <option>Doctor</option>
+          </select>
+        </button>
+      </div>
+      <div class="flex space-x-4">
+        <button class="bg-blue-700 text-white px-6 py-2 rounded-md">Download</button>
+        <button class="bg-blue-700 text-white px-6 py-2 rounded-md">Print</button>
+        <button class="border border-red-500 text-red-500 px-6 py-2 rounded-md hover:bg-red-500 hover:text-white">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="bg-white shadow rounded-md p-6">
+      <h2 class="text-xl font-bold mb-4">Schedule New Appointment</h2>
+
+      <div class="grid grid-cols-2 gap-6">
+        <!-- Left Form -->
+        <div>
+          <div class="mb-4">
+            <label class="block text-gray-600 font-semibold mb-1">Patient’s Name:</label>
+            <input type="text" placeholder="Enter Patient’s Name" class="w-full border border-gray-300 rounded-lg py-2 px-4">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-gray-600 font-semibold mb-1">Date of Birth:</label>
+              <div class="relative">
+                <input type="text" placeholder="August 25, 2024" class="w-full border border-gray-300 rounded-lg py-2 px-4">
+                <span class="material-icons absolute right-3 top-3 text-gray-400">calendar_today</span>
+              </div>
+            </div>
+            <div>
+              <label class="block text-gray-600 font-semibold mb-1">Doctor Name:</label>
+              <select class="w-full border border-gray-300 rounded-lg py-2 px-4">
+                <option>Select Doctor Name</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <div>
+              <label class="block text-gray-600 font-semibold mb-1">Disease (Optional):</label>
+              <select class="w-full border border-gray-300 rounded-lg py-2 px-4">
+                <option>Select Disease</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Add Medication Section -->
+          <h2 class="text-xl font-bold mt-8 mb-4">Add Medication</h2>
+          <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+            <div class="mb-4">
+              <label class="block text-gray-600 font-semibold mb-1">Medicine Name:</label>
+              <input type="text" placeholder="Metformin" class="w-full border border-gray-300 rounded-lg py-2 px-4">
+            </div>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="block text-gray-600 font-semibold mb-1">Type:</label>
+                <input type="text" placeholder="Tablets" class="w-full border border-gray-300 rounded-lg py-2 px-4">
+              </div>
+              <div>
+                <label class="block text-gray-600 font-semibold mb-1">Quantity:</label>
+                <input type="number" placeholder="10" class="w-full border border-gray-300 rounded-lg py-2 px-4">
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="block text-gray-600 font-semibold mb-1">Dosage:</label>
+                <input type="text" placeholder="500mg" class="w-full border border-gray-300 rounded-lg py-2 px-4">
+              </div>
+              <div>
+                <label class="block text-gray-600 font-semibold mb-1">Frequency:</label>
+                <input type="text" placeholder="Twice a Day" class="w-full border border-gray-300 rounded-lg py-2 px-4">
+              </div>
+            </div>
+            <div class="mt-6">
+              <button class="bg-blue-700 text-white px-6 py-2 rounded-md">Add to Prescription</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Prescription List -->
+        <div>
+          <h2 class="text-xl font-bold mb-4">Prescription Medication</h2>
+          <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+            <div class="mb-4 flex justify-between items-center">
+              <span class="text-gray-800 font-semibold">1. Metformin (500mg)</span>
+              <div class="flex items-center space-x-4 text-gray-500">
+                <span>Twice a Day</span>
+                <span>10 Tablets</span>
+              </div>
+            </div>
+            <div class="mb-4 flex justify-between items-center">
+              <span class="text-gray-800 font-semibold">2. Lisinopril (10mg)</span>
+              <div class="flex items-center space-x-4 text-gray-500">
+                <span>Twice a Day</span>
+                <span>10 Tablets</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+            </div>
+
+            <div id="labs" class="tab-content hidden">
+                <!-- Main Container -->
+  <div class="container mx-auto py-6 px-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center bg-white p-4 shadow rounded-md mb-6">
+      <div class="flex items-center space-x-2">
+        <span class="material-icons cursor-pointer">menu</span>
+        <h1 class="text-lg font-semibold">Lab Results</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="material-icons text-gray-600">notifications</span>
+        <img src="https://via.placeholder.com/40" alt="User" class="rounded-full">
+        <div class="flex items-center space-x-1">
+          <span class="material-icons">flag</span>
+          <p class="font-semibold">Jennifer Perry</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search and Filters -->
+    <div class="bg-white shadow rounded-md p-6 mb-6">
+      <div class="grid grid-cols-4 gap-4">
+        <div class="col-span-2">
+          <div class="relative">
+            <input type="text" placeholder="Search by Patient’s Name or Date of Birth" class="w-full border border-gray-300 rounded-lg py-2 px-4">
+            <span class="material-icons absolute right-3 top-2.5 text-gray-400">search</span>
+          </div>
+        </div>
+        <div class="relative">
+          <select class="w-full border border-gray-300 rounded-lg py-2 px-4">
+            <option>Select by Report/Test Name</option>
+          </select>
+        </div>
+        <div class="relative">
+          <select class="w-full border border-gray-300 rounded-lg py-2 px-4">
+            <option>Select by Doctor Name</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <div class="relative">
+          <select class="w-full border border-gray-300 rounded-lg py-2 px-4">
+            <option>Select by Lab Name</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lab Results Section -->
+    <div class="bg-white shadow rounded-md p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-bold">Lab Results</h2>
+        <p class="text-gray-600">Total 1460 Lab Results Found</p>
+      </div>
+
+      <!-- Lab Results Table -->
+      <!-- Lab Results Table -->
+      <table class="w-full text-left table-auto">
+        <thead class="bg-gray-100">
+          <tr class="text-gray-600">
+            <th class="py-3 pl-4">Lab Name</th>
+            <th class="py-3">Patient Name & ID</th>
+            <th class="py-3">Report Name</th>
+            <th class="py-3">Doctor Name</th>
+            <th class="py-3">Test Date & Time</th>
+            <th class="py-3 pr-4">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table Row Example -->
+          <tr class="border-b hover:bg-gray-50">
+            <td class="py-4 pl-4 flex items-center space-x-3">
+              <span class="material-icons text-orange-500 bg-orange-100 p-2 rounded-full">medical_services</span>
+              <div>
+                <p class="font-semibold">Quest Diagnostics</p>
+                <p class="text-gray-500 text-sm">Just Now</p>
+              </div>
+            </td>
+            <td class="py-4 flex items-center space-x-3">
+              <img src="https://via.placeholder.com/40" alt="Patient" class="rounded-full w-8 h-8">
+              <div>
+                <p class="font-semibold">Edna Gilbert</p>
+                <p class="text-gray-500 text-sm">#69406654</p>
+              </div>
+            </td>
+            <td class="py-4">Lorem Ipsum</td>
+            <td class="py-4 flex items-center space-x-3">
+              <img src="https://via.placeholder.com/40" alt="Doctor" class="rounded-full w-8 h-8">
+              <p class="font-semibold">Edna Gilbert</p>
+            </td>
+            <td class="py-4">August 20, 2024 - 12:40PM</td>
+            <td class="py-4 pr-4 flex items-center space-x-3">
+              <button class="border border-blue-600 text-blue-600 px-4 py-1 rounded-lg hover:bg-blue-600 hover:text-white">Download Report</button>
+              <span class="material-icons text-gray-500 cursor-pointer">more_vert</span>
+            </td>
+          </tr>
+          
+          <!-- Repeat additional rows -->
+          <tr class="border-b hover:bg-gray-50">
+            <td class="py-4 pl-4 flex items-center space-x-3">
+              <span class="material-icons text-blue-500 bg-blue-100 p-2 rounded-full">local_hospital</span>
+              <div>
+                <p class="font-semibold">LabCorp</p>
+                <p class="text-gray-500 text-sm">5 Mins Ago</p>
+              </div>
+            </td>
+            <td class="py-4 flex items-center space-x-3">
+              <img src="https://via.placeholder.com/40" alt="Patient" class="rounded-full w-8 h-8">
+              <div>
+                <p class="font-semibold">Edna Gilbert</p>
+                <p class="text-gray-500 text-sm">#69406654</p>
+              </div>
+            </td>
+            <td class="py-4">Lorem Ipsum</td>
+            <td class="py-4 flex items-center space-x-3">
+              <img src="https://via.placeholder.com/40" alt="Doctor" class="rounded-full w-8 h-8">
+              <p class="font-semibold">Edna Gilbert</p>
+            </td>
+            <td class="py-4">August 20, 2024 - 12:40PM</td>
+            <td class="py-4 pr-4 flex items-center space-x-3">
+              <button class="border border-blue-600 text-blue-600 px-4 py-1 rounded-lg hover:bg-blue-600 hover:text-white">Download Report</button>
+              <span class="material-icons text-gray-500 cursor-pointer">more_vert</span>
+            </td>
+          </tr>
+
+          <!-- Add additional rows here -->
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="flex justify-between items-center mt-6">
+        <p class="text-gray-600">Page <span class="font-semibold">1</span> of 100</p>
+        <div class="flex space-x-2">
+          <button class="bg-gray-200 text-gray-600 px-4 py-1 rounded-lg">Previous</button>
+          <button class="bg-gray-200 text-gray-600 px-4 py-1 rounded-lg">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+            </div>
+            
+            <div id="ai" class="tab-content hidden">
+                <h2 class="text-2xl">AI</h2>
+                <p>This tab is under ai...</p>
+            </div>
+
+            <div id="doctors" class="tab-content hidden">
+                 <!-- Main Container -->
+  <div class="container mx-auto py-6 px-4">
+    <!-- Header -->
+    <div class="flex justify-between items-center bg-white p-4 shadow rounded-md mb-6">
+      <div class="flex items-center space-x-2">
+        <span class="material-icons cursor-pointer">menu</span>
+        <h1 class="text-lg font-semibold">Doctors</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="material-icons text-gray-600">notifications</span>
+        <img src="https://via.placeholder.com/40" alt="User" class="rounded-full">
+        <div class="flex items-center space-x-1">
+          <span class="material-icons">flag</span>
+          <p class="font-semibold">Jennifer Perry</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search and Filters -->
+    <div class="bg-white shadow rounded-md p-6 mb-6">
+      <div class="grid grid-cols-3 gap-4">
+        <div class="relative col-span-1">
+          <input type="text" placeholder="Search by Name, Number, mail and ID" class="w-full border border-gray-300 rounded-lg py-2 px-4">
+          <span class="material-icons absolute right-3 top-2.5 text-gray-400">search</span>
+        </div>
+        <div class="relative col-span-1">
+          <select class="w-full border border-gray-300 rounded-lg py-2 px-4">
+            <option>Select Specialty</option>
+          </select>
+        </div>
+        <div class="relative col-span-1">
+          <select class="w-full border border-gray-300 rounded-lg py-2 px-4">
+            <option>Select Sub Specialty</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Doctors Table Section -->
+    <div class="bg-white shadow-md rounded-md p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-bold">All Doctors</h2>
+        <p class="text-gray-600">Total 1460 Doctors Found</p>
+      </div>
+
+      <!-- Doctors Table -->
+      <table class="w-full text-left table-auto">
+        <thead class="bg-gray-100">
+          <tr class="text-gray-600">
+            <th class="py-3 pl-4">Doctor Name</th>
+            <th class="py-3">Gender</th>
+            <th class="py-3">Specialty</th>
+            <th class="py-3">Sub Specialty</th>
+            <th class="py-3">Mobile Number</th>
+            <th class="py-3">Email</th>
+            <th class="py-3 pr-4">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table Row Example -->
+          <tr class="border-b hover:bg-gray-50">
+            <td class="py-4 pl-4 flex items-center space-x-3">
+              <img src="https://via.placeholder.com/40" alt="Doctor" class="rounded-full w-8 h-8">
+              <div>
+                <p class="font-semibold">Edna Gilbert</p>
+                <p class="text-gray-500 text-sm">#69406654</p>
+              </div>
+            </td>
+            <td class="py-4">Male</td>
+            <td class="py-4">Cardiology</td>
+            <td class="py-4">Spine Surgery</td>
+            <td class="py-4">+91 95005-68754</td>
+            <td class="py-4">ednagilbert@gmail.com</td>
+            <td class="py-4 pr-4 flex items-center space-x-3">
+              <button class="border border-blue-600 text-blue-600 px-4 py-1 rounded-lg hover:bg-blue-600 hover:text-white">View Profile</button>
+              <span class="material-icons text-gray-500 cursor-pointer">more_vert</span>
+            </td>
+          </tr>
+
+          <!-- Repeat additional rows -->
+          <tr class="border-b hover:bg-gray-50">
+            <td class="py-4 pl-4 flex items-center space-x-3">
+              <img src="https://via.placeholder.com/40" alt="Doctor" class="rounded-full w-8 h-8">
+              <div>
+                <p class="font-semibold">Edna Gilbert</p>
+                <p class="text-gray-500 text-sm">#69406654</p>
+              </div>
+            </td>
+            <td class="py-4">Female</td>
+            <td class="py-4">General medicine</td>
+            <td class="py-4">Pediatric Cardiology</td>
+            <td class="py-4">+91 95005-68754</td>
+            <td class="py-4">ednagilbert@gmail.com</td>
+            <td class="py-4 pr-4 flex items-center space-x-3">
+              <button class="border border-blue-600 text-blue-600 px-4 py-1 rounded-lg hover:bg-blue-600 hover:text-white">View Profile</button>
+              <span class="material-icons text-gray-500 cursor-pointer">more_vert</span>
+            </td>
+          </tr>
+
+          <!-- Add additional rows here -->
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="flex justify-between items-center mt-6">
+        <p class="text-gray-600">Page <span class="font-semibold">1</span> of 100</p>
+        <div class="flex space-x-2">
+          <button class="bg-gray-200 text-gray-600 px-4 py-1 rounded-lg">Previous</button>
+          <button class="bg-gray-200 text-gray-600 px-4 py-1 rounded-lg">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+            </div>
+
+            <div id="super-bills" class="tab-content hidden">
+                <!-- Main Container -->
+  <div class="container mx-auto py-6 px-4">
+    <!-- Header -->
+    <div class="flex justify-between items-center bg-white p-4 shadow rounded-md mb-6">
+      <div class="flex items-center space-x-2">
+        <span class="material-icons cursor-pointer">menu</span>
+        <h1 class="text-lg font-semibold">Super Bills</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="material-icons text-gray-600">notifications</span>
+        <img src="https://via.placeholder.com/40" alt="User" class="rounded-full">
+        <div class="flex items-center space-x-1">
+          <span class="material-icons">flag</span>
+          <p class="font-semibold">Jennifer Perry</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ICD and CPT Codes Section -->
+    <div class="grid grid-cols-2 gap-6">
+      <!-- ICD Codes Section -->
+      <div class="bg-white shadow-md rounded-md p-6">
+        <h2 class="text-lg font-bold mb-4">ICD Codes</h2>
+        <!-- Search ICD Codes -->
+        <div class="relative mb-4">
+          <input type="text" placeholder="Search by ICD Codes" class="w-full border border-gray-300 rounded-lg py-2 px-4">
+          <button class="absolute right-2 top-2 bg-blue-700 text-white px-4 py-2 rounded-lg">Search</button>
+        </div>
+        <!-- ICD Codes Table -->
+        <table class="w-full text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="py-2 px-4">ICD Code</th>
+              <th class="py-2 px-4">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b">
+              <td class="py-2 px-4">E11.9</td>
+              <td class="py-2 px-4">Type 2 Diabetes Mellitus without complications</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">M54.5</td>
+              <td class="py-2 px-4">Low back pain</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">J45.909</td>
+              <td class="py-2 px-4">Unspecified asthma, uncomplicated</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">Z00.00</td>
+              <td class="py-2 px-4">Encounter for general adult medical examination</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">I10</td>
+              <td class="py-2 px-4">Essential (primary) hypertension</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">N39.0</td>
+              <td class="py-2 px-4">Urinary tract infection, site not specified</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">K21.9</td>
+              <td class="py-2 px-4">Gastro-esophageal reflux disease</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- CPT Codes Section -->
+      <div class="bg-white shadow-md rounded-md p-6">
+        <h2 class="text-lg font-bold mb-4">CPT Codes</h2>
+        <!-- Search CPT Codes -->
+        <div class="relative mb-4">
+          <input type="text" placeholder="Search by CPT Codes" class="w-full border border-gray-300 rounded-lg py-2 px-4">
+          <button class="absolute right-2 top-2 bg-blue-700 text-white px-4 py-2 rounded-lg">Search</button>
+        </div>
+        <!-- CPT Codes Table -->
+        <table class="w-full text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="py-2 px-4">CPT Code</th>
+              <th class="py-2 px-4">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b">
+              <td class="py-2 px-4">97010</td>
+              <td class="py-2 px-4">Application of a modality to one or more areas.</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">94010</td>
+              <td class="py-2 px-4">Spirometry, including graphic record</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">81002</td>
+              <td class="py-2 px-4">Urinalysis, non-automated, without microscopy</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">82948</td>
+              <td class="py-2 px-4">Glucose; blood by finger stick</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">93000</td>
+              <td class="py-2 px-4">Electrocardiogram, complete</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">90471</td>
+              <td class="py-2 px-4">Immunization administration (single vaccine)</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-2 px-4">90791</td>
+              <td class="py-2 px-4">Psychiatric diagnostic evaluation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+            </div>
+
+            <div id="customizations" class="tab-content hidden">
+                <!-- Main Container -->
+  <div class="container mx-auto py-6 px-4">
+    <!-- Header -->
+    <div class="flex justify-between items-center bg-white p-4 shadow rounded-md mb-6">
+      <div class="flex items-center space-x-2">
+        <span class="material-icons cursor-pointer">menu</span>
+        <h1 class="text-lg font-semibold">Customizations</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="material-icons text-gray-600">notifications</span>
+        <img src="https://via.placeholder.com/40" alt="User" class="rounded-full">
+        <div class="flex items-center space-x-1">
+          <span class="material-icons">flag</span>
+          <p class="font-semibold">Jennifer Perry</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs for different settings -->
+    <div class="bg-white shadow-md rounded-md p-4 mb-6">
+      <div class="flex space-x-4">
+        <button class="px-4 py-2 rounded-md bg-blue-600 text-white" onclick="showTab('colorTheme')">Color Theme</button>
+        <button class="px-4 py-2 rounded-md bg-gray-100 text-gray-700" onclick="showTab('notificationPreferences')">Notification Preferences</button>
+        <button class="px-4 py-2 rounded-md bg-gray-100 text-gray-700" onclick="showTab('integrationPreferences')">Integration Preferences</button>
+      </div>
+    </div>
+
+    <!-- Color Theme Section -->
+    <div class="bg-white shadow-md rounded-md p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-lg font-bold">Set Color Theme</h2>
+        <button class="text-blue-600">Reset to Default</button>
+      </div>
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <!-- Colors Section -->
+          <div class="mb-4">
+            <label class="block font-semibold mb-2">Primary Color:</label>
+            <div class="flex items-center space-x-4">
+              <input type="text" value="#002952" class="border rounded-lg py-2 px-4 w-28" readonly>
+              <span class="font-semibold">100%</span>
+              <span class="bg-blue-900 w-8 h-8 rounded-full"></span>
+              <span class="material-icons cursor-pointer text-gray-500">refresh</span>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="block font-semibold mb-2">Secondary Color:</label>
+            <div class="flex items-center space-x-4">
+              <input type="text" value="#CF0000" class="border rounded-lg py-2 px-4 w-28" readonly>
+              <span class="font-semibold">100%</span>
+              <span class="bg-red-700 w-8 h-8 rounded-full"></span>
+              <span class="material-icons cursor-pointer text-gray-500">refresh</span>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="block font-semibold mb-2">Tertiary Color:</label>
+            <div class="flex items-center space-x-4">
+              <input type="text" value="#550604" class="border rounded-lg py-2 px-4 w-28" readonly>
+              <span class="font-semibold">100%</span>
+              <span class="bg-gray-400 w-8 h-8 rounded-full"></span>
+              <span class="material-icons cursor-pointer text-gray-500">refresh</span>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="block font-semibold mb-2">Heading Color:</label>
+            <div class="flex items-center space-x-4">
+              <input type="text" value="#A6005D" class="border rounded-lg py-2 px-4 w-28" readonly>
+              <span class="font-semibold">100%</span>
+              <span class="bg-gray-800 w-8 h-8 rounded-full"></span>
+              <span class="material-icons cursor-pointer text-gray-500">refresh</span>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="block font-semibold mb-2">Body Text Color:</label>
+            <div class="flex items-center space-x-4">
+              <input type="text" value="#900316" class="border rounded-lg py-2 px-4 w-28" readonly>
+              <span class="font-semibold">100%</span>
+              <span class="bg-gray-600 w-8 h-8 rounded-full"></span>
+              <span class="material-icons cursor-pointer text-gray-500">refresh</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <!-- Typography Section -->
+          <h2 class="text-lg font-bold mb-4">Set Typography</h2>
+          <div class="mb-4">
+            <label class="block font-semibold">Heading Text:</label>
+            <div class="flex space-x-2">
+              <select class="border rounded-lg py-2 px-4 w-full">
+                <option>Poppins</option>
+              </select>
+              <select class="border rounded-lg py-2 px-4 w-24">
+                <option>Bold</option>
+              </select>
+              <select class="border rounded-lg py-2 px-4 w-16">
+                <option>26px</option>
+              </select>
+              <span class="material-icons cursor-pointer">refresh</span>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="block font-semibold">Sub Heading Text:</label>
+            <div class="flex space-x-2">
+              <select class="border rounded-lg py-2 px-4 w-full">
+                <option>Poppins</option>
+              </select>
+              <select class="border rounded-lg py-2 px-4 w-24">
+                <option>Medium</option>
+              </select>
+              <select class="border rounded-lg py-2 px-4 w-16">
+                <option>22px</option>
+              </select>
+              <span class="material-icons cursor-pointer">refresh</span>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="block font-semibold">Body Text 1:</label>
+            <div class="flex space-x-2">
+              <select class="border rounded-lg py-2 px-4 w-full">
+                <option>Poppins</option>
+              </select>
+              <select class="border rounded-lg py-2 px-4 w-24">
+                <option>Medium</option>
+              </select>
+              <select class="border rounded-lg py-2 px-4 w-16">
+                <option>18px</option>
+              </select>
+              <span class="material-icons cursor-pointer">refresh</span>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="block font-semibold">Body Text 2:</label>
+            <div class="flex space-x-2">
+              <select class="border rounded-lg py-2 px-4 w-full">
+                <option>Poppins</option>
+              </select>
+              <select class="border rounded-lg py-2 px-4 w-24">
+                <option>Regular</option>
+              </select>
+              <select class="border rounded-lg py-2 px-4 w-16">
+                <option>16px</option>
+              </select>
+              <span class="material-icons cursor-pointer">refresh</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-end space-x-4 mt-6">
+        <button class="border border-red-500 text-red-500 px-6 py-2 rounded-md hover:bg-red-500 hover:text-white">Cancel</button>
+        <button class="bg-blue-600 text-white px-6 py-2 rounded-md">Save</button>
+      </div>
+    </div>
+  </div>
+            </div>
+
+            <div id="hipaa_compliance" class="tab-content hidden">
+                    <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-6">
+      <div class="flex items-center">
+          <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer">menu</span>
+          <h1 class="text-2xl font-semibold">HIPAA Compliance</h1>
+      </div>
+      <div class="flex items-center">
+          <span class="material-icons text-gray-500 mr-4 cursor-pointer">notifications</span>
+          <div class="flex items-center space-x-2">
+              <img src="https://via.placeholder.com/30" alt="flag" class="w-6 h-6">
+              <img src="https://via.placeholder.com/40" alt="profile" class="rounded-full w-10 h-10">
+              <span class="text-gray-600 font-medium">Jennifer Perry</span>
+          </div>
+      </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="flex space-x-4 mb-6">
+      <button id="audit-tab" class="px-6 py-2 rounded-lg active-tab" onclick="toggleContent('audit')">Audit Logs & Monitoring</button>
+      <button id="regulatory-tab" class="px-6 py-2 rounded-lg text-gray-700" onclick="toggleContent('regulatory')">Regulatory Compliance</button>
+  </div>
+
+  <!-- Audit Logs & Monitoring (default content) -->
+  <div id="audit-content">
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-xl font-semibold mb-6">All Prescriptions</h2>
+          <table class="w-full table-auto">
+              <thead class="bg-gray-200">
+                  <tr>
+                      <th class="px-4 py-2 text-left">Date & Time</th>
+                      <th class="px-4 py-2 text-left">Event</th>
+                      <th class="px-4 py-2 text-left">Name</th>
+                      <th class="px-4 py-2 text-left">Profile</th>
+                      <th class="px-4 py-2 text-left">Email</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td class="px-4 py-2">August 20, 2024 - 12:40PM</td>
+                      <td class="px-4 py-2">Appointment Scheduled</td>
+                      <td class="px-4 py-2">Edna Gilbert</td>
+                      <td class="px-4 py-2">Patient</td>
+                      <td class="px-4 py-2">ednagilbert@gmail.com</td>
+                  </tr>
+                  <tr>
+                      <td class="px-4 py-2">August 20, 2024 - 12:40PM</td>
+                      <td class="px-4 py-2">Reminder set for August 22, 2023</td>
+                      <td class="px-4 py-2">Jennifer Perry</td>
+                      <td class="px-4 py-2">Doctor</td>
+                      <td class="px-4 py-2">jenniferperry@hospital.com</td>
+                  </tr>
+                  <!-- Repeat rows as needed -->
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+  <!-- Regulatory Compliance (hidden by default) -->
+  <div id="regulatory-content" class="hidden">
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-xl font-semibold mb-6">Regulatory Compliance</h2>
+          <div class="flex items-center justify-center mb-6">
+              <span class="material-icons text-green-500 text-6xl">shield</span>
+          </div>
+          <h3 class="text-lg font-semibold text-center mb-4">You all Data is End to End Encrypted</h3>
+          <p class="text-center text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+          <ul class="list-none text-gray-600 space-y-2">
+              <li><span class="material-icons text-green-500 align-middle">check_circle</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+              <li><span class="material-icons text-green-500 align-middle">check_circle</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit sit amet</li>
+              <li><span class="material-icons text-green-500 align-middle">check_circle</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt</li>
+          </ul>
+      </div>
+  </div>
+
+  <!-- JavaScript to toggle tabs -->
+  <script>
+      function toggleContent(tab) {
+          const auditContent = document.getElementById('audit-content');
+          const regulatoryContent = document.getElementById('regulatory-content');
+          const auditTab = document.getElementById('audit-tab');
+          const regulatoryTab = document.getElementById('regulatory-tab');
+
+          if (tab === 'audit') {
+              auditContent.classList.remove('hidden');
+              regulatoryContent.classList.add('hidden');
+              auditTab.classList.add('active-tab');
+              regulatoryTab.classList.remove('active-tab');
+          } else {
+              auditContent.classList.add('hidden');
+              regulatoryContent.classList.remove('hidden');
+              auditTab.classList.remove('active-tab');
+              regulatoryTab.classList.add('active-tab');
+          }
+      }
+  </script>
+            </div>
+
+            <div id="user_access_control" class="tab-content hidden">
+             <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-6">
+      <div class="flex items-center">
+          <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer">menu</span>
+          <h1 class="text-2xl font-semibold">User Access Control</h1>
+      </div>
+      <div class="flex items-center">
+          <span class="material-icons text-gray-500 mr-4 cursor-pointer">notifications</span>
+          <div class="flex items-center space-x-2">
+              <img src="https://via.placeholder.com/30" alt="flag" class="w-6 h-6">
+              <img src="https://via.placeholder.com/40" alt="profile" class="rounded-full w-10 h-10">
+              <span class="text-gray-600 font-medium">Jennifer Perry</span>
+          </div>
+      </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="flex space-x-4 mb-6">
+      <button id="admin-tab" class="px-6 py-2 rounded-lg text-gray-700" onclick="toggleUserAccessControl('admin')">Admin</button>
+      <button id="doctor-tab" class="px-6 py-2 rounded-lg bg-blue-700 text-white" onclick="toggleUserAccessControl('doctor')">Doctor</button>
+      <button id="patient-tab" class="px-6 py-2 rounded-lg text-gray-700" onclick="toggleUserAccessControl('patient')">Patient</button>
+  </div>
+
+  <!-- Access Control for Doctor -->
+  <div id="doctor-content">
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-xl font-semibold mb-6">Doctor's Access</h2>
+          <table class="w-full table-auto">
+              <thead class="bg-gray-200">
+                  <tr>
+                      <th class="px-4 py-2 text-left">Access</th>
+                      <th class="px-4 py-2 text-left">Status</th>
+                      <th class="px-4 py-2 text-left">Edit</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td class="px-4 py-2"><span class="material-icons text-green-500 align-middle">check_circle</span> To Edit Patient Profile</td>
+                      <td class="px-4 py-2 text-green-500">Enabled</td>
+                      <td class="px-4 py-2"><span class="material-icons text-gray-400 cursor-pointer">edit</span></td>
+                  </tr>
+                  <tr>
+                      <td class="px-4 py-2"><span class="material-icons text-green-500 align-middle">check_circle</span> To Set Self Reminders</td>
+                      <td class="px-4 py-2 text-green-500">Enabled</td>
+                      <td class="px-4 py-2"><span class="material-icons text-gray-400 cursor-pointer">edit</span></td>
+                  </tr>
+                  <tr>
+                      <td class="px-4 py-2"><span class="material-icons text-green-500 align-middle">check_circle</span> To Schedule an Appointment</td>
+                      <td class="px-4 py-2 text-green-500">Enabled</td>
+                      <td class="px-4 py-2"><span class="material-icons text-gray-400 cursor-pointer">edit</span></td>
+                  </tr>
+                  <tr>
+                      <td class="px-4 py-2"><span class="material-icons text-green-500 align-middle">check_circle</span> To Add New Patient</td>
+                      <td class="px-4 py-2 text-green-500">Enabled</td>
+                      <td class="px-4 py-2"><span class="material-icons text-gray-400 cursor-pointer">edit</span></td>
+                  </tr>
+                  <tr>
+                      <td class="px-4 py-2"><span class="material-icons text-gray-400 align-middle">cancel</span> To Edit Own Profile</td>
+                      <td class="px-4 py-2 text-red-500">Disabled</td>
+                      <td class="px-4 py-2"><span class="material-icons text-gray-400 cursor-pointer">edit</span></td>
+                  </tr>
+                  <tr>
+                      <td class="px-4 py-2"><span class="material-icons text-gray-400 align-middle">cancel</span> Lorem Ipsum Dolor</td>
+                      <td class="px-4 py-2 text-red-500">Disabled</td>
+                      <td class="px-4 py-2"><span class="material-icons text-gray-400 cursor-pointer">edit</span></td>
+                  </tr>
+                  <tr>
+                      <td class="px-4 py-2"><span class="material-icons text-gray-400 align-middle">cancel</span> Lorem Ipsum Dolor</td>
+                      <td class="px-4 py-2 text-red-500">Disabled</td>
+                      <td class="px-4 py-2"><span class="material-icons text-gray-400 cursor-pointer">edit</span></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+  <!-- Placeholder content for Admin and Patient Tabs (to be filled with similar structure) -->
+  <div id="admin-content" class="hidden">Admin Content Placeholder</div>
+  <div id="patient-content" class="hidden">Patient Content Placeholder</div>
+
+  <!-- JavaScript to toggle between content -->
+  <script>
+      function toggleUserAccessControl(tab) {
+          const doctorContent = document.getElementById('doctor-content');
+          const adminContent = document.getElementById('admin-content');
+          const patientContent = document.getElementById('patient-content');
+
+          const doctorTab = document.getElementById('doctor-tab');
+          const adminTab = document.getElementById('admin-tab');
+          const patientTab = document.getElementById('patient-tab');
+
+          // Hide all content sections
+          doctorContent.classList.add('hidden');
+          adminContent.classList.add('hidden');
+          patientContent.classList.add('hidden');
+
+          // Remove active styles from all tabs
+          doctorTab.classList.remove('bg-blue-700', 'text-white');
+          adminTab.classList.remove('bg-blue-700', 'text-white');
+          patientTab.classList.remove('bg-blue-700', 'text-white');
+
+          // Show the selected content section and apply active styles
+          if (tab === 'doctor') {
+              doctorContent.classList.remove('hidden');
+              doctorTab.classList.add('bg-blue-700', 'text-white');
+          } else if (tab === 'admin') {
+              adminContent.classList.remove('hidden');
+              adminTab.classList.add('bg-blue-700', 'text-white');
+          } else if (tab === 'patient') {
+              patientContent.classList.remove('hidden');
+              patientTab.classList.add('bg-blue-700', 'text-white');
+          }
+      }
+  </script>
+          </div>
+            
+
+            <!-- Add other tabs here -->
+
+        </div>
+    </div>
+
+
+<!-- Notification Modal -->
+<div id="notificationModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center hidden">
+    <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-4 relative" style="margin-bottom: 16%;margin-left: 57%;">
+        <!-- Modal Header -->
+        <div class="flex justify-between items-center border-b pb-2">
+            <h2 class="text-lg font-semibold">Notifications</h2>
+            <button class="text-blue-500 font-medium" onclick="markAllAsRead()">Mark all as read</button>
+        </div>
+
+        <!-- Notification List -->
+        <div class="mt-4">
+            <!-- Notification Item -->
+            <div class="flex justify-between items-start p-2 border-b">
+                <div class="flex items-center">
+                    <span class="material-icons text-orange-500 text-3xl mr-4">person_add</span>
+                    <div>
+                        <p class="font-semibold">New patient Added</p>
+                        <p class="text-gray-500 text-sm">Lorem ipsum dolor sit amet consectetur etur adipiscing elit, sed do.</p>
+                    </div>
+                </div>
+                <span class="text-gray-400 text-sm">Just Now</span>
+            </div>
+
+            <!-- Notification Item -->
+            <div class="flex justify-between items-start p-2 border-b">
+                <div class="flex items-center">
+                    <span class="material-icons text-blue-500 text-3xl mr-4">check_circle</span>
+                    <div>
+                        <p class="font-semibold">Your leave is approved</p>
+                        <p class="text-gray-500 text-sm">Lorem ipsum dolor sit amet consectetur etur adipiscing elit, sed do.</p>
+                    </div>
+                </div>
+                <span class="text-gray-400 text-sm">3 Mins Ago</span>
+            </div>
+
+            <!-- Notification Item -->
+            <div class="flex justify-between items-start p-2 border-b">
+                <div class="flex items-center">
+                    <span class="material-icons text-pink-500 text-3xl mr-4">description</span>
+                    <div>
+                        <p class="font-semibold">Patient report generated</p>
+                        <p class="text-gray-500 text-sm">Lorem ipsum dolor sit amet consectetur etur adipiscing elit, sed do.</p>
+                    </div>
+                </div>
+                <span class="text-gray-400 text-sm">10 Mins Ago</span>
+            </div>
+
+            <!-- Notification Item -->
+            <div class="flex justify-between items-start p-2 border-b">
+                <div class="flex items-center">
+                    <span class="material-icons text-purple-500 text-3xl mr-4">mail</span>
+                    <div>
+                        <p class="font-semibold">New patient Added</p>
+                        <p class="text-gray-500 text-sm">Lorem ipsum dolor sit amet consectetur etur adipiscing elit, sed do.</p>
+                    </div>
+                </div>
+                <span class="text-gray-400 text-sm">10 Mins Ago</span>
+            </div>
+
+            <!-- Notification Item -->
+            <div class="flex justify-between items-start p-2">
+                <div class="flex items-center">
+                    <span class="material-icons text-orange-500 text-3xl mr-4">email</span>
+                    <div>
+                        <p class="font-semibold">Please check your mail</p>
+                        <p class="text-gray-500 text-sm">Lorem ipsum dolor sit amet consectetur etur adipiscing elit, sed do.</p>
+                    </div>
+                </div>
+                <span class="text-gray-400 text-sm">15 Mins Ago</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to toggle the modal -->
+<script>
+    function toggleModal(show) {
+        const modal = document.getElementById('notificationModal');
+        if (show) {
+            modal.classList.remove('hidden');
+        } else {
+            modal.classList.add('hidden');
+        }
+    }
+
+    function markAllAsRead() {
+        alert('All notifications marked as read!');
+    }
+</script>
+
+<!-- JavaScript for Toggling Sub-Tabs -->
+<script>
+    function toggleSubTabs() {
+        const subTabs = document.getElementById('sub-tabs');
+        subTabs.classList.toggle('hidden');
+    }
+</script>
+
+<!-- JavaScript for Toggling toggleAppointments -->
+<script>
+    function toggleAppointments() {
+        const subTabs = document.getElementById('appointment-sub-tabs');
+        subTabs.classList.toggle('hidden');
+    }
+</script>
+
+<!-- JavaScript for Toggling togglePrescriptions -->
+<script>
+    function togglePrescriptions() {
+        const subTabs = document.getElementById('prescriptions-sub-tabs');
+        subTabs.classList.toggle('hidden');
+    }
+</script>
+
+<!-- JavaScript for Toggling toggleSecurity -->
+<script>
+  function toggleSecurity() {
+        const subTabs = document.getElementById('security-sub-tabs');
+        subTabs.classList.toggle('hidden');
+    }
+</script>
+
+<!-- JavaScript to toggle tabs -->
+<script>
+    function showTab(tab) {
+        const efaxContent = document.getElementById('efax-content');
+        const emailContent = document.getElementById('email-content');
+        const efaxTab = document.getElementById('efax-tab');
+        const emailTab = document.getElementById('email-tab');
+
+        if (tab === 'efax') {
+            efaxContent.classList.remove('hidden');
+            emailContent.classList.add('hidden');
+            efaxTab.classList.add('active-tab');
+            emailTab.classList.remove('active-tab');
+        } else {
+            efaxContent.classList.add('hidden');
+            emailContent.classList.remove('hidden');
+            efaxTab.classList.remove('active-tab');
+            emailTab.classList.add('active-tab');
+        }
+    }
+</script>
+
+
+</body>
+</html>

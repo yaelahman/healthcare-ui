@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.disease-chart-labels li::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+    border-radius: 50%;
+}
+
+.disease-chart-labels li:nth-child(1)::before {
+    background-color: #FF6384;
+}
+
+.disease-chart-labels li:nth-child(2)::before {
+    background-color: #36A2EB;
+}
+
+.disease-chart-labels li:nth-child(3)::before {
+    background-color: #FFCE56;
+}
+
+.disease-chart-labels li:nth-child(4)::before {
+    background-color: #FF8C00;
+}
+
+.disease-chart-labels li:nth-child(5)::before {
+    background-color: #9ACD32;
+}
+
+/* Pop-up modal styling */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    /* Semi-transparent background */
+    z-index: 1000;
+    display: none;
+    /* Hidden by default */
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-hidden {
+    width: 60px;
+}
+
+.sidebar-visible {
+    width: 20%;
+}
+
+.main-content-expanded {
+    width: 95%;
+}
+
+.main-content-collapsed {
+    width: 80%;
+}
+
+.transition-all {
+    transition: all 0.3s ease-in-out;
+}
+
+.hide-text {
+    display: none;
+}
+
+.tab:hover {
+    background-color: rgb(30, 58, 138);
+    /* Hover background color */
+    color: white !important;
+    /* Hover text color */
+}
+
+.tab.active {
+    background-color: rgb(30, 58, 138);
+    /* Active background color */
+    color: white !important;
+    /* Active text color */
+}
+
+.sidebar:hover {
+    width: 20% !important;
+}
+
+.sidebar:hover .hide-text {
+    display: inline !important;
+}
+
+.sidebar-hidden:hover {
+    width: 20% !important;
+}
+
+.sidebar-hidden:hover .hide-text {
+    display: inline !important;
+}
+
+.tab-content {
+    padding: 1.5rem;
+}

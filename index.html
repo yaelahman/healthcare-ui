@@ -13,9 +13,9 @@
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   <link href="./assets/css/style.css" rel="stylesheet">
+   <link href="./assets/css/style.css?v=1.0.0" rel="stylesheet">
 
-   <script src="./assets/js/script.js"></script>
+   <script src="./assets/js/script.js?v=1.0.0"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -659,59 +659,61 @@
          <div id="recordings" class="tab-content hidden">
 
             <div class="grid md:gap-4 md:grid-cols-3">
-               <div class="bg-white rounded-[20px] shadow-lg mb-4">
-                  <div class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey">
-                     <h2 class="text-xl font-medium">Current Patient</h2>
-                     <span class="text-red-500">SKIP</span>
-                  </div>
-                  <div class="p-4">
-                     <!-- Current Patient -->
-                     <div class="relative">
-                        <div class="absolute top-1 right-0">
-                           <a class="text-darkBlue" href="">View Profile</a>
-                        </div>
-                        <div class="flex gap-3">
-                           <img src="./assets/images/johnson.png" class="rounded-xl h-16" alt="">
-                           <div class="text-start">
-                              <h6 class="text-xl text-darkBlue font-medium">Henry Johnson</h6>
-                              <div class="flex gap-1 text-xs">
-                                 <span>Date of Birth :</span>
-                                 <span class="text-muted">May 20, 2000</span>
-                              </div>
-                              <div class="flex gap-1 text-xs">
-                                 <span>Appointment Date & Time :</span>
-                                 <span class="text-muted">August 12, 2025 - 2:00PM</span>
+               <div class="flex flex-column">
+                  <div class="bg-white rounded-[20px] shadow-lg mb-4">
+                     <div class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey">
+                        <h2 class="text-xl font-medium">Current Patient</h2>
+                        <span class="text-red-500">SKIP</span>
+                     </div>
+                     <div class="p-4">
+                        <!-- Current Patient -->
+                        <div class="relative">
+                           <div class="absolute top-1 right-0">
+                              <a class="text-darkBlue" href="">View Profile</a>
+                           </div>
+                           <div class="flex gap-3">
+                              <img src="./assets/images/johnson.png" class="rounded-xl h-16" alt="">
+                              <div class="text-start">
+                                 <h6 class="text-xl text-darkBlue font-medium">Henry Johnson</h6>
+                                 <div class="flex gap-1 text-xs">
+                                    <span>Date of Birth :</span>
+                                    <span class="text-muted">May 20, 2000</span>
+                                 </div>
+                                 <div class="flex gap-1 text-xs">
+                                    <span>Appointment Date & Time :</span>
+                                    <span class="text-muted">August 12, 2025 - 2:00PM</span>
+                                 </div>
                               </div>
                            </div>
+                           <div class="bg-grey px-2 rounded-lg py-2 mt-3">
+                              <table class="text-sm w-full">
+                                 <tr>
+                                    <th class="font-medium">Gender</th>
+                                    <th class="font-medium">Age</th>
+                                    <th class="font-medium">Weight</th>
+                                    <th class="font-medium">Height</th>
+                                    <th class="font-medium">Blood Group</th>
+                                 </tr>
+                                 <tr>
+                                    <td class="text-muted text-center">Male</td>
+                                    <td class="text-muted text-center">26 Years</td>
+                                    <td class="text-muted text-center">68Kg</td>
+                                    <td class="text-muted text-center">5ft 9in</td>
+                                    <td class="text-muted text-center">O+</td>
+                                 </tr>
+                              </table>
+                           </div>
+                           <div class="text-end mt-4">
+                              <button
+                                 class="border border-primary text-primary px-4 py-2 rounded-full text-sm font-light hover:text-white hover:bg-primary transition-all duration-150">Finish
+                                 Consultation</button>
+                              <button
+                                 class="bg-primary border border-primary text-white px-4 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Start
+                                 Recording</button>
+                           </div>
                         </div>
-                        <div class="bg-grey px-2 rounded-lg py-2 mt-3">
-                           <table class="text-sm w-full">
-                              <tr>
-                                 <th class="font-medium">Gender</th>
-                                 <th class="font-medium">Age</th>
-                                 <th class="font-medium">Weight</th>
-                                 <th class="font-medium">Height</th>
-                                 <th class="font-medium">Blood Group</th>
-                              </tr>
-                              <tr>
-                                 <td class="text-muted text-center">Male</td>
-                                 <td class="text-muted text-center">26 Years</td>
-                                 <td class="text-muted text-center">68Kg</td>
-                                 <td class="text-muted text-center">5ft 9in</td>
-                                 <td class="text-muted text-center">O+</td>
-                              </tr>
-                           </table>
-                        </div>
-                        <div class="text-end mt-4">
-                           <button
-                              class="border border-primary text-primary px-4 py-2 rounded-full text-sm font-light hover:text-white hover:bg-primary transition-all duration-150">Finish
-                              Consultation</button>
-                           <button
-                              class="bg-primary border border-primary text-white px-4 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Start
-                              Recording</button>
-                        </div>
-                     </div>
 
+                     </div>
                   </div>
                </div>
                <!-- Recordings Output -->

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPro Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for the analytics chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--to show percentage on Doughnut  -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="./assets/css/style.css?v=1.0.1" rel="stylesheet">
+
+    <script src="./assets/js/script.js?v=1.0.1"></script>
+</head>
+
+<body class="bg-gray-100">
+    <div class="min-h-screen flex transition-all">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-visible transition-all text-white p-4 sidebar"
+            style="background-color: rgb(23 37 78);">
+            <div class="flex items-center justify-center mb-6 bg-white text-primary rounded-xl h-24">
+                <img src="assets/images/LogoIcon.png" alt="Logo" class="mr-3">
+                <h2 class="text-2xl font-bold sidebar-text">MEDAIPRO</h2>
+            </div>
+            <ul>
+                <li id="tab-dashboard" class="tab active p-4 mb-2 rounded cursor-pointer" onclick="changeTab('index')">
+                    <i class="material-icons align-middle">dashboard</i>
+                    <span class="ml-2 sidebar-text">Dashboard</span>
+                </li>
+                <li id="tab-recordings" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('recordings')">
+                    <i class="material-icons align-middle">mic</i>
+                    <span class="ml-2 sidebar-text">Recordings</span>
+                </li>
+                <!-- Patients -->
+                <li id="tab-patients" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-patients')">
+                    <i class="material-icons align-middle">people</i>
+                    <span class="ml-2 sidebar-text">Patients</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+                <!-- Sub-Tabs (Initially Hidden) -->
+                <ul id="sub-tabs-patients" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patients')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">All Patients</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('new_patient')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Add New Patient</a>
+                    </li>
+                </ul>
+                <!-- Appointments -->
+                <li id="tab-appointments" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-appointments')">
+                    <i class="material-icons align-middle">event</i>
+                    <span class="ml-2 sidebar-text">Appointments</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+                <ul id="sub-tabs-appointments" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('appointments')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">All Appointments</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('add_appointment')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Add New Appointment</a>
+                    </li>
+                </ul>
+                <!-- Consultation -->
+                <li id="tab-consultation" class="tab p-4 mb-2 rounded cursor-pointer"
+                    onclick="changeTab('consultation')">
+                    <i class="material-icons align-middle">local_hospital</i>
+                    <span class="ml-2 sidebar-text">Consultation</span>
+                </li>
+                <!-- Prescriptions -->
+                <li id="tab-prescriptions" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-prescriptions')">
+                    <i class="material-icons align-middle">description</i>
+                    <span class="ml-2 sidebar-text">Prescriptions</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+                <ul id="sub-tabs-prescriptions" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('prescriptions')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">All Prescriptions</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('add_prescriptions')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Create New</a>
+                    </li>
+                </ul>
+                <!-- Labs -->
+                <li id="tab-labs" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('labs')">
+                    <i class="material-icons align-middle">science</i>
+                    <span class="ml-2 sidebar-text">Labs/Radiology</span>
+                </li>
+                <!-- AI Support -->
+                <li id="tab-ai" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('ai')">
+                    <i class="material-icons align-middle">smart_toy</i>
+                    <span class="ml-2 sidebar-text">AI Support</span>
+                </li>
+                <!-- Doctors -->
+                <li id="tab-doctors" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('doctors')">
+                    <i class="material-icons align-middle">medical_services</i>
+                    <span class="ml-2 sidebar-text">Doctors</span>
+                </li>
+                <!-- Super Bills -->
+                <li id="tab-super-bills" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('super-bills')">
+                    <i class="material-icons align-middle">receipt</i>
+                    <span class="ml-2 sidebar-text">Super Bills</span>
+                </li>
+                <!-- Customizations -->
+                <li id="tab-customizations" class="tab p-4 mb-2 rounded cursor-pointer"
+                    onclick="changeTab('customizations')">
+                    <i class="material-icons align-middle">tune</i>
+                    <span class="ml-2 sidebar-text">Customizations</span>
+                </li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <div id="main-content" class="main-content-collapsed transition-all bg-gray-100 p-0">
+            <div class="flex justify-between items-center mb-6 bg-white p-6 shadow ">
+                <div class="flex">
+                    <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer"
+                        onclick="toggleSidebar()">menu</span>
+                    <h1 class="text-2xl font-semibold text-[#585858]">Recordings</h1>
+                </div>
+                <!-- Profile Section -->
+                <div class="flex items-center">
+                    <span class="material-icons notifications text-gray-500 mr-4 cursor-pointer">notifications</span>
+                    <div class="flex items-center space-x-4">
+                        <img src="assets/images/flag.png" alt="flag" class="w-8 h-6">
+                        <img src="assets/images/profile.png" alt="profile" class="rounded-full w-10 h-10">
+                        <span class="text-gray-600 font-medium bg-grey rounded-full px-5 py-2">Jennifer Perry</span>
+                    </div>
+                </div>
+            </div>
+            <div id="recordings" class="tab-content">
+
+                <div class="grid md:gap-4 md:grid-cols-3">
+                    <div class="flex flex-col">
+                        <!-- Current Patient -->
+                        <div class="bg-white rounded-[20px] shadow-lg mb-4">
+                            <div
+                                class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                                <h2 class="text-lg font-medium">Current Patient</h2>
+                                <span class="text-red-500">SKIP</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="relative">
+                                    <div class="absolute top-1 right-0">
+                                        <a class="text-darkBlue" href="">View Profile</a>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <img src="./assets/images/johnson.png" class="rounded-xl h-16" alt="">
+                                        <div class="text-start">
+                                            <h6 class="text-xl text-darkBlue font-medium">Henry Johnson</h6>
+                                            <div class="flex gap-1 text-xs">
+                                                <span>Date of Birth :</span>
+                                                <span class="text-muted">May 20, 2000</span>
+                                            </div>
+                                            <div class="flex gap-1 text-xs">
+                                                <span>Appointment Date & Time :</span>
+                                                <span class="text-muted">August 12, 2025 - 2:00PM</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-grey px-2 rounded-lg py-2 mt-3">
+                                        <table class="text-sm w-full">
+                                            <tr>
+                                                <th class="font-medium">Gender</th>
+                                                <th class="font-medium">Age</th>
+                                                <th class="font-medium">Weight</th>
+                                                <th class="font-medium">Height</th>
+                                                <th class="font-medium">Blood Group</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-muted text-center">Male</td>
+                                                <td class="text-muted text-center">26 Years</td>
+                                                <td class="text-muted text-center">68Kg</td>
+                                                <td class="text-muted text-center">5ft 9in</td>
+                                                <td class="text-muted text-center">O+</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="text-end mt-4">
+                                        <button
+                                            class="border border-primary text-primary px-4 py-2 rounded-full text-sm font-light hover:text-white hover:bg-primary transition-all duration-150">Finish
+                                            Consultation</button>
+                                        <button
+                                            class="bg-primary border border-primary text-white px-4 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Start
+                                            Recording</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Recordings -->
+                        <div class="bg-white min-h-[200px] rounded-[20px] shadow-lg mb-4">
+                            <div
+                                class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                                <h2 class="text-lg font-medium">Recordings</h2>
+                                <h2 class="text-lg font-medium">Time</h2>
+                            </div>
+                            <div class="relative">
+                                <div class="flex justify-content-between border-b px-3 pt-4 pb-2">
+                                    <div class="flex gap-2 w-full">
+                                        <span
+                                            class="inline-block bg-danger text-white rounded-full p-1 h-8 w-8 flex items-center justify-center">
+                                            <i class="material-icons">play_arrow</i>
+                                        </span>
+                                        <div class="text-medium text-start">
+                                            <p class="leading-none">Recording 1</p>
+                                            <span class="text-muted text-sm">Just Now</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-muted text-sm text-nowrap my-auto">4 mins 35 secs</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-content-between border-b px-3 pt-4 pb-2">
+                                <div class="flex gap-2 w-full">
+                                    <span
+                                        class="inline-block bg-danger text-white rounded-full p-1 h-8 w-8 flex items-center justify-center">
+                                        <i class="material-icons">play_arrow</i>
+                                    </span>
+                                    <div class="text-medium text-start">
+                                        <p class="leading-none">Recording 2</p>
+                                        <span class="text-muted text-sm">6 Mins Ago</span>
+                                    </div>
+                                </div>
+                                <span class="text-muted text-sm text-nowrap my-auto">9 mins 36 secs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recordings Output -->
+                    <div class="bg-white rounded-[20px] shadow-lg mb-4 col-span-2">
+                        <div
+                            class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                            <h2 class="text-lg font-medium">Recordings Output</h2>
+                            <a href="" class="text-primary">Update Data in Profile</a>
+                        </div>
+                        <div class="p-4">
+                            <div class="mb-3">
+                                <h3 class="text-md font-medium bg-grey px-3 py-2 rounded-lg mb-2">Subjective</h3>
+                                <p class="text-body px-2">Patient John Doe, a 35-year-old male, reports experiencing
+                                    persistent
+                                    headaches for the past
+                                    two weeks. He describes the pain as a throbbing sensation on the left side of his
+                                    head, which
+                                    worsens with physical activity. He also notes symptoms of nausea and sensitivity to
+                                    light. He
+                                    rates the pain as 7 out of 10.</p>
+                            </div>
+                            <div class="mb-3">
+                                <h3 class="text-md font-medium bg-grey px-3 py-2 rounded-lg mb-2">Subjective</h3>
+                                <div class="px-2">
+                                    <table class="w-full">
+                                        <tr>
+                                            <th class="font-medium text-start">Vitals:</th>
+                                            <th class="font-medium text-start">Exam:</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-body">
+                                                <ul class="ps-5 list-disc">
+                                                    <li>BP: [e.g., 120/80 mmHg]</li>
+                                                    <li>HR: [e.g., 72 bpm]</li>
+                                                    <li>RR: [e.g., 16 breaths/min]</li>
+                                                    <li>Temp: [e.g., 98.6°F]</li>
+                                                </ul>
+                                            </td>
+                                            <td class="text-body">
+                                                <ul class="ps-5 list-disc">
+                                                    <li>BP: [e.g., 120/80 mmHg]</li>
+                                                    <li>HR: [e.g., 72 bpm]</li>
+                                                    <li>RR: [e.g., 16 breaths/min]</li>
+                                                    <li>Temp: [e.g., 98.6°F]</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h3 class="text-md font-medium bg-grey px-3 py-2 rounded-lg mb-2">Assessment</h3>
+                                <div class="px-2 text-body">
+
+                                    <ul class="ps-5 list-disc">
+                                        <li>Likely diagnosis: Migraine without aura</li>
+                                        <li>Other possible diagnoses: None</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h3 class="text-md font-medium bg-grey px-3 py-2 rounded-lg mb-2">Plan</h3>
+                                <div class="px-2">
+                                    <table class="w-full">
+                                        <tr>
+                                            <th class="font-medium text-start">Medications:</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-body">
+                                                <ul class="ps-8 list-disc">
+                                                    <li>Sumatriptan 100mg: take at the onset of headache</li>
+                                                    <li>Consider preventive medication: Propranolol or Topiramate if
+                                                        headache is
+                                                        frequent</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="font-medium text-start">Lifestyle Modifications:</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-body">
+                                                <ul class="ps-8 list-disc">
+                                                    <li>Sumatriptan 100mg: take at the onset of headache</li>
+                                                    <li>Consider preventive medication: Propranolol or Topiramate if
+                                                        headache is
+                                                        frequent</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Chart.js Script for Analytics -->
+    <script src="./assets/js/function.js"></script>
+</body>
+
+</html>

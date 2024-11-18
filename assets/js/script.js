@@ -4,6 +4,10 @@ tailwind.config = {
             colors: {
                 primary: '#002952',
                 danger: '#CF0000',
+                warning: '#FBB040',
+                info: '#00AEEF',
+                success: '#00C49F',
+                purple: '#DF00FF',
                 heading: '#242424',
                 body: '#585858',
                 grey: '#F4F7F9',
@@ -34,32 +38,43 @@ function toggleSidebar() {
 }
 
 function changeTab(tabName) {
+    const tabElement = tabName == 'index' ? 'dashboard' : tabName;
+
+    window.location.href = `${window.location.origin}/${tabName}.html`;
     // Remove the 'active' class from all tabs
+
+}
+
+function getActiveClass(tabElement) {
     document.querySelectorAll('.tab').forEach(tab => {
         tab.classList.remove('active');
     });
 
     // Add 'active' class to the clicked tab
-    document.getElementById(`tab-${tabName}`).classList.add('active');
+    document.getElementById(`tab-${tabElement}`).classList.add('active');
 
     // Hide all tab content sections
     document.querySelectorAll('.tab-content').forEach(tabContent => {
         tabContent.classList.add('hidden');
     });
 
-    // Show the content of the clicked tab
-    document.getElementById(tabName).classList.remove('hidden');
 
-    window.history.pushState({}, "", `${window.location.pathname}?page=${tabName}`);
+    // Show the content of the clicked tab
+    document.getElementById(tabElement).classList.remove('hidden');
 }
 
-const page = window.location.search.split('page=')[1]
-if (page) {
+const page = window.location.pathname.split('/')[1]
+if (page && page != 'index.html') {
     setTimeout(() => {
-        changeTab(page)
+        getActiveClass(page.replace('.html', ''))
+    }, 1)
+} else {
+    setTimeout(() => {
+        getActiveClass('dashboard')
     }, 1)
 }
 
 function toggleSubTabs(subTabId) {
     document.getElementById(subTabId).classList.toggle('hidden');
-} 
+}
+

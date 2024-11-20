@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPro Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for the analytics chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--to show percentage on Doughnut  -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="./assets/css/style.css?v=1.0.2" rel="stylesheet">
+
+    <script src="./assets/js/script.js?v=1.0.2"></script>
+</head>
+
+<body class="bg-gray-100">
+    <div class="min-h-screen flex transition-all">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-visible transition-all text-white p-4 sidebar"
+            style="background-color: rgb(23 37 78);">
+            <div class="flex items-center justify-center mb-6 bg-white text-primary rounded-xl h-24">
+                <img src="assets/images/LogoIcon.png" alt="Logo" class="mr-3">
+                <h2 class="text-2xl font-bold sidebar-text">MEDAIPRO</h2>
+            </div>
+            <ul>
+                <li id="tab-dashboard" class="tab active p-4 mb-2 rounded cursor-pointer" onclick="changeTab('index')">
+                    <i class="material-icons align-middle">dashboard</i>
+                    <span class="ml-2 sidebar-text">Dashboard</span>
+                </li>
+                <li id="tab-recordings" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('recordings')">
+                    <i class="material-icons align-middle">mic</i>
+                    <span class="ml-2 sidebar-text">Recordings</span>
+                </li>
+                <!-- Patients -->
+                <li id="tab-patients" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-patients')">
+                    <i class="material-icons align-middle">people</i>
+                    <span class="ml-2 sidebar-text">Patients</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+                <!-- Sub-Tabs (Initially Hidden) -->
+                <ul id="sub-tabs-patients" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patients')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">All Patients</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patient_add')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Add New Patient</a>
+                    </li>
+                </ul>
+                <!-- Appointments -->
+                <li id="tab-appointments" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-appointments')">
+                    <i class="material-icons align-middle">event</i>
+                    <span class="ml-2 sidebar-text">Appointments</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+                <ul id="sub-tabs-appointments" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('appointments')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">All Appointments</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('add_appointment')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Add New Appointment</a>
+                    </li>
+                </ul>
+                <!-- Consultation -->
+                <li id="tab-consultation" class="tab p-4 mb-2 rounded cursor-pointer"
+                    onclick="changeTab('consultation')">
+                    <i class="material-icons align-middle">local_hospital</i>
+                    <span class="ml-2 sidebar-text">Consultation</span>
+                </li>
+                <!-- Prescriptions -->
+                <li id="tab-prescriptions" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-prescriptions')">
+                    <i class="material-icons align-middle">description</i>
+                    <span class="ml-2 sidebar-text">Prescriptions</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+                <ul id="sub-tabs-prescriptions" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('prescriptions')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">All Prescriptions</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('add_prescriptions')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Create New</a>
+                    </li>
+                </ul>
+                <!-- Labs -->
+                <li id="tab-labs" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('labs')">
+                    <i class="material-icons align-middle">science</i>
+                    <span class="ml-2 sidebar-text">Labs/Radiology</span>
+                </li>
+                <!-- AI Support -->
+                <li id="tab-ai" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('ai')">
+                    <i class="material-icons align-middle">smart_toy</i>
+                    <span class="ml-2 sidebar-text">AI Support</span>
+                </li>
+                <!-- Doctors -->
+                <li id="tab-doctors" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('doctors')">
+                    <i class="material-icons align-middle">medical_services</i>
+                    <span class="ml-2 sidebar-text">Doctors</span>
+                </li>
+                <!-- Super Bills -->
+                <li id="tab-super-bills" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('super-bills')">
+                    <i class="material-icons align-middle">receipt</i>
+                    <span class="ml-2 sidebar-text">Super Bills</span>
+                </li>
+                <!-- Customizations -->
+                <li id="tab-customizations" class="tab p-4 mb-2 rounded cursor-pointer"
+                    onclick="changeTab('customizations')">
+                    <i class="material-icons align-middle">tune</i>
+                    <span class="ml-2 sidebar-text">Customizations</span>
+                </li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <div id="main-content" class="main-content-collapsed transition-all bg-gray-100 p-0">
+            <div class="flex justify-between items-center mb-6 bg-white p-6 shadow ">
+                <div class="flex">
+                    <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer"
+                        onclick="toggleSidebar()">menu</span>
+                    <h1 class="text-2xl font-semibold text-[#585858]">Dashboard</h1>
+                </div>
+                <!-- Profile Section -->
+                <div class="flex items-center">
+                    <span class="material-icons notifications text-gray-500 mr-4 cursor-pointer">notifications</span>
+                    <div class="flex items-center space-x-4">
+                        <img src="assets/images/flag.png" alt="flag" class="w-8 h-6">
+                        <img src="assets/images/profile.png" alt="profile" class="rounded-full w-10 h-10">
+                        <span class="text-gray-600 font-medium bg-grey rounded-full px-5 py-2">Jennifer Perry</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Top Bar with Menu Button -->
+            <!-- Dashboard Content -->
+            <div id="patient_add" class="tab-content">
+                <div class="grid lg:grid-cols-5 gap-4 mb-4">
+                    <div class="bg-white p-3 rounded-2xl col-span-2">
+                        <div class="flex gap-3">
+                            <div class="relative">
+                                <img src="./assets/images/johnson.png" class="rounded-xl h-20" alt="">
+                                <div
+                                    class="absolute cursor-pointer bg-white h-5 w-5 right-1 bottom-2 text-center rounded-full">
+                                    <i class="material-icons text-gray-500 text-sm cursor-pointer">edit</i>
+                                </div>
+                            </div>
+                            <div class="text-start">
+                                <h6 class="text-2xl text-darkBlue font-medium">Henry Johnson</h6>
+                                <div class="flex gap-1">
+                                    <span>Date of Birth :</span>
+                                    <span class="text-muted">May 20, 2000</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <span>Last Visit :</span>
+                                    <span class="text-muted">August 12, 2025 - 2:00PM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3 rounded-2xl col-span-2">
+                        <div class="flex gap-3">
+                            <div class="text-start w-full">
+                                <div class="flex justify-between mb-2">
+                                    <h6 class="font-medium text-lg">Next Appointment: </h6>
+                                    <a href="" class="text-darkBlue text-sm">Edit</a>
+                                </div>
+                                <table class="w-full text-nowrap">
+                                    <tr>
+                                        <td>Date:</td>
+                                        <td>Time:</td>
+                                        <td>Doctor:</td>
+                                        <td>Reason or Disease:</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">August 21, 2024</td>
+                                        <td class="text-muted">12:00PM</td>
+                                        <td class="text-muted">John Smith</td>
+                                        <td class="text-muted">Jaundice</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button
+                            class="px-8 py-3 text-sm bg-white border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Edit
+                            Details</button>
+
+                    </div>
+                </div>
+                <div class="flex gap-3 overflow-x-auto mb-4 text-nowrap">
+                    <a href="patient_profile.html"
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                        Personal Details
+                    </a>
+                    <a href="patient_medical_detail.html"
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                        Medical Details
+                    </a>
+                    <a href="patient_medical_history.html"
+                        class="bg-primary px-5 py-2 text-white rounded-full font-light">
+                        Medical History
+                    </a>
+                    <a href="patient_lab_report.html"
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                        Lab Reports
+                    </a>
+                    <a href="patient_current_medication.html"
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                        Current Medications
+                    </a>
+                    <a href="patient_appointment.html"
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                        Appointment & AI Visit Notes
+                    </a>
+                </div>
+                <div class="bg-white rounded-2xl grid lg:grid-cols-3 grid-cols-1 p-6">
+                    <div class="bg-white rounded-2xl border">
+                        <div class="bg-grey bg-opacity rounded-t-2xl py-3 px-5">
+                            <h6 class="text-xl">Appointments & Lab History</h6>
+                        </div>
+                        <div class="pt-8 pb-3">
+                            <div class="ps-8 pe-6 pb-1">
+                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
+                                    <span
+                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
+                                    <div class="text-start">
+                                        <h6>Appointment</h6>
+                                        <span class="text-muted font-light">Doctor: John Smith</span>
+                                    </div>
+                                    <div class="text-end text-muted font-light text-sm">
+                                        <p>August 20,2024</p>
+                                        <p>2:00PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ps-8 pe-6 pb-1">
+                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
+                                    <span
+                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
+                                    <div class="text-start">
+                                        <h6>Lab Report</h6>
+                                        <span class="text-muted font-light">Report of: Blood Sugar</span>
+                                    </div>
+                                    <div class="text-end text-muted font-light text-sm">
+                                        <p>August 20,2024</p>
+                                        <p>2:00PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ps-8 pe-6 pb-1">
+                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
+                                    <span
+                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
+                                    <div class="text-start">
+                                        <h6>Appointment</h6>
+                                        <span class="text-muted font-light">Doctor: John Smith</span>
+                                    </div>
+                                    <div class="text-end text-muted font-light text-sm">
+                                        <p>August 20,2024</p>
+                                        <p>2:00PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ps-8 pe-6 pb-1">
+                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
+                                    <span
+                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
+                                    <div class="text-start">
+                                        <h6>Lab Report</h6>
+                                        <span class="text-muted font-light">Report of: Blood Sugar</span>
+                                    </div>
+                                    <div class="text-end text-muted font-light text-sm">
+                                        <p>August 20,2024</p>
+                                        <p>2:00PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ps-8 pe-6 pb-1">
+                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
+                                    <span
+                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
+                                    <div class="text-start">
+                                        <h6>Appointment</h6>
+                                        <span class="text-muted font-light">Doctor: John Smith</span>
+                                    </div>
+                                    <div class="text-end text-muted font-light text-sm">
+                                        <p>August 20,2024</p>
+                                        <p>2:00PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Chart.js Script for Analytics -->
+    <script src="./assets/js/function.js?v=1.0.2"></script>
+</body>
+
+</html>

@@ -214,7 +214,7 @@
                         Medical Details
                     </a>
                     <a href="patient_medical_history.html"
-                        class="bg-primary px-5 py-2 text-white rounded-full font-light">
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
                         Medical History
                     </a>
                     <a href="patient_lab_report.html"
@@ -222,7 +222,7 @@
                         Lab Reports
                     </a>
                     <a href="patient_current_medication.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                        class="bg-primary px-5 py-2 text-white rounded-full font-light">
                         Current Medications
                     </a>
                     <a href="patient_appointment.html"
@@ -230,162 +230,77 @@
                         Appointment & AI Visit Notes
                     </a>
                 </div>
-                <div class="bg-white rounded-2xl grid lg:grid-cols-3 grid-cols-1 p-6 gap-4">
-                    <div class="bg-white rounded-2xl border">
-                        <div class="bg-grey bg-opacity rounded-t-2xl py-3 px-5 border-b">
-                            <h6 class="text-xl">Appointments & Lab History</h6>
+                <div class="bg-white rounded-2xl grid lg:grid-cols-2 grid-cols-1 p-6 gap-4">
+                    <div class="bg-grey rounded-2xl">
+                        <div class="rounded-t-2xl py-3 px-5 border-b">
+                            <h6 class="text-xl">Current Medication</h6>
                         </div>
-                        <div class="pt-8 pb-3">
-                            <div class="ps-8 pe-6 pb-1">
-                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
-                                    <span
-                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
-                                    <div class="text-start">
-                                        <h6>Appointment</h6>
-                                        <span class="text-muted font-light">Doctor: John Smith</span>
+                        <div class="p-6">
+                            <div class="pb-3">
+                                <div class="mb-4 grid lg:grid-cols-3">
+                                    <label for="medicineName" class="block text-nowrap my-auto">Medicine
+                                        Name:</label>
+                                    <div class="flex items-center w-full col-span-2">
+                                        <input id="medicineName" type="text" value="Paracetamol"
+                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
+                                            placeholder="Enter Medicine Name">
                                     </div>
-                                    <div class="text-end text-muted font-light text-sm">
-                                        <p>August 20,2024</p>
-                                        <p>2:00PM</p>
+                                </div>
+                                <div class="mb-4 grid lg:grid-cols-3">
+                                    <label for="dosage" class="block text-nowrap my-auto">Dosage:</label>
+                                    <div class="flex items-center w-full col-span-2">
+                                        <input id="dosage" type="text" value="500mg"
+                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
+                                            placeholder="Enter Dosage">
+                                    </div>
+                                </div>
+                                <div class="mb-4 grid lg:grid-cols-3">
+                                    <label for="frequency" class="block text-nowrap my-auto">Frequency:</label>
+                                    <div class="flex items-center w-full col-span-2">
+                                        <input id="frequency" type="text" value="Twice a day"
+                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
+                                            placeholder="Enter Frequency">
                                     </div>
                                 </div>
                             </div>
-                            <div class="ps-8 pe-6 pb-1">
-                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
-                                    <span
-                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
-                                    <div class="text-start">
-                                        <h6>Lab Report</h6>
-                                        <span class="text-muted font-light">Report of: Blood Sugar</span>
-                                    </div>
-                                    <div class="text-end text-muted font-light text-sm">
-                                        <p>August 20,2024</p>
-                                        <p>2:00PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-8 pe-6 pb-1">
-                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
-                                    <span
-                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
-                                    <div class="text-start">
-                                        <h6>Appointment</h6>
-                                        <span class="text-muted font-light">Doctor: John Smith</span>
-                                    </div>
-                                    <div class="text-end text-muted font-light text-sm">
-                                        <p>August 20,2024</p>
-                                        <p>2:00PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-8 pe-6 pb-1">
-                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
-                                    <span
-                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
-                                    <div class="text-start">
-                                        <h6>Lab Report</h6>
-                                        <span class="text-muted font-light">Report of: Blood Sugar</span>
-                                    </div>
-                                    <div class="text-end text-muted font-light text-sm">
-                                        <p>August 20,2024</p>
-                                        <p>2:00PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-8 pe-6 pb-1">
-                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
-                                    <span
-                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
-                                    <div class="text-start">
-                                        <h6>Appointment</h6>
-                                        <span class="text-muted font-light">Doctor: John Smith</span>
-                                    </div>
-                                    <div class="text-end text-muted font-light text-sm">
-                                        <p>August 20,2024</p>
-                                        <p>2:00PM</p>
-                                    </div>
-                                </div>
+                            <div class="flex justify-end">
+                                <button
+                                    class="px-8 py-3 bg-primary border border-primary rounded-full text-white hover:bg-opacity-[0.9] transition-all duration-150">Add
+                                    Current Medication</button>
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-4 col-span-2">
-                        <div class="bg-grey p-6 rounded-2xl">
-                            <div class="mb-4 grid lg:grid-cols-3">
-                                <label for="patientName" class="block text-nowrap my-auto">Patient
-                                    Name:</label>
-                                <div class="flex items-center w-full col-span-2 relative">
-                                    <input id="patientName" type="text" value="Appendectomy (2016)"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                        placeholder="Enter Patient's Name">
-                                    <span class="absolute right-5 text-primary top-5 cursor-pointer">
-                                        Add New
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="flex gap-3 flex-wrap">
-                                <div
-                                    class="bg-white px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
-                                    <span>Appendectomy (2016)</span>
-                                    <span
-                                        class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
-                                </div>
-                                <div
-                                    class="bg-white px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
-                                    <span>Appendectomy (2010)</span>
-                                    <span
-                                        class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
-                                </div>
-                            </div>
+                    <div class="bg-grey rounded-2xl">
+                        <div class="rounded-t-2xl py-3 px-5 border-b">
+                            <h6 class="text-xl">Current Medication List</h6>
                         </div>
-                        <div class="bg-grey p-6 rounded-2xl">
-                            <div class="mb-4 grid lg:grid-cols-3">
-                                <label for="patientName" class="block text-nowrap my-auto">Previous
-                                    Hospitalization:</label>
-                                <div class="flex items-center w-full col-span-2 relative">
-                                    <input id="patientName" type="text" value="Appendectomy (2016)"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                        placeholder="Enter Patient's Name">
-                                    <span class="absolute right-5 text-primary top-5 cursor-pointer">
-                                        Add New
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="flex gap-3 flex-wrap">
-                                <div
-                                    class="bg-white px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
-                                    <span>DMC Hospital (2016 for Pneumonia)</span>
-                                    <span
-                                        class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-grey p-6 rounded-2xl">
-                            <div class="mb-4 grid lg:grid-cols-3">
-                                <label for="patientName" class="block text-nowrap my-auto">Family Member
-                                    History:</label>
-                                <div class="flex items-center w-full col-span-2 relative">
-                                    <input id="patientName" type="text" value="Appendectomy (2016)"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                        placeholder="Enter Patient's Name">
-                                    <span class="absolute right-5 text-primary top-5 cursor-pointer">
-                                        Add New
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="flex gap-3 flex-wrap">
-                                <div
-                                    class="bg-white px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
-                                    <span>Heart Disease (Mother)</span>
-                                    <span
-                                        class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
-                                </div>
-                                <div
-                                    class="bg-white px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
-                                    <span>Heart Disease (Father)</span>
-                                    <span
-                                        class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
-                                </div>
-                            </div>
+                        <div class="p-6">
+                            <ol class="list-decimal ps-3">
+                                <li class="ps-3 mb-4">
+                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
+                                        <span>Paracetamol</span>
+                                        <span
+                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Once
+                                            a Day</span>
+                                    </div>
+                                </li>
+                                <li class="ps-3 mb-4">
+                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
+                                        <span>Ibuprofen</span>
+                                        <span
+                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Twice
+                                            a Day</span>
+                                    </div>
+                                </li>
+                                <li class="ps-3 mb-4">
+                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
+                                        <span>Amoxicillin</span>
+                                        <span
+                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Three
+                                            times a Day</span>
+                                    </div>
+                                </li>
+                            </ol>
                         </div>
                     </div>
                 </div>

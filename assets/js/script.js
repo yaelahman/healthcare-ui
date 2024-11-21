@@ -78,3 +78,24 @@ function toggleSubTabs(subTabId) {
     document.getElementById(subTabId).classList.toggle('hidden');
 }
 
+window.onresize = function () {
+    console.log(window.innerWidth)
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.querySelector('.main-content');
+
+    if (window.innerWidth < 768) {
+
+        if (sidebar.classList.contains('sidebar-visible')) {
+            toggleSidebar();
+        }
+    } else {
+        // sidebar.classList.remove('sidebar-collapsed');
+        // mainContent.classList.remove('main-content-expanded');
+    }
+};
+
+setTimeout(() => {
+    window.onresize();
+}, 1)
+
+

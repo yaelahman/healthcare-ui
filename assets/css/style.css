@@ -61,21 +61,47 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+@media (max-width: 768px) {
+    .sidebar-visible {
+        width: 100% !important;
+        position: absolute;
+        z-index: 1000;
+        height: 100vh;
+        background-color: rgb(23, 37, 78);
+    }
+
+    .sidebar-hidden {
+        width: 0;
+        overflow: hidden;
+        padding: 0 !important;
+    }
+
+    .main-content-expanded {
+        width: 100%;
+    }
+
+    .main-content-collapsed {
+        width: 100% !important;
+    }
+}
+
+.main-content-collapsed {
+    width: 100% !important;
+}
+
+.main-content-expanded {
+    width: 100%;
+}
+
+
 .sidebar-hidden {
-    width: 60px;
+    width: 0;
 }
 
 .sidebar-visible {
     width: 20%;
 }
 
-.main-content-expanded {
-    width: 95%;
-}
-
-.main-content-collapsed {
-    width: 80%;
-}
 
 .transition-all {
     transition: all 0.3s ease-in-out;
@@ -94,6 +120,11 @@
 }
 
 .tab.active {
+    display: none;
+}
+
+.sidebar-visible .tab.active {
+    display: block;
     position: relative;
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 15px;
@@ -116,20 +147,12 @@
     /* Change to your desired border color */
 }
 
-.sidebar:hover {
-    width: 20% !important;
-}
-
 .sidebar:hover .hide-text {
     display: inline !important;
 }
 
-.sidebar-hidden:hover {
-    width: 20% !important;
-}
-
 .sidebar-hidden:hover .hide-text {
-    display: inline !important;
+    display: none !important;
 }
 
 .tab-content {

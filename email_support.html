@@ -10,8 +10,7 @@
     <!-- Chart.js for the analytics chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!--to show percentage on Doughnut  -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="./assets/css/style.css?v=1.0.5" rel="stylesheet">
@@ -161,7 +160,7 @@
                 <div class="flex">
                     <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer"
                         onclick="toggleSidebar()">menu</span>
-                    <h1 class="text-2xl font-semibold text-[#585858]">Dashboard</h1>
+                    <h1 class="text-2xl font-semibold text-[#585858]">Recordings</h1>
                 </div>
                 <!-- Profile Section -->
                 <div class="flex items-center">
@@ -173,160 +172,129 @@
                     </div>
                 </div>
             </div>
-            <!-- Top Bar with Menu Button -->
-            <!-- Dashboard Content -->
-            <div id="patient_add" class="tab-content">
-                <div class="grid lg:grid-cols-5 gap-4 mb-4">
-                    <div class="bg-white p-3 rounded-2xl col-span-2">
-                        <div class="flex gap-3">
-                            <div class="relative">
-                                <img src="./assets/images/johnson.png" class="rounded-xl h-20" alt="">
-                                <div
-                                    class="absolute cursor-pointer bg-white h-5 w-5 right-1 bottom-2 text-center rounded-full">
-                                    <i class="material-icons text-gray-500 text-sm cursor-pointer">edit</i>
-                                </div>
-                            </div>
-                            <div class="text-start">
-                                <h6 class="text-2xl text-darkBlue font-medium">Henry Johnson</h6>
-                                <div class="flex gap-1">
-                                    <span>Date of Birth :</span>
-                                    <span class="text-muted">May 20, 2000</span>
-                                </div>
-                                <div class="flex gap-1">
-                                    <span>Last Visit :</span>
-                                    <span class="text-muted">August 12, 2025 - 2:00PM</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-3 rounded-2xl col-span-2">
-                        <div class="flex gap-3">
-                            <div class="text-start w-full">
-                                <div class="flex justify-between mb-2">
-                                    <h6 class="font-medium text-lg">Next Appointment: </h6>
-                                    <a href="" class="text-darkBlue text-sm">Edit</a>
-                                </div>
-                                <table class="w-full text-nowrap">
-                                    <tr>
-                                        <td>Date:</td>
-                                        <td>Time:</td>
-                                        <td>Doctor:</td>
-                                        <td>Reason or Disease:</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-muted">August 21, 2024</td>
-                                        <td class="text-muted">12:00PM</td>
-                                        <td class="text-muted">John Smith</td>
-                                        <td class="text-muted">Jaundice</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button
-                            class="px-8 py-3 text-sm bg-white border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Edit
-                            Details</button>
+            <div id="recordings" class="tab-content">
 
-                    </div>
-                </div>
-                <div class="flex gap-3 overflow-x-auto mb-4 text-nowrap">
-                    <a href="patient_profile.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Personal Details
-                    </a>
-                    <a href="patient_medical_detail.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Medical Details
-                    </a>
-                    <a href="patient_medical_history.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Medical History
-                    </a>
-                    <a href="patient_lab_report.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Lab Reports
-                    </a>
-                    <a href="patient_current_medication.html"
-                        class="bg-primary px-5 py-2 text-white rounded-full font-light">
-                        Current Medications
-                    </a>
-                    <a href="patient_appointment.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Appointment & AI Visit Notes
-                    </a>
-                </div>
-                <div class="bg-white rounded-2xl grid lg:grid-cols-2 grid-cols-1 p-6 gap-4">
-                    <div class="bg-grey rounded-2xl">
-                        <div class="rounded-t-2xl py-3 px-5 border-b">
-                            <h6 class="text-xl">Current Medication</h6>
-                        </div>
-                        <div class="p-6">
-                            <div class="pb-3">
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="medicineName" class="block text-nowrap my-auto">Medicine
-                                        Name:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="medicineName" type="text" value="Paracetamol"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Medicine Name">
+                <div class="grid md:gap-4 md:grid-cols-3">
+                    <div class="bg-white rounded-[20px] shadow-lg mb-4 flex flex-col">
+                        <!-- Recordings -->
+                        <div class=" h-full">
+                            <div
+                                class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
+                                <h2 class="text-lg font-medium">Chat History</h2>
+                            </div>
+                            <div class="relative">
+                                <div
+                                    class="flex justify-content-between border-b px-3 pt-4 pb-2 cursor-pointer hover:bg-black hover:bg-opacity-[0.1]">
+                                    <div class="flex gap-2 w-full">
+                                        <span
+                                            class="inline-block bg-danger text-primary bg-grey rounded-full p-1 px-2 h-8 w-8 flex items-center justify-center">
+                                            <i class="material-icons text-sm">chat</i>
+                                        </span>
+                                        <div class="text-medium text-start">
+                                            <p class="leading-none">Advanced Pharmacology and Drug Management</p>
+                                            <span class="text-muted text-sm">Just Now</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="dosage" class="block text-nowrap my-auto">Dosage:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="dosage" type="text" value="500mg"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Dosage">
+                                <div
+                                    class="flex justify-content-between border-b px-3 pt-4 pb-2 cursor-pointer hover:bg-black hover:bg-opacity-[0.1]">
+                                    <div class="flex gap-2 w-full">
+                                        <span
+                                            class="inline-block bg-danger text-primary bg-grey rounded-full p-1 px-2 h-8 w-8 flex items-center justify-center">
+                                            <i class="material-icons text-sm">chat</i>
+                                        </span>
+                                        <div class="text-medium text-start">
+                                            <p class="leading-none">Advanced Pharmacology and Drug Management</p>
+                                            <span class="text-muted text-sm">Just Now</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="frequency" class="block text-nowrap my-auto">Frequency:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="frequency" type="text" value="Twice a day"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Frequency">
+                                <div
+                                    class="flex justify-content-between border-b px-3 pt-4 pb-2 cursor-pointer hover:bg-black hover:bg-opacity-[0.1]">
+                                    <div class="flex gap-2 w-full">
+                                        <span
+                                            class="inline-block bg-danger text-primary bg-grey rounded-full p-1 px-2 h-8 w-8 flex items-center justify-center">
+                                            <i class="material-icons text-sm">chat</i>
+                                        </span>
+                                        <div class="text-medium text-start">
+                                            <p class="leading-none">Advanced Pharmacology and Drug Management</p>
+                                            <span class="text-muted text-sm">Just Now</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex justify-content-between border-b px-3 pt-4 pb-2 cursor-pointer hover:bg-black hover:bg-opacity-[0.1]">
+                                    <div class="flex gap-2 w-full">
+                                        <span
+                                            class="inline-block bg-danger text-primary bg-grey rounded-full p-1 px-2 h-8 w-8 flex items-center justify-center">
+                                            <i class="material-icons text-sm">chat</i>
+                                        </span>
+                                        <div class="text-medium text-start">
+                                            <p class="leading-none">Advanced Pharmacology and Drug Management</p>
+                                            <span class="text-muted text-sm">Just Now</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex justify-end">
-                                <button
-                                    class="px-8 py-3 bg-primary border border-primary rounded-full text-white hover:bg-opacity-[0.9] transition-all duration-150">Add
-                                    Current Medication</button>
-                            </div>
+                        </div>
+                        <div class="p-3">
+                            <button
+                                class="bg-primary w-full border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Start
+                                New Conversation</button>
                         </div>
                     </div>
-                    <div class="bg-grey rounded-2xl">
-                        <div class="rounded-t-2xl py-3 px-5 border-b">
-                            <h6 class="text-xl">Current Medication List</h6>
+                    <!-- Recordings Output -->
+                    <div class="bg-white rounded-[20px] shadow-lg mb-4 col-span-2">
+                        <div
+                            class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
+                            <h2 class="text-lg font-medium">Live Chat with Agent</h2>
+                            <a href="" class="text-danger">End Chat</a>
                         </div>
-                        <div class="p-6">
-                            <ol class="list-decimal ps-3">
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Paracetamol</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Once
-                                            a Day</span>
+                        <div class="p-4">
+
+                            <div class="p-4 grid grid-cols-5">
+                                <label for="patientName" class="block text-nowrap my-auto">To:</label>
+                                <div class="flex items-center w-full col-span-4">
+                                    <input id="patientName" type="text"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                        placeholder="support@meducare.com">
+                                </div>
+                            </div>
+                            <div class="p-4 grid grid-cols-5">
+                                <label for="patientName" class="block text-nowrap my-auto">Subject:</label>
+                                <div class="flex items-center w-full col-span-4">
+                                    <input id="patientName" type="text"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                        placeholder="Lorem Ipsum">
+                                </div>
+                            </div>
+
+                            <div class="p-4 grid grid-cols-5">
+                                <label for="reasonsOfVisit" class="block text-nowrap mb-auto mt-2">Reasons of
+                                    Visit:</label>
+                                <div class="flex items-center w-full col-span-4 relative">
+                                    <textarea id="reasonsOfVisit"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-2xl"
+                                        placeholder="Enter Reasons of Visit" rows="10" cols="30"></textarea>
+                                    <div class="flex absolute bottom-0 p-2 gap-2">
+
+                                        <button
+                                            class="bg-primary w-full px-8 py-2 border border-primary text-white rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">
+                                            Send
+                                        </button>
+
+                                        <button class="bg-white rounded-full p-2 pb-1 transform rotate-45">
+                                            <i class="material-icons text-body">attach_file</i>
+                                        </button>
                                     </div>
-                                </li>
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Ibuprofen</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Twice
-                                            a Day</span>
+                                    <div class="flex absolute bottom-0 right-0 p-2 gap-2">
+
+                                        <button class="bg-white rounded-full p-2 pb-1 transform">
+                                            <i class="material-icons text-body">delete</i>
+                                        </button>
                                     </div>
-                                </li>
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Amoxicillin</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Three
-                                            times a Day</span>
-                                    </div>
-                                </li>
-                            </ol>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -335,8 +303,10 @@
     </div>
 
 
+
+
     <!-- Chart.js Script for Analytics -->
-    <script src="./assets/js/function.js?v=1.0.5"></script>
+    <script src="./assets/js/function.js"></script>
 </body>
 
 </html>

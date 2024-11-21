@@ -10,7 +10,8 @@
     <!-- Chart.js for the analytics chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!--to show percentage on Doughnut  -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="./assets/css/style.css?v=1.0.3" rel="stylesheet">
@@ -174,7 +175,7 @@
             </div>
             <!-- Top Bar with Menu Button -->
             <!-- Dashboard Content -->
-            <div id="patients" class="tab-content">
+            <div id="labs" class="tab-content">
                 <div class="mb-3 grid grid-cols-1 md:grid-cols-3 md:gap-4">
                     <div class="mb-3">
                         <label for="search">Search</label>
@@ -189,23 +190,17 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="search">Disease or Allergy</label>
+                        <label for="search">Select Consultation Date</label>
                         <div class="relative mt-2 text-muted">
-                            <select
-                                class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
-                                <option value="" disabled selected>Search by Disease</option>
-                                <!-- Add options here -->
-                            </select>
-                            <i
-                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">arrow_drop_down</i>
+                            <input type="date" class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2">
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="search">Doctor Name</label>
+                        <label for="doctor-select">Select by Doctor Name</label>
                         <div class="relative mt-2 text-muted">
-                            <select
+                            <select id="doctor-select"
                                 class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
-                                <option value="" disabled selected>Search by Doctor Name</option>
+                                <option value="" disabled selected>Search by Doctor</option>
                                 <!-- Add options here -->
                             </select>
                             <i
@@ -215,21 +210,23 @@
                 </div>
                 <div class="bg-white shadow-md rounded-2xl pb-4">
                     <div
-                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
-                        <h2 class="text-lg font-medium">All Patients</h2>
+                        class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                        <h2 class="text-lg font-medium">All Consultations (Today)</h2>
+                        <div class="text-end inline-block">
+                            <span class="text-muted">Total 1460 Results Found</span>
+                        </div>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full bg-white overflow-x-auto text-nowrap">
                             <thead>
                                 <tr>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Patient Name <i
-                                            class="material-icons align-middle">arrow_drop_down</i></th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Date of Birth</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Patient Name</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Patient ID</th>
                                     <th class="py-2 px-4 border-b text-start font-medium">Gender</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Disease</th>
                                     <th class="py-2 px-4 border-b text-start font-medium">Mobile Number</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Email</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium"></th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Status</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Date & Time</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">AI Voice Notes</th>
                                 </tr>
                             </thead>
                             <tbody class="text-body">
@@ -239,67 +236,26 @@
                                             onclick="window.location.href = 'patient_profile.html'">
                                             <img src="assets/images/profile.png" alt="profile"
                                                 class="w-10 h-10 rounded-full mr-3">
-                                            <span>Michael Brown</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">01/01/1980</td>
-                                    <td class="py-2 px-4 border-b">Male</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span
-                                            class="px-2 py-1 border rounded-full border-warning text-warning">Typhoid</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">123-456-7890</td>
-                                    <td class="py-2 px-4 border-b">john.doe@example.com</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <button onclick="window.location.href = 'patient_profile.html'"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Profile</button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
-                                            </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                            <div class="text-start">
+                                                <p>John Doe</p>
                                             </div>
                                         </div>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer"
-                                            onclick="window.location.href = 'patient_profile.html'">
-                                            <img src="assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <span>Michael Brown</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">02/02/1990</td>
-                                    <td class="py-2 px-4 border-b">Female</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="px-2 py-1 border rounded-full border-info text-info">Cholera</span>
-                                    </td>
+                                    <td class="py-2 px-4 border-b">#01234568</td>
+                                    <td class="py-2 px-4 border-b">Male</td>
                                     <td class="py-2 px-4 border-b">987-654-3210</td>
-                                    <td class="py-2 px-4 border-b">jane.smith@example.com</td>
                                     <td class="py-2 px-4 border-b">
-                                        <button onclick="window.location.href = 'patient_profile.html'"
+                                        <span class="text-success">
+                                            Approved
+                                        </span>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">November 12, 2024, 11:00 AM</td>
+
+                                    <td class="py-2 px-4 border-b">
+                                        <a href="ai_visit_notes_detail.html"
                                             class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Profile</button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
-                                            </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
-                                            </div>
-                                        </div>
+                                            & Edit
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -308,33 +264,26 @@
                                             onclick="window.location.href = 'patient_profile.html'">
                                             <img src="assets/images/profile.png" alt="profile"
                                                 class="w-10 h-10 rounded-full mr-3">
-                                            <span>Michael Brown</span>
+                                            <div class="text-start">
+                                                <p>Emily Johnson</p>
+                                            </div>
                                         </div>
                                     </td>
-                                    <td class="py-2 px-4 border-b">03/03/1985</td>
+                                    <td class="py-2 px-4 border-b">#01234569</td>
                                     <td class="py-2 px-4 border-b">Female</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span
-                                            class="px-2 py-1 border rounded-full border-danger text-danger">Fever</span>
-                                    </td>
                                     <td class="py-2 px-4 border-b">555-123-4567</td>
-                                    <td class="py-2 px-4 border-b">emily.johnson@example.com</td>
                                     <td class="py-2 px-4 border-b">
-                                        <button onclick="window.location.href = 'patient_profile.html'"
+                                        <span class="text-danger">
+                                            Rejected
+                                        </span>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">November 12, 2024, 12:00 PM</td>
+
+                                    <td class="py-2 px-4 border-b">
+                                        <a href="ai_visit_notes_detail.html"
                                             class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Profile</button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
-                                            </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
-                                            </div>
-                                        </div>
+                                            & Edit
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -343,36 +292,84 @@
                                             onclick="window.location.href = 'patient_profile.html'">
                                             <img src="assets/images/profile.png" alt="profile"
                                                 class="w-10 h-10 rounded-full mr-3">
-                                            <span>Michael Brown</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">04/04/1975</td>
-                                    <td class="py-2 px-4 border-b">Male</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span
-                                            class="px-2 py-1 border rounded-full border-purple text-purple">Malaria</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">321-654-0987</td>
-                                    <td class="py-2 px-4 border-b">michael.brown@example.com</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <button onclick="window.location.href = 'patient_profile.html'"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Profile</button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
-                                            </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                            <div class="text-start">
+                                                <p>Michael Brown</p>
                                             </div>
                                         </div>
                                     </td>
+                                    <td class="py-2 px-4 border-b">#01234570</td>
+                                    <td class="py-2 px-4 border-b">Male</td>
+                                    <td class="py-2 px-4 border-b">321-654-9870</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <span class="text-success">
+                                            Approved
+                                        </span>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">November 12, 2024, 1:00 PM</td>
+
+                                    <td class="py-2 px-4 border-b">
+                                        <a href="ai_visit_notes_detail.html"
+                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
+                                            & Edit
+                                        </a>
+                                    </td>
                                 </tr>
-                                <!-- Add more rows as needed -->
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">
+                                        <div class="flex items-center cursor-pointer"
+                                            onclick="window.location.href = 'patient_profile.html'">
+                                            <img src="assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div class="text-start">
+                                                <p>Sarah Wilson</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">#01234571</td>
+                                    <td class="py-2 px-4 border-b">Female</td>
+                                    <td class="py-2 px-4 border-b">456-789-1234</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <span class="text-danger">
+                                            Rejected
+                                        </span>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">November 12, 2024, 2:00 PM</td>
+
+                                    <td class="py-2 px-4 border-b">
+                                        <a href="ai_visit_notes_detail.html"
+                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
+                                            & Edit
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">
+                                        <div class="flex items-center cursor-pointer"
+                                            onclick="window.location.href = 'patient_profile.html'">
+                                            <img src="assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div class="text-start">
+                                                <p>David Lee</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">#01234572</td>
+                                    <td class="py-2 px-4 border-b">Male</td>
+                                    <td class="py-2 px-4 border-b">789-123-4560</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <span class="text-success">
+                                            Approved
+                                        </span>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">November 12, 2024, 3:00 PM</td>
+
+                                    <td class="py-2 px-4 border-b">
+                                        <button href="ai_visit_notes_detail.html"
+                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
+                                            & Edit
+                                        </button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="flex justify-end items-center mt-4 mx-4">
@@ -388,8 +385,6 @@
             </div>
         </div>
     </div>
-
-
     <!-- Chart.js Script for Analytics -->
     <script src="./assets/js/function.js?v=1.0.3"></script>
 </body>

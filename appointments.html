@@ -175,85 +175,38 @@
             </div>
             <!-- Top Bar with Menu Button -->
             <!-- Dashboard Content -->
-            <div id="patient_add" class="tab-content">
-                <div class="grid lg:grid-cols-5 gap-4 mb-4">
-                    <div class="bg-white p-3 rounded-2xl col-span-2">
-                        <div class="flex gap-3">
-                            <div class="relative">
-                                <img src="./assets/images/johnson.png" class="rounded-xl h-20" alt="">
-                                <div
-                                    class="absolute cursor-pointer bg-white h-5 w-5 right-1 bottom-2 text-center rounded-full">
-                                    <i class="material-icons text-gray-500 text-sm cursor-pointer">edit</i>
-                                </div>
-                            </div>
-                            <div class="text-start">
-                                <h6 class="text-2xl text-darkBlue font-medium">Henry Johnson</h6>
-                                <div class="flex gap-1">
-                                    <span>Date of Birth :</span>
-                                    <span class="text-muted">May 20, 2000</span>
-                                </div>
-                                <div class="flex gap-1">
-                                    <span>Last Visit :</span>
-                                    <span class="text-muted">August 12, 2025 - 2:00PM</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-3 rounded-2xl col-span-2">
-                        <div class="flex gap-3">
-                            <div class="text-start w-full">
-                                <div class="flex justify-between mb-2">
-                                    <h6 class="font-medium text-lg">Next Appointment: </h6>
-                                    <a href="" class="text-darkBlue text-sm">Edit</a>
-                                </div>
-                                <table class="w-full text-nowrap">
-                                    <tr>
-                                        <td>Date:</td>
-                                        <td>Time:</td>
-                                        <td>Doctor:</td>
-                                        <td>Reason or Disease:</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-muted">August 21, 2024</td>
-                                        <td class="text-muted">12:00PM</td>
-                                        <td class="text-muted">John Smith</td>
-                                        <td class="text-muted">Jaundice</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button
-                            class="px-8 py-3 text-sm bg-white border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Edit
-                            Details</button>
+            <div id="appointments" class="tab-content">
+                <div class="mb-3 grid grid-cols-1 md:grid-cols-3 md:gap-4">
+                    <div class="mb-3">
+                        <label for="search">Search</label>
+                        <div class="relative mt-2">
+                            <input type="text" placeholder="Search by Name or Date of Birth"
+                                class="w-full rounded-full pe-4 ps-10 py-3 border-grey focus:outline-grey2">
+                            <span
+                                class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">search</span>
 
+                            <button
+                                class="absolute right-2 top-[6px] px-5 py-2 text-sm rounded-full text-white bg-primary ">Search</button>
+                        </div>
                     </div>
-                </div>
-                <div class="flex gap-3 overflow-x-auto mb-4 text-nowrap">
-                    <a href="patient_profile.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Personal Details
-                    </a>
-                    <a href="patient_medical_detail.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Medical Details
-                    </a>
-                    <a href="patient_medical_history.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Medical History
-                    </a>
-                    <a href="patient_lab_report.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Lab Reports
-                    </a>
-                    <a href="patient_current_medication.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Current Medications
-                    </a>
-                    <a href="patient_appointment.html" class="bg-primary px-5 py-2 text-white rounded-full font-light">
-                        Appointment & AI Visit Notes
-                    </a>
+                    <div class="mb-3">
+                        <label for="search">Disease or Allergy</label>
+                        <div class="relative mt-2 text-muted">
+                            <select
+                                class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
+                                <option value="" disabled selected>Search by Disease</option>
+                                <!-- Add options here -->
+                            </select>
+                            <i
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">arrow_drop_down</i>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="search">Select Date</label>
+                        <div class="relative mt-2 text-muted">
+                            <input type="date" class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2">
+                        </div>
+                    </div>
                 </div>
                 <div class="bg-white shadow-md rounded-2xl pb-4">
                     <div
@@ -269,11 +222,12 @@
                         <table class="min-w-full bg-white overflow-x-auto text-nowrap">
                             <thead>
                                 <tr>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Doctor Name <i
+                                    <th class="py-2 px-4 border-b text-start font-medium">Patient Name <i
                                             class="material-icons align-middle">arrow_drop_down</i></th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Date & Time</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Date of Birth</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Mobile Number</th>
                                     <th class="py-2 px-4 border-b text-start font-medium">Disease</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Reason of Visit</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Date & Time</th>
                                     <th class="py-2 px-4 border-b text-start font-medium">Status</th>
                                     <th class="py-2 px-4 border-b text-start font-medium">Full Details</th>
                                 </tr>
@@ -291,11 +245,12 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="py-2 px-4 border-b">July 10, 2024 - 10:00AM</td>
+                                    <td class="py-2 px-4 border-b">January 1, 1980</td>
+                                    <td class="py-2 px-4 border-b">123-456-7890</td>
                                     <td class="py-2 px-4 border-b">
                                         <span class="px-2 py-1 border rounded-full border-info text-info">Cold</span>
                                     </td>
-                                    <td class="py-2 px-4 border-b">Routine Checkup</td>
+                                    <td class="py-2 px-4 border-b">July 10, 2024 - 10:00AM</td>
                                     <td class="py-2 px-4 border-b">
                                         <span class="text-success">Done</span>
                                     </td>
@@ -329,19 +284,20 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="py-2 px-4 border-b">June 15, 2024 - 11:30AM</td>
+                                    <td class="py-2 px-4 border-b">February 2, 1985</td>
+                                    <td class="py-2 px-4 border-b">987-654-3210</td>
                                     <td class="py-2 px-4 border-b">
                                         <span
                                             class="px-2 py-1 border rounded-full border-danger text-danger">Fever</span>
                                     </td>
-                                    <td class="py-2 px-4 border-b">Follow-up</td>
+                                    <td class="py-2 px-4 border-b">June 15, 2024 - 11:30AM</td>
                                     <td class="py-2 px-4 border-b">
                                         <span class="text-danger">Rejected</span>
                                     </td>
                                     <td class="py-2 px-4 border-b">
                                         <button onclick="openModal('modalTemplate')"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Notes</button>
+                                            class="px-3 py-1 border border-warning rounded-full text-warning hover:bg-warning hover:text-white transition-all duration-150">Start
+                                        </button>
                                         <div class="float-right relative">
                                             <button class="px-3 py-1">
                                                 <i class="material-icons">more_vert</i>
@@ -368,19 +324,20 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="py-2 px-4 border-b">May 5, 2024 - 9:00AM</td>
+                                    <td class="py-2 px-4 border-b">March 3, 1990</td>
+                                    <td class="py-2 px-4 border-b">555-123-4567</td>
                                     <td class="py-2 px-4 border-b">
                                         <span
                                             class="px-2 py-1 border rounded-full border-purple text-purple">Allergy</span>
                                     </td>
-                                    <td class="py-2 px-4 border-b">Consultation</td>
+                                    <td class="py-2 px-4 border-b">May 5, 2024 - 9:00AM</td>
                                     <td class="py-2 px-4 border-b">
                                         <span class="text-info">In Progress</span>
                                     </td>
                                     <td class="py-2 px-4 border-b">
                                         <button onclick="openModal('modalTemplate')"
                                             class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Notes</button>
+                                        </button>
                                         <div class="float-right relative">
                                             <button class="px-3 py-1">
                                                 <i class="material-icons">more_vert</i>
@@ -407,19 +364,20 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="py-2 px-4 border-b">April 20, 2024 - 2:00PM</td>
+                                    <td class="py-2 px-4 border-b">April 20, 1982</td>
+                                    <td class="py-2 px-4 border-b">222-333-4444</td>
                                     <td class="py-2 px-4 border-b">
                                         <span
                                             class="px-2 py-1 border rounded-full border-warning text-warning">Headache</span>
                                     </td>
-                                    <td class="py-2 px-4 border-b">Emergency</td>
+                                    <td class="py-2 px-4 border-b">April 20, 2024 - 2:00PM</td>
                                     <td class="py-2 px-4 border-b">
                                         <span class="text-success">Done</span>
                                     </td>
                                     <td class="py-2 px-4 border-b">
                                         <button onclick="openModal('modalTemplate')"
                                             class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Notes</button>
+                                        </button>
                                         <div class="float-right relative">
                                             <button class="px-3 py-1">
                                                 <i class="material-icons">more_vert</i>
@@ -446,19 +404,20 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="py-2 px-4 border-b">March 30, 2024 - 4:30PM</td>
+                                    <td class="py-2 px-4 border-b">May 15, 1995</td>
+                                    <td class="py-2 px-4 border-b">333-444-5555</td>
                                     <td class="py-2 px-4 border-b">
                                         <span
                                             class="px-2 py-1 border rounded-full border-danger text-danger">Infection</span>
                                     </td>
-                                    <td class="py-2 px-4 border-b">Follow-up</td>
+                                    <td class="py-2 px-4 border-b">March 30, 2024 - 4:30PM</td>
                                     <td class="py-2 px-4 border-b">
                                         <span class="text-danger">Rejected</span>
                                     </td>
                                     <td class="py-2 px-4 border-b">
                                         <button onclick="openModal('modalTemplate')"
                                             class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Notes</button>
+                                        </button>
                                         <div class="float-right relative">
                                             <button class="px-3 py-1">
                                                 <i class="material-icons">more_vert</i>

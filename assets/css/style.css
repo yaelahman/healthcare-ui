@@ -86,17 +86,34 @@
 }
 
 .tab:hover {
-    background-color: rgb(30, 58, 138);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
     /* Hover background color */
     color: white !important;
     /* Hover text color */
 }
 
 .tab.active {
-    background-color: rgb(30, 58, 138);
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
     /* Active background color */
     color: white !important;
     /* Active text color */
+}
+
+.tab.active::before {
+    content: '';
+    position: absolute;
+    left: -17px;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    /* Adjust the width of the border as needed */
+    background-color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    /* Change to your desired border color */
 }
 
 .sidebar:hover {

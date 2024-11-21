@@ -10,8 +10,7 @@
     <!-- Chart.js for the analytics chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!--to show percentage on Doughnut  -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="./assets/css/style.css?v=1.0.3" rel="stylesheet">
@@ -176,157 +175,95 @@
             <!-- Top Bar with Menu Button -->
             <!-- Dashboard Content -->
             <div id="patient_add" class="tab-content">
-                <div class="grid lg:grid-cols-5 gap-4 mb-4">
-                    <div class="bg-white p-3 rounded-2xl col-span-2">
-                        <div class="flex gap-3">
-                            <div class="relative">
-                                <img src="./assets/images/johnson.png" class="rounded-xl h-20" alt="">
-                                <div
-                                    class="absolute cursor-pointer bg-white h-5 w-5 right-1 bottom-2 text-center rounded-full">
-                                    <i class="material-icons text-gray-500 text-sm cursor-pointer">edit</i>
-                                </div>
-                            </div>
-                            <div class="text-start">
-                                <h6 class="text-2xl text-darkBlue font-medium">Henry Johnson</h6>
-                                <div class="flex gap-1">
-                                    <span>Date of Birth :</span>
-                                    <span class="text-muted">May 20, 2000</span>
-                                </div>
-                                <div class="flex gap-1">
-                                    <span>Last Visit :</span>
-                                    <span class="text-muted">August 12, 2025 - 2:00PM</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-3 rounded-2xl col-span-2">
-                        <div class="flex gap-3">
-                            <div class="text-start w-full">
-                                <div class="flex justify-between mb-2">
-                                    <h6 class="font-medium text-lg">Next Appointment: </h6>
-                                    <a href="" class="text-darkBlue text-sm">Edit</a>
-                                </div>
-                                <table class="w-full text-nowrap">
-                                    <tr>
-                                        <td>Date:</td>
-                                        <td>Time:</td>
-                                        <td>Doctor:</td>
-                                        <td>Reason or Disease:</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-muted">August 21, 2024</td>
-                                        <td class="text-muted">12:00PM</td>
-                                        <td class="text-muted">John Smith</td>
-                                        <td class="text-muted">Jaundice</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button
-                            class="px-8 py-3 text-sm bg-white border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Edit
-                            Details</button>
+                <div class="flex justify-end mb-4 gap-2">
 
+                    <button
+                        class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
+                    <button
+                        class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Schedule</button>
+                </div>
+                <div class="bg-white shadow-md rounded-2xl pb-4">
+                    <div
+                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
+                        <h2 class="text-lg font-medium">Schedule New Appointment</h2>
                     </div>
-                </div>
-                <div class="flex gap-3 overflow-x-auto mb-4 text-nowrap">
-                    <a href="patient_profile.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Personal Details
-                    </a>
-                    <a href="patient_medical_detail.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Medical Details
-                    </a>
-                    <a href="patient_medical_history.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Medical History
-                    </a>
-                    <a href="patient_lab_report.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Lab Reports
-                    </a>
-                    <a href="patient_current_medication.html"
-                        class="bg-primary px-5 py-2 text-white rounded-full font-light">
-                        Current Medications
-                    </a>
-                    <a href="patient_appointment.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Appointment & AI Visit Notes
-                    </a>
-                </div>
-                <div class="bg-white rounded-2xl grid lg:grid-cols-2 grid-cols-1 p-6 gap-4">
-                    <div class="bg-grey rounded-2xl">
-                        <div class="rounded-t-2xl py-3 px-5 border-b">
-                            <h6 class="text-xl">Current Medication</h6>
-                        </div>
-                        <div class="p-6">
-                            <div class="pb-3">
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="medicineName" class="block text-nowrap my-auto">Medicine
-                                        Name:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="medicineName" type="text" value="Paracetamol"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Medicine Name">
-                                    </div>
-                                </div>
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="dosage" class="block text-nowrap my-auto">Dosage:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="dosage" type="text" value="500mg"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Dosage">
-                                    </div>
-                                </div>
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="frequency" class="block text-nowrap my-auto">Frequency:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="frequency" type="text" value="Twice a day"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Frequency">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex justify-end">
-                                <button
-                                    class="px-8 py-3 bg-primary border border-primary rounded-full text-white hover:bg-opacity-[0.9] transition-all duration-150">Add
-                                    Current Medication</button>
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="patientName" class="block text-nowrap my-auto">Patient's Name:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="patientName" type="text"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                    placeholder="Enter Patient's Name">
                             </div>
                         </div>
-                    </div>
-                    <div class="bg-grey rounded-2xl">
-                        <div class="rounded-t-2xl py-3 px-5 border-b">
-                            <h6 class="text-xl">Current Medication List</h6>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="mobileNumber" class="block text-nowrap my-auto">Mobile Number:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="mobileNumber" type="text"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                    placeholder="Enter Mobile Number">
+                            </div>
                         </div>
-                        <div class="p-6">
-                            <ol class="list-decimal ps-3">
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Paracetamol</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Once
-                                            a Day</span>
-                                    </div>
-                                </li>
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Ibuprofen</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Twice
-                                            a Day</span>
-                                    </div>
-                                </li>
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Amoxicillin</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Three
-                                            times a Day</span>
-                                    </div>
-                                </li>
-                            </ol>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="emailId" class="block text-nowrap my-auto">Email ID:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="emailId" type="email"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                    placeholder="Enter Email ID">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="dob" class="block text-nowrap my-auto">Date of Birth:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="dob" type="date"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="visitDate" class="block text-nowrap my-auto">Date:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="visitDate" type="date"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="visitTime" class="block text-nowrap my-auto">Time:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="visitTime" type="time"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="disease" class="block text-nowrap my-auto">Disease:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <select id="disease"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                                    <option value="" disabled selected>Select Disease</option>
+                                    <!-- Add disease options here -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="doctor" class="block text-nowrap my-auto">Doctor Name:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <select id="doctor"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                                    <option value="" disabled selected>Select Doctor</option>
+                                    <option value="dr_smith">Dr. Smith</option>
+                                    <option value="dr_jones">Dr. Jones</option>
+                                    <option value="dr_williams">Dr. Williams</option>
+                                    <option value="dr_brown">Dr. Brown</option>
+                                    <option value="dr_johnson">Dr. Johnson</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="reasonsOfVisit" class="block text-nowrap my-auto">Reasons of Visit:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <textarea id="reasonsOfVisit"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-2xl"
+                                    placeholder="Enter Reasons of Visit" rows="4" cols="30"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>

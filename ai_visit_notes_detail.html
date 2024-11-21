@@ -175,316 +175,198 @@
             </div>
             <!-- Top Bar with Menu Button -->
             <!-- Dashboard Content -->
-            <div id="patient_add" class="tab-content">
-                <div class="grid lg:grid-cols-5 gap-4 mb-4">
-                    <div class="bg-white p-3 rounded-2xl col-span-2">
-                        <div class="flex gap-3">
-                            <div class="relative">
-                                <img src="./assets/images/johnson.png" class="rounded-xl h-20" alt="">
-                                <div
-                                    class="absolute cursor-pointer bg-white h-5 w-5 right-1 bottom-2 text-center rounded-full">
-                                    <i class="material-icons text-gray-500 text-sm cursor-pointer">edit</i>
-                                </div>
-                            </div>
-                            <div class="text-start">
-                                <h6 class="text-2xl text-darkBlue font-medium">Henry Johnson</h6>
-                                <div class="flex gap-1">
-                                    <span>Date of Birth :</span>
-                                    <span class="text-muted">May 20, 2000</span>
-                                </div>
-                                <div class="flex gap-1">
-                                    <span>Last Visit :</span>
-                                    <span class="text-muted">August 12, 2025 - 2:00PM</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-3 rounded-2xl col-span-2">
-                        <div class="flex gap-3">
-                            <div class="text-start w-full">
-                                <div class="flex justify-between mb-2">
-                                    <h6 class="font-medium text-lg">Next Appointment: </h6>
-                                    <a href="" class="text-darkBlue text-sm">Edit</a>
-                                </div>
-                                <table class="w-full text-nowrap">
-                                    <tr>
-                                        <td>Date:</td>
-                                        <td>Time:</td>
-                                        <td>Doctor:</td>
-                                        <td>Reason or Disease:</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-muted">August 21, 2024</td>
-                                        <td class="text-muted">12:00PM</td>
-                                        <td class="text-muted">John Smith</td>
-                                        <td class="text-muted">Jaundice</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button
-                            class="px-8 py-3 text-sm bg-white border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Edit
-                            Details</button>
+            <div id="labs" class="tab-content">
 
-                    </div>
-                </div>
-                <div class="flex gap-3 overflow-x-auto mb-4 text-nowrap">
-                    <a href="patient_profile.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Personal Details
-                    </a>
-                    <a href="patient_medical_detail.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Medical Details
-                    </a>
-                    <a href="patient_medical_history.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Medical History
-                    </a>
-                    <a href="patient_lab_report.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Lab Reports
-                    </a>
-                    <a href="patient_current_medication.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Current Medications
-                    </a>
-                    <a href="patient_appointment.html" class="bg-primary px-5 py-2 text-white rounded-full font-light">
-                        Appointment & AI Visit Notes
-                    </a>
-                </div>
-                <div class="bg-white shadow-md rounded-2xl pb-4">
-                    <div
-                        class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
-                        <h2 class="text-lg font-medium">All Appointments</h2>
-                        <div class="text-end inline-block">
-                            <button class="bg-primary text-white rounded-full h-8 w-8 text-2xl">
-                                +
-                            </button>
+                <div class="flex justify-between mb-6">
+                    <div class="">
+                        <div class="bg-white rounded-full p-2 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
+                            onclick="goBack()">
+                            <i class="material-icons">chevron_left</i>
                         </div>
                     </div>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white overflow-x-auto text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Doctor Name <i
-                                            class="material-icons align-middle">arrow_drop_down</i></th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Date & Time</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Disease</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Reason of Visit</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Status</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Full Details</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-body">
-                                <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer"
-                                            onclick="window.location.href = 'patient_profile.html'">
-                                            <img src="assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <div class="text-start">
-                                                <p>Sarah Connor</p>
-                                                <span class="text-muted">#45678901</span>
+
+                    <div class="flex gap-2">
+                        <label for="disease" class="block text-nowrap my-auto">AI Voice Note Status:</label>
+                        <div class="flex items-center w-full col-span-2">
+                            <select id="disease"
+                                class="focus:outline-none w-full mt-1 px-5 py-3 bg-white text-success border rounded-full">
+                                <option value="" selected>Approved</option>
+                                <!-- Add disease options here -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-[20px] border mb-4 col-span-2">
+                    <div
+                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
+                        <h2 class="text-lg font-medium">Patient Details</h2>
+                    </div>
+                    <div class="p-4">
+
+                        <div class="mb-3 grid lg:grid-cols-5 grid-cols-1">
+                            <div class="p-3 rounded-2xl col-span-2">
+                                <div class="flex gap-3">
+                                    <div class="relative">
+                                        <img src="./assets/images/johnson.png" class="rounded-xl h-20 w-24" alt="">
+                                    </div>
+                                    <div class="flex justify-between w-full text-nowrap">
+                                        <div class="text-start">
+                                            <h6 class="text-2xl text-darkBlue font-medium">Henry Johnson</h6>
+                                            <div class="flex gap-1 text-sm">
+                                                <span>Date of Birth :</span>
+                                                <span class="text-muted">May 20, 2000</span>
+                                            </div>
+                                            <div class="flex gap-1 text-sm">
+                                                <span>Last Visit :</span>
+                                                <span class="text-muted">August 12, 2025 - 2:00PM</span>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">July 10, 2024 - 10:00AM</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="px-2 py-1 border rounded-full border-info text-info">Cold</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">Routine Checkup</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="text-success">Done</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <button disabled
-                                            class="disabled:opacity-30 disabled:pointer-events-none px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Notes</button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
-                                            </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer"
-                                            onclick="window.location.href = 'patient_profile.html'">
-                                            <img src="assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <div class="text-start">
-                                                <p>John Doe</p>
-                                                <span class="text-muted">#23456789</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">June 15, 2024 - 11:30AM</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span
-                                            class="px-2 py-1 border rounded-full border-danger text-danger">Fever</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">Follow-up</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="text-danger">Rejected</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <button onclick="openModal('modalTemplate')"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Notes</button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
-                                            </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer"
-                                            onclick="window.location.href = 'patient_profile.html'">
-                                            <img src="assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <div class="text-start">
-                                                <p>Jane Smith</p>
-                                                <span class="text-muted">#34567890</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">May 5, 2024 - 9:00AM</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span
-                                            class="px-2 py-1 border rounded-full border-purple text-purple">Allergy</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">Consultation</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="text-info">In Progress</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <button onclick="openModal('modalTemplate')"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Notes</button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
-                                            </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer"
-                                            onclick="window.location.href = 'patient_profile.html'">
-                                            <img src="assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <div class="text-start">
-                                                <p>Robert Wilson</p>
-                                                <span class="text-muted">#56789012</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">April 20, 2024 - 2:00PM</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span
-                                            class="px-2 py-1 border rounded-full border-warning text-warning">Headache</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">Emergency</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="text-success">Done</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <button onclick="openModal('modalTemplate')"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Notes</button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
-                                            </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer"
-                                            onclick="window.location.href = 'patient_profile.html'">
-                                            <img src="assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <div class="text-start">
-                                                <p>Emily Davis</p>
-                                                <span class="text-muted">#67890123</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">March 30, 2024 - 4:30PM</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span
-                                            class="px-2 py-1 border rounded-full border-danger text-danger">Infection</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">Follow-up</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="text-danger">Rejected</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">
-                                        <button onclick="openModal('modalTemplate')"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Notes</button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
-                                            </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="flex justify-end items-center mt-4 mx-4">
-                            <div class="space-x-1">
-                                <span>Page</span>
-                                <button
-                                    class="px-4 border border-muted rounded-full text-muted hover:bg-muted hover:text-white transition-all duration-150">1</button>
-                                <span>of 100</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-3 rounded-2xl col-span-3">
+                                <div class="bg-grey px-2 rounded-lg py-3">
+                                    <table class="w-full">
+                                        <tr>
+                                            <th class="font-medium">Mobile Number</th>
+                                            <th class="font-medium">Gender</th>
+                                            <th class="font-medium">Age</th>
+                                            <th class="font-medium">Weight</th>
+                                            <th class="font-medium">Height</th>
+                                            <th class="font-medium">Blood Group</th>
+                                            <th class="font-medium">Disease</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted text-center">789-123-4560</td>
+                                            <td class="text-muted text-center">Male</td>
+                                            <td class="text-muted text-center">26 Years</td>
+                                            <td class="text-muted text-center">68Kg</td>
+                                            <td class="text-muted text-center">5ft 9in</td>
+                                            <td class="text-muted text-center">O+</td>
+                                            <td class="text-muted text-center">N/A</td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="bg-white rounded-[20px] border mb-4 col-span-2">
+                    <div class="bg-white rounded-[20px] border mb-4 col-span-2">
+                        <div
+                            class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
+                            <h2 class="text-lg font-medium">Recordings and Output</h2>
+                            <a href="#" onclick="openModal('modalTemplate')" class="text-primary">
+                                Edit
+                            </a>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex gap-3 mb-4">
+                                <div
+                                    class="relative flex justify-between text-primary border border-primary rounded-full ps-4 pe-16 py-3">
+                                    <span class="my-auto">Recording 1</span>
+                                    <span
+                                        class="absolute right-2 top-2 bg-danger text-white rounded-full p-1 h-8 w-8 flex items-center justify-center">
+                                        <i class="material-icons">play_arrow</i>
+                                    </span>
+                                </div>
+                                <div
+                                    class="relative flex justify-between text-primary border border-primary rounded-full ps-4 pe-16 py-3">
+                                    <span class="my-auto">Recording 2</span>
+                                    <span
+                                        class="absolute right-2 top-2 bg-danger text-white rounded-full p-1 h-8 w-8 flex items-center justify-center">
+                                        <i class="material-icons">play_arrow</i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h3 class="text-md font-medium bg-grey px-3 py-2 rounded-lg mb-2">Subjective</h3>
+                                <p class="text-body px-2">Patient John Doe, a 35-year-old male, reports experiencing
+                                    persistent
+                                    headaches for the past
+                                    two weeks. He describes the pain as a throbbing sensation on the left side of his
+                                    head, which
+                                    worsens with physical activity. He also notes symptoms of nausea and sensitivity to
+                                    light. He
+                                    rates the pain as 7 out of 10.</p>
+                            </div>
+                            <div class="mb-3">
+                                <h3 class="text-md font-medium bg-grey px-3 py-2 rounded-lg mb-2">Subjective</h3>
+                                <div class="px-2">
+                                    <table class="w-full">
+                                        <tr>
+                                            <th class="font-medium text-start">Vitals:</th>
+                                            <th class="font-medium text-start">Exam:</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-body">
+                                                <ul class="ps-5 list-disc">
+                                                    <li>BP: [e.g., 120/80 mmHg]</li>
+                                                    <li>HR: [e.g., 72 bpm]</li>
+                                                    <li>RR: [e.g., 16 breaths/min]</li>
+                                                    <li>Temp: [e.g., 98.6°F]</li>
+                                                </ul>
+                                            </td>
+                                            <td class="text-body">
+                                                <ul class="ps-5 list-disc">
+                                                    <li>BP: [e.g., 120/80 mmHg]</li>
+                                                    <li>HR: [e.g., 72 bpm]</li>
+                                                    <li>RR: [e.g., 16 breaths/min]</li>
+                                                    <li>Temp: [e.g., 98.6°F]</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h3 class="text-md font-medium bg-grey px-3 py-2 rounded-lg mb-2">Assessment</h3>
+                                <div class="px-2 text-body">
+
+                                    <ul class="ps-5 list-disc">
+                                        <li>Likely diagnosis: Migraine without aura</li>
+                                        <li>Other possible diagnoses: None</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h3 class="text-md font-medium bg-grey px-3 py-2 rounded-lg mb-2">Plan</h3>
+                                <div class="px-2">
+                                    <table class="w-full">
+                                        <tr>
+                                            <th class="font-medium text-start">Medications:</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-body">
+                                                <ul class="ps-8 list-disc">
+                                                    <li>Sumatriptan 100mg: take at the onset of headache</li>
+                                                    <li>Consider preventive medication: Propranolol or Topiramate if
+                                                        headache is
+                                                        frequent</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="font-medium text-start">Lifestyle Modifications:</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-body">
+                                                <ul class="ps-8 list-disc">
+                                                    <li>Sumatriptan 100mg: take at the onset of headache</li>
+                                                    <li>Consider preventive medication: Propranolol or Topiramate if
+                                                        headache is
+                                                        frequent</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -498,13 +380,20 @@
             <div class="bg-white">
                 <div class="bg-grey flex justify-between items-center px-4 py-3 border-b">
                     <h3 class="text-lg leading-6 font-medium text-gray-900" id="modalTitle">
-                        Consultation Details
+                        Edit and Review Voice Notes
                     </h3>
                     <button onclick="closeModal(event)" class="text-gray-500 hover:text-gray-700">
                         <i class="material-icons">close</i>
                     </button>
                 </div>
                 <div class="mt-2 px-4 pt-3 pb-4 sm:pb-4">
+                    <div class="flex justify-end mb-4 gap-2">
+
+                        <button
+                            class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
+                        <button
+                            class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Schedule</button>
+                    </div>
 
                     <!-- Recordings Output -->
                     <div class="bg-white rounded-[20px] border mb-4 col-span-2">

@@ -197,200 +197,97 @@
             </div>
             <!-- Top Bar with Menu Button -->
             <!-- Dashboard Content -->
-            <div id="labs" class="tab-content">
-                <div class="mb-3 grid grid-cols-1 md:grid-cols-3 md:gap-4">
-                    <div class="mb-3">
-                        <label for="search">Search</label>
-                        <div class="relative mt-2">
-                            <input type="text" placeholder="Search by Name or Date of Birth"
-                                class="w-full rounded-full pe-4 ps-10 py-3 border-grey focus:outline-grey2">
-                            <span
-                                class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">search</span>
-
-                            <button
-                                class="absolute right-2 top-[6px] px-5 py-2 text-sm rounded-full text-white bg-primary ">Search</button>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="search">Select Consultation Date</label>
-                        <div class="relative mt-2 text-muted">
-                            <input type="date" class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="doctor-select">Select by Doctor Name</label>
-                        <div class="relative mt-2 text-muted">
-                            <select id="doctor-select"
-                                class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
-                                <option value="" disabled selected>Search by Doctor</option>
-                                <!-- Add options here -->
-                            </select>
-                            <i
-                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">arrow_drop_down</i>
-                        </div>
+            <div id="hippa_compliance" class="tab-content">
+                <div class="flex justify-between mb-4">
+                    <div class="flex gap-3 overflow-x-auto mb-4 text-nowrap">
+                        <a href="hippa_compliance.html" class="bg-primary px-5 py-2 text-white rounded-full font-light">
+                            Audit Logs & Monitoring
+                        </a>
+                        <a href="hippa_compliance_regulatory.html"
+                            class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                            Regulatory Compliance
+                        </a>
                     </div>
                 </div>
                 <div class="bg-white shadow-md rounded-2xl pb-4">
                     <div
                         class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
-                        <h2 class="text-lg font-medium">All Consultations (Today)</h2>
-                        <div class="text-end inline-block">
-                            <span class="text-muted">Total 1460 Results Found</span>
-                        </div>
+                        <h2 class="text-lg font-medium">Audit Logs & Monitoring</h2>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full bg-white overflow-x-auto text-nowrap">
                             <thead>
                                 <tr>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Patient Name</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Patient ID</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Gender</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Mobile Number</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Status</th>
                                     <th class="py-2 px-4 border-b text-start font-medium">Date & Time</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">AI Voice Notes</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Event</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Name</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Profile</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Email</th>
                                 </tr>
                             </thead>
                             <tbody class="text-body">
                                 <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer"
-                                            onclick="window.location.href = 'patient_profile.html'">
-                                            <img src="assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <div class="text-start">
-                                                <p>John Doe</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">#01234568</td>
-                                    <td class="py-2 px-4 border-b">Male</td>
-                                    <td class="py-2 px-4 border-b">987-654-3210</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="text-success">
-                                            Approved
-                                        </span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">November 12, 2024, 11:00 AM</td>
-
-                                    <td class="py-2 px-4 border-b">
-                                        <a href="ai_visit_notes_detail.html"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            & Edit
-                                        </a>
-                                    </td>
+                                    <td class="py-2 px-4 border-b">2023-10-01 14:30</td>
+                                    <td class="py-2 px-4 border-b">Login</td>
+                                    <td class="py-2 px-4 border-b">Dr. Jane Smith</td>
+                                    <td class="py-2 px-4 border-b">Doctor</td>
+                                    <td class="py-2 px-4 border-b">jane.smith@example.com</td>
                                 </tr>
                                 <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer"
-                                            onclick="window.location.href = 'patient_profile.html'">
-                                            <img src="assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <div class="text-start">
-                                                <p>Emily Johnson</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">#01234569</td>
-                                    <td class="py-2 px-4 border-b">Female</td>
-                                    <td class="py-2 px-4 border-b">555-123-4567</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="text-danger">
-                                            Rejected
-                                        </span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">November 12, 2024, 12:00 PM</td>
-
-                                    <td class="py-2 px-4 border-b">
-                                        <a href="ai_visit_notes_detail.html"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            & Edit
-                                        </a>
-                                    </td>
+                                    <td class="py-2 px-4 border-b">2023-10-01 15:00</td>
+                                    <td class="py-2 px-4 border-b">Logout</td>
+                                    <td class="py-2 px-4 border-b">Dr. John Doe</td>
+                                    <td class="py-2 px-4 border-b">Doctor</td>
+                                    <td class="py-2 px-4 border-b">john.doe@example.com</td>
                                 </tr>
                                 <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer"
-                                            onclick="window.location.href = 'patient_profile.html'">
-                                            <img src="assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <div class="text-start">
-                                                <p>Michael Brown</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">#01234570</td>
-                                    <td class="py-2 px-4 border-b">Male</td>
-                                    <td class="py-2 px-4 border-b">321-654-9870</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="text-success">
-                                            Approved
-                                        </span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">November 12, 2024, 1:00 PM</td>
-
-                                    <td class="py-2 px-4 border-b">
-                                        <a href="ai_visit_notes_detail.html"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            & Edit
-                                        </a>
-                                    </td>
+                                    <td class="py-2 px-4 border-b">2023-10-01 15:30</td>
+                                    <td class="py-2 px-4 border-b">File Access</td>
+                                    <td class="py-2 px-4 border-b">Nurse Mary Johnson</td>
+                                    <td class="py-2 px-4 border-b">Nurse</td>
+                                    <td class="py-2 px-4 border-b">mary.johnson@example.com</td>
                                 </tr>
                                 <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer"
-                                            onclick="window.location.href = 'patient_profile.html'">
-                                            <img src="assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <div class="text-start">
-                                                <p>Sarah Wilson</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">#01234571</td>
-                                    <td class="py-2 px-4 border-b">Female</td>
-                                    <td class="py-2 px-4 border-b">456-789-1234</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="text-danger">
-                                            Rejected
-                                        </span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">November 12, 2024, 2:00 PM</td>
-
-                                    <td class="py-2 px-4 border-b">
-                                        <a href="ai_visit_notes_detail.html"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            & Edit
-                                        </a>
-                                    </td>
+                                    <td class="py-2 px-4 border-b">2023-10-01 16:00</td>
+                                    <td class="py-2 px-4 border-b">File Update</td>
+                                    <td class="py-2 px-4 border-b">Admin Alice Brown</td>
+                                    <td class="py-2 px-4 border-b">Admin</td>
+                                    <td class="py-2 px-4 border-b">alice.brown@example.com</td>
                                 </tr>
                                 <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer"
-                                            onclick="window.location.href = 'patient_profile.html'">
-                                            <img src="assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <div class="text-start">
-                                                <p>David Lee</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">#01234572</td>
-                                    <td class="py-2 px-4 border-b">Male</td>
-                                    <td class="py-2 px-4 border-b">789-123-4560</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="text-success">
-                                            Approved
-                                        </span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">November 12, 2024, 3:00 PM</td>
-
-                                    <td class="py-2 px-4 border-b">
-                                        <button href="ai_visit_notes_detail.html"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            & Edit
-                                        </button>
-                                    </td>
+                                    <td class="py-2 px-4 border-b">2023-10-01 16:30</td>
+                                    <td class="py-2 px-4 border-b">Login</td>
+                                    <td class="py-2 px-4 border-b">Dr. Emily Davis</td>
+                                    <td class="py-2 px-4 border-b">Doctor</td>
+                                    <td class="py-2 px-4 border-b">emily.davis@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">2023-10-01 17:00</td>
+                                    <td class="py-2 px-4 border-b">Logout</td>
+                                    <td class="py-2 px-4 border-b">Nurse Michael Wilson</td>
+                                    <td class="py-2 px-4 border-b">Nurse</td>
+                                    <td class="py-2 px-4 border-b">michael.wilson@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">2023-10-01 17:30</td>
+                                    <td class="py-2 px-4 border-b">File Access</td>
+                                    <td class="py-2 px-4 border-b">Admin Sarah Lee</td>
+                                    <td class="py-2 px-4 border-b">Admin</td>
+                                    <td class="py-2 px-4 border-b">sarah.lee@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">2023-10-01 18:00</td>
+                                    <td class="py-2 px-4 border-b">File Update</td>
+                                    <td class="py-2 px-4 border-b">Dr. Robert Martinez</td>
+                                    <td class="py-2 px-4 border-b">Doctor</td>
+                                    <td class="py-2 px-4 border-b">robert.martinez@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">2023-10-01 18:30</td>
+                                    <td class="py-2 px-4 border-b">Login</td>
+                                    <td class="py-2 px-4 border-b">Nurse Linda Clark</td>
+                                    <td class="py-2 px-4 border-b">Nurse</td>
+                                    <td class="py-2 px-4 border-b">linda.clark@example.com</td>
                                 </tr>
                             </tbody>
                         </table>

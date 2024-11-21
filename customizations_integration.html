@@ -10,7 +10,8 @@
     <!-- Chart.js for the analytics chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!--to show percentage on Doughnut  -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="./assets/css/style.css?v=1.0.5" rel="stylesheet">
@@ -196,156 +197,120 @@
             </div>
             <!-- Top Bar with Menu Button -->
             <!-- Dashboard Content -->
-            <div id="patient_add" class="tab-content">
-                <div class="flex justify-end mb-4 gap-2">
+            <div id="customizations" class="tab-content">
 
-                    <button
-                        class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
-                    <button
-                        class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Save</button>
-                </div>
-                <div class="bg-white shadow-md rounded-2xl pb-4">
-                    <div
-                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
-                        <h2 class="text-lg font-medium">Add New Patient</h2>
+                <div class="flex justify-between mb-4">
+                    <div class="flex gap-3 overflow-x-auto mb-4 text-nowrap">
+                        <a href="customizations.html"
+                            class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                            Color Theme
+                        </a>
+                        <a href="customizations_notification.html"
+                            class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                            Notification Preferences
+                        </a>
+                        <a href="customizations_integration.html"
+                            class="bg-primary px-5 py-2 text-white rounded-full font-light">
+                            Integration Preferences
+                        </a>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="patientName" class="block text-nowrap my-auto">Patient
-                                Name:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <input id="patientName" type="text"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
-                                    placeholder="Enter Patient's Name">
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="mobileNumber" class="block text-nowrap my-auto">Mobile
-                                Number:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <input id="mobileNumber" type="text"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
-                                    placeholder="Enter Mobile Number">
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="emailId" class="block text-nowrap my-auto">Email ID:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <input id="emailId" type="email"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
-                                    placeholder="Enter Email ID">
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="dob" class="block text-nowrap my-auto">Date of Birth:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <input id="dob" type="date"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
-                                    placeholder="Enter Date of Birth">
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label class="block text-nowrap my-auto">Gender:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <label
-                                    class="mr-2 px-3 py-1 border border-transparent bg-grey2 text-lg w-full text-center rounded-full text-muted cursor-pointer hover:bg-primary hover:text-white transition-all duration-150">
-                                    <input id="genderMale" type="radio" name="gender" value="male" class="hidden"
-                                        onclick="document.querySelectorAll('input[name=gender]').forEach(el => el.parentElement.classList.remove('bg-primary', 'text-white')); this.parentElement.classList.toggle('bg-primary', this.checked); this.parentElement.classList.toggle('text-white', this.checked);">
-                                    Male
-                                </label>
-                                <label
-                                    class="mr-2 px-3 py-1 border border-transparent bg-grey2 text-lg w-full text-center rounded-full text-muted cursor-pointer hover:bg-primary hover:text-white transition-all duration-150">
-                                    <input id="genderFemale" type="radio" name="gender" value="female" class="hidden"
-                                        onclick="document.querySelectorAll('input[name=gender]').forEach(el => el.parentElement.classList.remove('bg-primary', 'text-white')); this.parentElement.classList.toggle('bg-primary', this.checked); this.parentElement.classList.toggle('text-white', this.checked);">
-                                    Female
-                                </label>
-                                <label
-                                    class="mr-2 px-3 py-1 border border-transparent bg-grey2 text-lg w-full text-center rounded-full text-muted cursor-pointer hover:bg-primary hover:text-white transition-all duration-150">
-                                    <input id="genderOther" type="radio" name="gender" value="other" class="hidden"
-                                        onclick="document.querySelectorAll('input[name=gender]').forEach(el => el.parentElement.classList.remove('bg-primary', 'text-white')); this.parentElement.classList.toggle('bg-primary', this.checked); this.parentElement.classList.toggle('text-white', this.checked);">
-                                    Other
-                                </label>
-                            </div>
-                        </div>
 
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="bloodGroup" class="block text-nowrap my-auto">Blood Group:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <select id="bloodGroup"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <option value="" disabled selected>Select Blood Group</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="heightFeet" class="block text-nowrap my-auto">Height:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <div class="flex gap-2 mt-1">
-                                    <input id="heightFeet" type="number" min="0" max="8"
-                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <span class="flex items-center pr-3 text-muted">Feet</span>
-                                </div>
-                                <div class="flex gap-2 mt-1 ml-2">
-                                    <input id="heightInches" type="number" min="0" max="11"
-                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <span class="flex items-center pr-3 text-muted">Inches</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="weightFeet" class="block text-nowrap my-auto">Weight:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <div class="flex gap-2 mt-1">
-                                    <input id="weightFeet" type="number" min="0" max="8"
-                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <span class="flex items-center pr-3 text-muted">Kilo</span>
-                                </div>
-                                <div class="flex gap-2 mt-1 ml-2">
-                                    <input id="weightInches" type="number" min="0" max="11"
-                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <span class="flex items-center pr-3 text-muted">Grams</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        <div class="flex justify-end mb-4 gap-2">
 
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="disease" class="block text-nowrap my-auto">Disease:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <input id="disease" type="text"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
-                                    placeholder="Enter Disease">
+                            <button
+                                class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
+                            <button
+                                class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid lg:grid-cols-2 grid-cols-1 px-3 py-3 gap-3">
+
+                    <div class="bg-white rounded-[20px] shadow-lg mb-4 flex flex-col">
+                        <!-- Recordings -->
+                        <div class=" h-full">
+                            <div
+                                class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
+                                <h2 class="text-lg font-medium">Lab Preferences</h2>
+                                <button class="text-primary">Default: All Labs</button>
+                            </div>
+                            <div class="relative p-4">
+                                <label for="">Set Lab Preference</label>
+                                <div class="flex">
+                                    <div class="flex items-center mr-4 bg-grey px-3 py-2 rounded-full">
+                                        <input type="radio" id="allLabs" name="labPreference" class="sr-only peer"
+                                            checked>
+                                        <label for="allLabs" class="flex items-center cursor-pointer">
+                                            <div
+                                                class="w-4 h-4 mr-2 bg-primary rounded-full border border-grey peer-checked:bg-primary ring-2 ring-primary">
+                                            </div>
+                                            <span>All Labs</span>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center mr-4 bg-grey px-3 py-2 rounded-full">
+                                        <input type="radio" id="preferredLabs" name="labPreference"
+                                            class="sr-only peer">
+                                        <label for="preferredLabs" class="flex items-center cursor-pointer">
+                                            <div
+                                                class="w-4 h-4 mr-2  rounded-full border border-grey peer-checked:bg-primary ring-2 ring-primary">
+                                            </div>
+                                            <span>Preferred Labs</span>
+                                        </label>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="doctor" class="block text-nowrap my-auto">Doctor:
-                                <span class="text-muted">(Optional)</span></label>
-                            <div class="flex items-center w-full col-span-2">
-                                <select id="doctor"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <option value="" disabled selected>Select Doctor</option>
-                                    <option value="dr_smith">Dr. Smith</option>
-                                    <option value="dr_jones">Dr. Jones</option>
-                                    <option value="dr_williams">Dr. Williams</option>
-                                    <option value="dr_brown">Dr. Brown</option>
-                                    <option value="dr_johnson">Dr. Johnson</option>
-                                </select>
+                    </div>
+                    <div class="bg-white rounded-[20px] shadow-lg mb-4 flex flex-col">
+                        <!-- Recordings -->
+                        <div class=" h-full">
+                            <div
+                                class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
+                                <h2 class="text-lg font-medium">HIE Networks</h2>
                             </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="doctor" class="block text-gray-700 text-nowrap mb-auto mt-3">Doctor:
-                                <span class="text-muted">(Optional)</span></label>
-                            <div class="flex items-center w-full col-span-2">
-                                <textarea id="patientAddress"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-2xl"
-                                    placeholder="Enter Address" rows="6" cols="30"></textarea>
+                            <div class="relative">
+                                <div class="p-4 flex justify-between">
+                                    <label for="carequalityToggle"
+                                        class="block text-nowrap my-auto">Carequality:</label>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" id="carequalityToggle" class="sr-only peer">
+                                        <div
+                                            class="w-11 h-6 bg-gray-200 rounded-full border border-grey peer peer-focus:ring-4 peer-focus:ring-primary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="p-4 flex justify-between">
+                                    <label for="eHealthExchangeToggle" class="block text-nowrap my-auto">eHealth
+                                        Exchange:</label>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" id="eHealthExchangeToggle" class="sr-only peer">
+                                        <div
+                                            class="w-11 h-6 bg-gray-200 rounded-full border border-grey peer peer-focus:ring-4 peer-focus:ring-primary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="p-4 flex justify-between">
+                                    <label for="commonWellHealthAllianceToggle"
+                                        class="block text-nowrap my-auto">commonWell Health Alliance:</label>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" id="commonWellHealthAllianceToggle" class="sr-only peer">
+                                        <div
+                                            class="w-11 h-6 bg-gray-200 rounded-full border border-grey peer peer-focus:ring-4 peer-focus:ring-primary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="p-4 flex justify-between">
+                                    <label for="loremIpsumDummyToggle" class="block text-nowrap my-auto">Lorem Ipsum
+                                        Dummy:</label>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" id="loremIpsumDummyToggle" class="sr-only peer">
+                                        <div
+                                            class="w-11 h-6 bg-gray-200 rounded-full border border-grey peer peer-focus:ring-4 peer-focus:ring-primary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,8 @@
     <!-- Chart.js for the analytics chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!--to show percentage on Doughnut  -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="./assets/css/style.css?v=1.0.5" rel="stylesheet">
@@ -197,155 +198,124 @@
             <!-- Top Bar with Menu Button -->
             <!-- Dashboard Content -->
             <div id="patient_add" class="tab-content">
-                <div class="flex justify-end mb-4 gap-2">
 
-                    <button
-                        class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
-                    <button
-                        class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Save</button>
-                </div>
-                <div class="bg-white shadow-md rounded-2xl pb-4">
-                    <div
-                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
-                        <h2 class="text-lg font-medium">Add New Patient</h2>
+                <div class="flex justify-between mb-4">
+                    <div class="flex gap-2">
+                        <div>
+                            <div class="bg-white rounded-full p-2 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
+                                onclick="goBack()">
+                                <i class="material-icons">chevron_left</i>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3 rounded-2xl col-span-2">
+
+                            <div class="flex gap-3">
+                                <div class="relative">
+                                    <img src="./assets/images/johnson.png" class="rounded-xl h-20" alt="">
+                                    <div
+                                        class="absolute cursor-pointer bg-white h-5 w-5 right-1 bottom-2 text-center rounded-full">
+                                        <i class="material-icons text-gray-500 text-sm cursor-pointer">edit</i>
+                                    </div>
+                                </div>
+                                <div class="text-start">
+                                    <h6 class="text-2xl text-darkBlue font-medium">Henry Johnson</h6>
+                                    <div class="flex gap-1 ">
+                                        <span>Doctor ID :</span>
+                                        <span class="text-muted">#111111</span>
+                                    </div>
+                                    <div class="flex gap-1 ">
+                                        <span>Department :</span>
+                                        <span class="text-muted">Cardiology</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="patientName" class="block text-nowrap my-auto">Patient
-                                Name:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <input id="patientName" type="text"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
-                                    placeholder="Enter Patient's Name">
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="mobileNumber" class="block text-nowrap my-auto">Mobile
-                                Number:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <input id="mobileNumber" type="text"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
-                                    placeholder="Enter Mobile Number">
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="emailId" class="block text-nowrap my-auto">Email ID:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <input id="emailId" type="email"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
-                                    placeholder="Enter Email ID">
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="dob" class="block text-nowrap my-auto">Date of Birth:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <input id="dob" type="date"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
-                                    placeholder="Enter Date of Birth">
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label class="block text-nowrap my-auto">Gender:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <label
-                                    class="mr-2 px-3 py-1 border border-transparent bg-grey2 text-lg w-full text-center rounded-full text-muted cursor-pointer hover:bg-primary hover:text-white transition-all duration-150">
-                                    <input id="genderMale" type="radio" name="gender" value="male" class="hidden"
-                                        onclick="document.querySelectorAll('input[name=gender]').forEach(el => el.parentElement.classList.remove('bg-primary', 'text-white')); this.parentElement.classList.toggle('bg-primary', this.checked); this.parentElement.classList.toggle('text-white', this.checked);">
-                                    Male
-                                </label>
-                                <label
-                                    class="mr-2 px-3 py-1 border border-transparent bg-grey2 text-lg w-full text-center rounded-full text-muted cursor-pointer hover:bg-primary hover:text-white transition-all duration-150">
-                                    <input id="genderFemale" type="radio" name="gender" value="female" class="hidden"
-                                        onclick="document.querySelectorAll('input[name=gender]').forEach(el => el.parentElement.classList.remove('bg-primary', 'text-white')); this.parentElement.classList.toggle('bg-primary', this.checked); this.parentElement.classList.toggle('text-white', this.checked);">
-                                    Female
-                                </label>
-                                <label
-                                    class="mr-2 px-3 py-1 border border-transparent bg-grey2 text-lg w-full text-center rounded-full text-muted cursor-pointer hover:bg-primary hover:text-white transition-all duration-150">
-                                    <input id="genderOther" type="radio" name="gender" value="other" class="hidden"
-                                        onclick="document.querySelectorAll('input[name=gender]').forEach(el => el.parentElement.classList.remove('bg-primary', 'text-white')); this.parentElement.classList.toggle('bg-primary', this.checked); this.parentElement.classList.toggle('text-white', this.checked);">
-                                    Other
-                                </label>
-                            </div>
-                        </div>
 
+                    <div>
+                        <div class="flex justify-end mb-4 gap-2">
+
+                            <button
+                                class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
+                            <button
+                                class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-3 overflow-x-auto mb-4 text-nowrap">
+                    <a href="doctor_profile.html"
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                        Personal Details
+                    </a>
+                    <a href="doctor_information.html"
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                        Professional Information
+                    </a>
+                    <a href="doctor_schedule.html" class="bg-primary px-5 py-2 text-white rounded-full font-light">
+                        Work Schedule & Availability
+                    </a>
+                </div>
+                <div class="bg-white rounded-2xl grid lg:grid-cols-2 grid-cols-1 px-3 py-3">
+
+                    <div class="">
                         <div class="p-4 grid grid-cols-3">
-                            <label for="bloodGroup" class="block text-nowrap my-auto">Blood Group:</label>
+                            <label for="department" class="block text-nowrap my-auto">Department:</label>
                             <div class="flex items-center w-full col-span-2">
-                                <select id="bloodGroup"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <option value="" disabled selected>Select Blood Group</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
+                                <input id="department" type="text" readonly
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
+                                    value="Cardiology" placeholder="Enter Department">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="shiftTimings" class="block text-nowrap my-auto">Shift Timings:</label>
+
+                            <div class="flex items-center w-full col-span-2">
+                                <div class="flex gap-2 mt-1">
+                                    <span class="flex items-center pr-3">From</span>
+                                    <input id="shiftStart" type="time"
+                                        class="focus:outline-none w-full px-5 py-3 bg-grey border rounded-full">
+                                </div>
+                                <div class="flex gap-2 mt-1 ml-2">
+                                    <span class="flex items-center pr-3">To</span>
+                                    <input id="shiftEnd" type="time"
+                                        class="focus:outline-none w-full px-5 py-3 bg-grey border rounded-full">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="medicalLicense" class="block text-nowrap my-auto">Medical License:</label>
+
+                            <div class="flex items-center w-full col-span-2">
+                                <div class="flex gap-2 mt-1">
+                                    <span class="flex items-center pr-3">From</span>
+                                    <input id="shiftStart" type="text" placeholder="Monday"
+                                        class="focus:outline-none w-full px-5 py-3 bg-grey border rounded-full">
+                                </div>
+                                <div class="flex gap-2 mt-1 ml-2">
+                                    <span class="flex items-center pr-3">To</span>
+                                    <input id="shiftEnd" type="text" placeholder="Friday"
+                                        class="focus:outline-none w-full px-5 py-3 bg-grey border rounded-full">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="onCallAvailability" class="block text-nowrap my-auto">On Call
+                                Availability:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <select id="onCallAvailability"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full">
+                                    <option value="" disabled selected>Yes</option>
+                                    <option value="no">No</option>
                                 </select>
                             </div>
                         </div>
                         <div class="p-4 grid grid-cols-3">
-                            <label for="heightFeet" class="block text-nowrap my-auto">Height:</label>
+                            <label for="consultationRoom" class="block text-nowrap my-auto">Consultation Room:</label>
                             <div class="flex items-center w-full col-span-2">
-                                <div class="flex gap-2 mt-1">
-                                    <input id="heightFeet" type="number" min="0" max="8"
-                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <span class="flex items-center pr-3 text-muted">Feet</span>
-                                </div>
-                                <div class="flex gap-2 mt-1 ml-2">
-                                    <input id="heightInches" type="number" min="0" max="11"
-                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <span class="flex items-center pr-3 text-muted">Inches</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="weightFeet" class="block text-nowrap my-auto">Weight:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <div class="flex gap-2 mt-1">
-                                    <input id="weightFeet" type="number" min="0" max="8"
-                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <span class="flex items-center pr-3 text-muted">Kilo</span>
-                                </div>
-                                <div class="flex gap-2 mt-1 ml-2">
-                                    <input id="weightInches" type="number" min="0" max="11"
-                                        class="focus:outline-none w-full px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <span class="flex items-center pr-3 text-muted">Grams</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="disease" class="block text-nowrap my-auto">Disease:</label>
-                            <div class="flex items-center w-full col-span-2">
-                                <input id="disease" type="text"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
-                                    placeholder="Enter Disease">
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="doctor" class="block text-nowrap my-auto">Doctor:
-                                <span class="text-muted">(Optional)</span></label>
-                            <div class="flex items-center w-full col-span-2">
-                                <select id="doctor"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
-                                    <option value="" disabled selected>Select Doctor</option>
-                                    <option value="dr_smith">Dr. Smith</option>
-                                    <option value="dr_jones">Dr. Jones</option>
-                                    <option value="dr_williams">Dr. Williams</option>
-                                    <option value="dr_brown">Dr. Brown</option>
-                                    <option value="dr_johnson">Dr. Johnson</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="p-4 grid grid-cols-3">
-                            <label for="doctor" class="block text-gray-700 text-nowrap mb-auto mt-3">Doctor:
-                                <span class="text-muted">(Optional)</span></label>
-                            <div class="flex items-center w-full col-span-2">
-                                <textarea id="patientAddress"
-                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-2xl"
-                                    placeholder="Enter Address" rows="6" cols="30"></textarea>
+                                <input id="consultationRoom" type="text" readonly
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
+                                    value="Room 101" placeholder="Enter Consultation Room">
                             </div>
                         </div>
                     </div>

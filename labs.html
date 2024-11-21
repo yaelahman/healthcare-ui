@@ -96,7 +96,7 @@
                         <a href="#" class="text-sm sidebar-text">All Prescriptions</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
-                        onclick="changeTab('add_prescriptions')">
+                        onclick="changeTab('prescriptions_add')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
                         <a href="#" class="text-sm sidebar-text">Create New</a>
                     </li>
@@ -153,6 +153,28 @@
                     <i class="material-icons align-middle">tune</i>
                     <span class="ml-2 sidebar-text">Customizations</span>
                 </li>
+
+                <!-- Compl & Security -->
+
+                <li id="tab-compl-security" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-compl-security')">
+                    <i class="material-icons align-middle">lock</i>
+                    <span class="ml-2 sidebar-text">Compl. & Security</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+
+                <ul id="sub-tabs-compl-security" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('hippa_compliance')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">HIPPA Compliance</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('user_access_control')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">User Access Control</a>
+                    </li>
+                </ul>
             </ul>
         </div>
         <!-- Main Content -->

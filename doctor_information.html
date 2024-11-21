@@ -198,173 +198,148 @@
             <!-- Top Bar with Menu Button -->
             <!-- Dashboard Content -->
             <div id="patient_add" class="tab-content">
-                <div class="grid lg:grid-cols-5 gap-4 mb-4">
-                    <div class="bg-white p-3 rounded-2xl col-span-2">
-                        <div class="flex gap-3">
-                            <div class="relative">
-                                <img src="./assets/images/johnson.png" class="rounded-xl h-20" alt="">
-                                <div
-                                    class="absolute cursor-pointer bg-white h-5 w-5 right-1 bottom-2 text-center rounded-full">
-                                    <i class="material-icons text-gray-500 text-sm cursor-pointer">edit</i>
-                                </div>
+
+                <div class="flex justify-between mb-4">
+                    <div class="flex gap-2">
+                        <div>
+                            <div class="bg-white rounded-full p-2 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
+                                onclick="goBack()">
+                                <i class="material-icons">chevron_left</i>
                             </div>
-                            <div class="text-start">
-                                <h6 class="text-2xl text-darkBlue font-medium">Henry Johnson</h6>
-                                <div class="flex gap-1">
-                                    <span>Date of Birth :</span>
-                                    <span class="text-muted">May 20, 2000</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-2xl col-span-2">
+
+                            <div class="flex gap-3">
+                                <div class="relative">
+                                    <img src="./assets/images/johnson.png" class="rounded-xl h-20" alt="">
+                                    <div
+                                        class="absolute cursor-pointer bg-white h-5 w-5 right-1 bottom-2 text-center rounded-full">
+                                        <i class="material-icons text-gray-500 text-sm cursor-pointer">edit</i>
+                                    </div>
                                 </div>
-                                <div class="flex gap-1">
-                                    <span>Last Visit :</span>
-                                    <span class="text-muted">August 12, 2025 - 2:00PM</span>
+                                <div class="text-start">
+                                    <h6 class="text-2xl text-darkBlue font-medium">Henry Johnson</h6>
+                                    <div class="flex gap-1 ">
+                                        <span>Doctor ID :</span>
+                                        <span class="text-muted">#111111</span>
+                                    </div>
+                                    <div class="flex gap-1 ">
+                                        <span>Department :</span>
+                                        <span class="text-muted">Cardiology</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                    <div class="bg-white p-3 rounded-2xl col-span-2">
-                        <div class="flex gap-3">
-                            <div class="text-start w-full">
-                                <div class="flex justify-between mb-2">
-                                    <h6 class="font-medium text-lg">Next Appointment: </h6>
-                                    <a href="" class="text-darkBlue text-sm">Edit</a>
+
+                    <div>
+                        <div class="flex justify-end mb-4 gap-2">
+
+                            <button
+                                class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
+                            <button
+                                class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-3 overflow-x-auto mb-4 text-nowrap">
+                    <a href="doctor_profile.html"
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                        Personal Details
+                    </a>
+                    <a href="doctor_information.html" class="bg-primary px-5 py-2 text-white rounded-full font-light">
+                        Professional Information
+                    </a>
+                    <a href="doctor_schedule.html"
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                        Work Schedule & Availability
+                    </a>
+                </div>
+                <div class="bg-white rounded-2xl grid lg:grid-cols-2 grid-cols-1 px-3 py-3">
+
+                    <div class="">
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="speciality" class="block text-nowrap my-auto">Speciality:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="speciality" type="text" readonly
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
+                                    value="Cardiology" placeholder="Enter Speciality">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="subSpeciality" class="block text-nowrap my-auto">Sub Speciality:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <select id="subSpeciality"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full">
+                                    <option value="" disabled selected>Interventional Cardiology</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="medicalLicense" class="block text-nowrap my-auto">Medical License:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="medicalLicense" type="text" readonly
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
+                                    value="ML123456" placeholder="Enter Medical License">
+                            </div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="experience" class="block text-nowrap my-auto">Experience:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <input id="experience" type="text" readonly
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
+                                    value="10 years" placeholder="Enter Experience">
+                            </div>
+                        </div>
+                        <div class="p-4 mb-4">
+
+                            <div class="mb-4 grid lg:grid-cols-3">
+                                <label for="qualification" class="block text-nowrap my-auto">Qualification:</label>
+                                <div class="flex items-center w-full col-span-2 relative">
+                                    <input id="qualification" type="text" value="MD, Cardiology"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
+                                        placeholder="Enter Qualification">
+                                    <span class="absolute right-5 text-primary top-5 cursor-pointer">
+                                        Add New
+                                    </span>
                                 </div>
-                                <table class="w-full text-nowrap">
-                                    <tr>
-                                        <td>Date:</td>
-                                        <td>Time:</td>
-                                        <td>Doctor:</td>
-                                        <td>Reason or Disease:</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-muted">August 21, 2024</td>
-                                        <td class="text-muted">12:00PM</td>
-                                        <td class="text-muted">John Smith</td>
-                                        <td class="text-muted">Jaundice</td>
-                                    </tr>
-                                </table>
+                            </div>
+                            <div class="flex gap-3 flex-wrap">
+                                <div
+                                    class="bg-grey px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
+                                    <span>MD, Cardiology</span>
+                                    <span
+                                        class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
+                                </div>
+                                <div
+                                    class="bg-grey px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
+                                    <span>PhD, Medical Science</span>
+                                    <span
+                                        class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <button
-                            class="px-8 py-3 text-sm bg-white border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Edit
-                            Details</button>
 
-                    </div>
-                </div>
-                <div class="flex gap-3 overflow-x-auto mb-4 text-nowrap">
-                    <a href="patient_profile.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Personal Details
-                    </a>
-                    <a href="patient_medical_detail.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Medical Details
-                    </a>
-                    <a href="patient_medical_history.html"
-                        class="bg-primary px-5 py-2 text-white rounded-full font-light">
-                        Medical History
-                    </a>
-                    <a href="patient_lab_report.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Lab Reports
-                    </a>
-                    <a href="patient_current_medication.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Current Medications
-                    </a>
-                    <a href="patient_appointment.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
-                        Appointment & AI Visit Notes
-                    </a>
-                </div>
-                <div class="bg-white rounded-2xl grid lg:grid-cols-3 grid-cols-1 p-6 gap-4">
-                    <div class="bg-white rounded-2xl border">
-                        <div class="bg-grey bg-opacity rounded-t-2xl py-3 px-5 border-b">
-                            <h6 class="text-xl">Appointments & Lab History</h6>
-                        </div>
-                        <div class="pt-8 pb-3">
-                            <div class="ps-8 pe-6 pb-1">
-                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
-                                    <span
-                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
-                                    <div class="text-start">
-                                        <h6>Appointment</h6>
-                                        <span class="text-muted font-light">Doctor: John Smith</span>
-                                    </div>
-                                    <div class="text-end text-muted font-light text-sm">
-                                        <p>August 20,2024</p>
-                                        <p>2:00PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-8 pe-6 pb-1">
-                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
-                                    <span
-                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
-                                    <div class="text-start">
-                                        <h6>Lab Report</h6>
-                                        <span class="text-muted font-light">Report of: Blood Sugar</span>
-                                    </div>
-                                    <div class="text-end text-muted font-light text-sm">
-                                        <p>August 20,2024</p>
-                                        <p>2:00PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-8 pe-6 pb-1">
-                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
-                                    <span
-                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
-                                    <div class="text-start">
-                                        <h6>Appointment</h6>
-                                        <span class="text-muted font-light">Doctor: John Smith</span>
-                                    </div>
-                                    <div class="text-end text-muted font-light text-sm">
-                                        <p>August 20,2024</p>
-                                        <p>2:00PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-8 pe-6 pb-1">
-                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
-                                    <span
-                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
-                                    <div class="text-start">
-                                        <h6>Lab Report</h6>
-                                        <span class="text-muted font-light">Report of: Blood Sugar</span>
-                                    </div>
-                                    <div class="text-end text-muted font-light text-sm">
-                                        <p>August 20,2024</p>
-                                        <p>2:00PM</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-8 pe-6 pb-1">
-                                <div class="flex justify-between border-l ps-4 border-primary relative pb-5">
-                                    <span
-                                        class="absolute -left-2 bg-white outline outline-white border-4 border-primary rounded-full h-4 w-4"></span>
-                                    <div class="text-start">
-                                        <h6>Appointment</h6>
-                                        <span class="text-muted font-light">Doctor: John Smith</span>
-                                    </div>
-                                    <div class="text-end text-muted font-light text-sm">
-                                        <p>August 20,2024</p>
-                                        <p>2:00PM</p>
-                                    </div>
-                                </div>
+                        <div class="p-4 grid grid-cols-3">
+                            <label for="doctor" class="block text-nowrap mb-auto mt-3">Residental Address:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <textarea id="patientAddress" readonly
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-2xl"
+                                    placeholder="Enter Address" rows="6"
+                                    cols="30">867 Shemika Trail, South Rosalbaborough, AR 84252-6233</textarea>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex flex-col gap-4 col-span-2">
-                        <div class="bg-grey p-6 rounded-2xl">
+                        <div class="p-4 mb-4">
+
                             <div class="mb-4 grid lg:grid-cols-3">
-                                <label for="patientName" class="block text-nowrap my-auto">Patient
-                                    Name:</label>
+                                <label for="certifications" class="block text-nowrap my-auto">Certifications:</label>
                                 <div class="flex items-center w-full col-span-2 relative">
-                                    <input id="patientName" type="text" value="Appendectomy (2016)"
+                                    <input id="certifications" type="text" value="Board Certified Cardiologist"
                                         class="focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                        placeholder="Enter Patient's Name">
+                                        placeholder="Enter Certification">
                                     <span class="absolute right-5 text-primary top-5 cursor-pointer">
                                         Add New
                                     </span>
@@ -372,64 +347,14 @@
                             </div>
                             <div class="flex gap-3 flex-wrap">
                                 <div
-                                    class="bg-white px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
-                                    <span>Appendectomy (2016)</span>
+                                    class="bg-grey px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
+                                    <span>Board Certified Cardiologist</span>
                                     <span
                                         class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
                                 </div>
                                 <div
-                                    class="bg-white px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
-                                    <span>Appendectomy (2010)</span>
-                                    <span
-                                        class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-grey p-6 rounded-2xl">
-                            <div class="mb-4 grid lg:grid-cols-3">
-                                <label for="patientName" class="block text-nowrap my-auto">Previous
-                                    Hospitalization:</label>
-                                <div class="flex items-center w-full col-span-2 relative">
-                                    <input id="patientName" type="text" value="Appendectomy (2016)"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                        placeholder="Enter Patient's Name">
-                                    <span class="absolute right-5 text-primary top-5 cursor-pointer">
-                                        Add New
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="flex gap-3 flex-wrap">
-                                <div
-                                    class="bg-white px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
-                                    <span>DMC Hospital (2016 for Pneumonia)</span>
-                                    <span
-                                        class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-grey p-6 rounded-2xl">
-                            <div class="mb-4 grid lg:grid-cols-3">
-                                <label for="patientName" class="block text-nowrap my-auto">Family Member
-                                    History:</label>
-                                <div class="flex items-center w-full col-span-2 relative">
-                                    <input id="patientName" type="text" value="Appendectomy (2016)"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                        placeholder="Enter Patient's Name">
-                                    <span class="absolute right-5 text-primary top-5 cursor-pointer">
-                                        Add New
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="flex gap-3 flex-wrap">
-                                <div
-                                    class="bg-white px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
-                                    <span>Heart Disease (Mother)</span>
-                                    <span
-                                        class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
-                                </div>
-                                <div
-                                    class="bg-white px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
-                                    <span>Heart Disease (Father)</span>
+                                    class="bg-grey px-5 pr-12 py-2 rounded-full font-light transition-all duration-150 relative">
+                                    <span>Certified Medical Educator</span>
                                     <span
                                         class="material-icons text-muted cursor-pointer absolute right-3 top-[7px] cursor-pointer">close</span>
                                 </div>

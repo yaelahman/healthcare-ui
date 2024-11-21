@@ -196,7 +196,7 @@
          <!-- Top Bar with Menu Button -->
          <!-- Dashboard Content -->
          <div id="dashboard" class="tab-content">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4">
                <!-- Total Patients Card -->
                <div class="p-4 rounded-lg bg-gradient-to-r from-orange-400 to-red-500 text-white shadow-md">
                   <div class="flex justify-between">
@@ -251,7 +251,7 @@
                </div>
             </div>
             <br>
-            <div class="grid grid-cols-3 gap-4">
+            <div class="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-4">
                <!-- First row, first and second columns -->
                <div class="bg-white rounded-[20px] shadow-lg">
                   <div
@@ -560,58 +560,60 @@
                      <p class="text-blue-500">Upcoming</p>
                   </div>
                   <div class="p-4">
-                     <table class="w-full text-left">
-                        <thead>
-                           <tr class="text-gray-500">
-                              <th class="pb-3">Report/Test Name</th>
-                              <th class="pb-3">Lab Name</th>
-                              <th class="pb-3">Patient Name</th>
-                              <th class="pb-3">Test Date & Time</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr class="border-t">
-                              <td class="py-3">Echocardiogram</td>
-                              <td class="py-3 flex items-center"><span
-                                    class="inline-block w-6 h-6 bg-orange-500 text-white rounded-full text-center mr-2">Q</span>
-                                 Quest Diagnostics</td>
-                              <td class="py-3">Arman soni</td>
-                              <td class="py-3">Aug 20, 2024 - 12:40PM</td>
-                           </tr>
-                           <tr class="border-t">
-                              <td class="py-3">X-Ray (Shoulder)</td>
-                              <td class="py-3 flex items-center"><span
-                                    class="inline-block w-6 h-6 bg-blue-500 text-white rounded-full text-center mr-2">L</span>
-                                 LabCorp</td>
-                              <td class="py-3">Arman soni</td>
-                              <td class="py-3">Aug 20, 2024 - 12:40PM</td>
-                           </tr>
-                           <tr class="border-t">
-                              <td class="py-3">X-Ray (Arms)</td>
-                              <td class="py-3 flex items-center"><span
-                                    class="inline-block w-6 h-6 bg-purple-500 text-white rounded-full text-center mr-2">M</span>
-                                 Mayo Clinic Lab</td>
-                              <td class="py-3">Arman soni</td>
-                              <td class="py-3">Aug 20, 2024 - 12:40PM</td>
-                           </tr>
-                           <tr class="border-t">
-                              <td class="py-3">Echocardiogram</td>
-                              <td class="py-3 flex items-center"><span
-                                    class="inline-block w-6 h-6 bg-teal-500 text-white rounded-full text-center mr-2">A</span>
-                                 ARUP Laboratories</td>
-                              <td class="py-3">Arman soni</td>
-                              <td class="py-3">Aug 20, 2024 - 12:40PM</td>
-                           </tr>
-                           <tr class="border-t">
-                              <td class="py-3">Echocardiogram</td>
-                              <td class="py-3 flex items-center"><span
-                                    class="inline-block w-6 h-6 bg-pink-500 text-white rounded-full text-center mr-2">B</span>
-                                 BioReference Lab</td>
-                              <td class="py-3">Arman soni</td>
-                              <td class="py-3">Aug 20, 2024 - 12:40PM</td>
-                           </tr>
-                        </tbody>
-                     </table>
+                     <div class="overflow-x-auto">
+                        <table class="w-full text-left text-nowrap">
+                           <thead>
+                              <tr class="text-gray-500">
+                                 <th class="pb-3">Report/Test Name</th>
+                                 <th class="pb-3">Lab Name</th>
+                                 <th class="pb-3">Patient Name</th>
+                                 <th class="pb-3">Test Date & Time</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr class="border-t">
+                                 <td class="py-3">Echocardiogram</td>
+                                 <td class="py-3 flex items-center"><span
+                                       class="inline-block w-6 h-6 bg-orange-500 text-white rounded-full text-center mr-2">Q</span>
+                                    Quest Diagnostics</td>
+                                 <td class="py-3">Arman soni</td>
+                                 <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                              </tr>
+                              <tr class="border-t">
+                                 <td class="py-3">X-Ray (Shoulder)</td>
+                                 <td class="py-3 flex items-center"><span
+                                       class="inline-block w-6 h-6 bg-blue-500 text-white rounded-full text-center mr-2">L</span>
+                                    LabCorp</td>
+                                 <td class="py-3">Arman soni</td>
+                                 <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                              </tr>
+                              <tr class="border-t">
+                                 <td class="py-3">X-Ray (Arms)</td>
+                                 <td class="py-3 flex items-center"><span
+                                       class="inline-block w-6 h-6 bg-purple-500 text-white rounded-full text-center mr-2">M</span>
+                                    Mayo Clinic Lab</td>
+                                 <td class="py-3">Arman soni</td>
+                                 <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                              </tr>
+                              <tr class="border-t">
+                                 <td class="py-3">Echocardiogram</td>
+                                 <td class="py-3 flex items-center"><span
+                                       class="inline-block w-6 h-6 bg-teal-500 text-white rounded-full text-center mr-2">A</span>
+                                    ARUP Laboratories</td>
+                                 <td class="py-3">Arman soni</td>
+                                 <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                              </tr>
+                              <tr class="border-t">
+                                 <td class="py-3">Echocardiogram</td>
+                                 <td class="py-3 flex items-center"><span
+                                       class="inline-block w-6 h-6 bg-pink-500 text-white rounded-full text-center mr-2">B</span>
+                                    BioReference Lab</td>
+                                 <td class="py-3">Arman soni</td>
+                                 <td class="py-3">Aug 20, 2024 - 12:40PM</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
                   </div>
                </div>
             </div>

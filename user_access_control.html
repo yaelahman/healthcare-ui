@@ -227,14 +227,28 @@
                             </div>
                             <div class="relative p-4">
 
-                                <table>
+                                <table class="w-full">
+                                    <tr>
+                                        <th class="text-start">Access</th>
+                                        <th class="text-end">Status</th>
+                                    </tr>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" id="edit_patient_profile" name="edit_patient_profile"
-                                                class="text-green-500">
-                                            <label for="edit_patient_profile" class="text-green-500">Edit Patient
-                                                Profile</label>
-                                            To Edit Patient Profile
+                                            <div class="flex gap-2">
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="edit_patient_profile"
+                                                        name="edit_patient_profile" class="hidden" checked>
+                                                    <label for="edit_patient_profile"
+                                                        class="cursor-pointer border-2 rounded-lg pt-1">
+                                                        <i class="material-icons text-green-500"
+                                                            id="check_icon">check</i>
+                                                    </label>
+                                                </div>
+                                                <span class="my-auto inline">To Edit Patient Profile</span>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <span class="text-green-500 ">Enabled</span>
                                         </td>
                                     </tr>
                                 </table>
@@ -249,6 +263,21 @@
 
     <!-- Chart.js Script for Analytics -->
     <script src="./assets/js/function.js?v=1.0.5"></script>
+
+    <script>
+        document.getElementById('edit_patient_profile').addEventListener('change', function () {
+            var checkIcon = document.getElementById('check_icon');
+            if (this.checked) {
+                checkIcon.classList.add('text-green-500');
+                checkIcon.classList.remove('text-muted');
+            } else {
+                checkIcon.classList.add('text-muted');
+                checkIcon.classList.remove('text-green-500');
+            }
+        });
+        // Initial check to set the icon visibility
+        document.getElementById('edit_patient_profile').dispatchEvent(new Event('change'));
+    </script>
 </body>
 
 </html>

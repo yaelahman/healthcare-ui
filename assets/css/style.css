@@ -61,7 +61,15 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+.sidebar {
+    overflow-y: auto;
+}
+
 @media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+    }
+
     .sidebar-visible {
         width: 100% !important;
         position: absolute;

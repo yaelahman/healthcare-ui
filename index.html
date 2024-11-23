@@ -13,9 +13,9 @@
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   <link href="./assets/css/style.css?v=1.0.8" rel="stylesheet">
+   <link href="./assets/css/style.css?v=1.0.9" rel="stylesheet">
 
-   <script src="./assets/js/script.js?v=1.0.8"></script>
+   <script src="./assets/js/script.js?v=1.0.9"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -205,7 +205,7 @@
                <div class="p-4 rounded-lg bg-gradient-to-r from-orange-400 to-red-500 text-white shadow-md">
                   <div class="flex justify-between">
                      <div>
-                        <p class="text-lg font-semibold">Total Patients</p>
+                        <p class="text-lg font-semibold font-dashboard">Total Patients</p>
                         <div class="bg-white bg-opacity-50 p-2 rounded-xl w-14">
                            <svg width="42" height="41" viewBox="0 0 42 41" fill="none"
                               xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -230,8 +230,8 @@
 
                      </div>
                      <div class="flex flex-col items-center mt-auto">
-                        <p class="text-4xl font-bold">645</p>
-                        <p class="text-sm mt-2">145 ↑ vs Last Month</p>
+                        <p class="font-dashboard-number text-4xl font-bold">645</p>
+                        <p class="font-dashboard-trend text-sm mt-2">145 ↑ vs Last Month</p>
                      </div>
                   </div>
                </div>
@@ -239,7 +239,7 @@
                <div class="p-4 rounded-lg bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-md">
                   <div class="flex justify-between">
                      <div>
-                        <p class="text-lg font-semibold">New Patients</p>
+                        <p class="text-lg font-semibold font-dashboard">New Patients</p>
 
                         <div class="bg-white bg-opacity-50 p-2 rounded-xl w-14">
                            <svg width="42" height="41" viewBox="0 0 42 41" fill="none"
@@ -264,8 +264,8 @@
                         </div>
                      </div>
                      <div class="flex flex-col items-center mt-auto">
-                        <p class="text-4xl font-bold">145</p>
-                        <p class="text-sm mt-2">15 ↑ vs Yesterday</p>
+                        <p class="font-dashboard-number text-4xl font-bold">145</p>
+                        <p class="font-dashboard-trend text-sm mt-2">15 ↑ vs Yesterday</p>
                      </div>
                   </div>
                </div>
@@ -273,7 +273,7 @@
                <div class="p-4 rounded-lg bg-gradient-to-r from-pink-400 to-pink-600 text-white shadow-md">
                   <div class="flex justify-between">
                      <div>
-                        <p class="text-lg font-semibold">Total Appointments</p>
+                        <p class="text-lg font-semibold font-dashboard">Total Appointments</p>
                         <div class="bg-white bg-opacity-50 p-2 rounded-xl w-14">
                            <svg width="42" height="42" viewBox="0 0 42 42" fill="none"
                               xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -298,8 +298,8 @@
                         </div>
                      </div>
                      <div class="flex flex-col items-center mt-auto">
-                        <p class="text-4xl font-bold">105</p>
-                        <p class="text-sm mt-2">10 ↑ vs Yesterday</p>
+                        <p class="font-dashboard-number text-4xl font-bold">105</p>
+                        <p class="font-dashboard-trend text-sm mt-2">10 ↑ vs Yesterday</p>
                      </div>
                   </div>
                </div>
@@ -307,7 +307,7 @@
                <div class="p-4 rounded-lg bg-gradient-to-r from-[#DF00FF] to-[#8100FF] text-white shadow-md">
                   <div class="flex justify-between">
                      <div>
-                        <p class="text-lg font-semibold">Online Appointments</p>
+                        <p class="text-lg font-semibold font-dashboard">Online Appointments</p>
 
                         <div class="bg-white bg-opacity-50 p-2 rounded-xl w-14">
                            <svg width="42" height="42" viewBox="0 0 42 42" fill="none"
@@ -340,21 +340,22 @@
                         </div>
                      </div>
                      <div class="flex flex-col items-center mt-auto">
-                        <p class="text-4xl font-bold">45</p>
-                        <p class="text-sm mt-2">5 ↑ vs Yesterday</p>
+                        <p class="font-dashboard-number text-4xl font-bold">45</p>
+                        <p class="font-dashboard-trend text-sm mt-2">5 ↑ vs Yesterday</p>
                      </div>
                   </div>
                </div>
             </div>
             <br>
-            <div class="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-4">
+            <div class="grid xl:grid-cols-8 lg:grid-cols-2 md:grid-cols-1 gap-4">
                <!-- First row, first and second columns -->
-               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto">
+               <div class="bg-white rounded-[20px] shadow-lgoverflow-x-auto col-span-4">
                   <div
                      class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
-                     <h3 class="text-xl font-semibold">Analytics</h3>
+                     <h3 class="2xl:text-xl lg:text-sm font-semibold">Analytics</h3>
                      <div class="relative inline-block">
-                        <button id="dropdownButton" class="text-primary font-medium flex items-center">
+                        <button id="dropdownButton"
+                           class="text-primary font-medium flex items-center 2xl:text-lg text-sm">
                            Weekly
                            <span class="material-icons ml-1">expand_more</span>
                         </button>
@@ -375,16 +376,17 @@
                            style="border-radius: 1.5rem;">New Patients</button>
                      </div>
                      <!-- Chart.js Canvas -->
-                     <canvas id="analyticsChart" style="width: 100%; height: 400px;"></canvas>
+                     <canvas id="analyticsChart" style="width: 100%; min-height: 400px; height: auto;"></canvas>
                   </div>
                </div>
-               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto">
+               <div class="bg-white rounded-[20px] shadow-lgoverflow-x-auto col-span-2">
                   <div
                      class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b ">
-                     <h2 class="text-lg font-medium">Diseases Chart</h2>
+                     <h2 class="2xl:text-lg lg:text-sm font-medium">Diseases Chart</h2>
                      <!-- Dropdown for "This Month" -->
                      <div class="relative inline-block">
-                        <button id="rangeDropdownButton" class="text-primary font-medium flex items-center">
+                        <button id="rangeDropdownButton"
+                           class="text-primary font-medium flex items-center 2xl:text-lg text-sm">
                            This Week
                            <span class="material-icons ml-1">expand_more</span>
                         </button>
@@ -403,7 +405,7 @@
                   <div class="p-4">
                      <!-- Doughnut Chart with fixed size -->
                      <div class="relative max-w-full h-auto md:mx-auto">
-                        <canvas id="diseasesChartCanvas"></canvas>
+                        <canvas id="diseasesChartCanvas" style="width: 100%; height: 210px !important;"></canvas>
                         <!-- Center text inside doughnut chart -->
                         <div class="absolute inset-0 flex items-center justify-center">
                            <div class="text-center">
@@ -415,126 +417,45 @@
 
                      <!-- Chart Legend -->
                      <div class="mt-6">
-                        <ul id="diseaseLegendList">
+                        <ul id="diseaseLegendList" class="2xl:text-lg lg:text-sm">
                            <!-- The legend is dynamically updated -->
                         </ul>
                      </div>
                   </div>
                </div>
                <!-- This cell will merge with the row below (spans 2 rows) -->
-               <div class="bg-white rounded-[20px] shadow-lg row-span-2 overflow-x-auto">
+               <div class="bg-white rounded-[20px] shadow-lg row-span-2 overflow-x-auto col-span-2">
                   <div
                      class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
-                     <h2 class="text-lg font-medium">Appointments</h2>
-                     <span class="text-primary font-medium cursor-pointer">Upcoming</span>
+                     <h2 class="2xl:text-lg  text-sm font-medium">Appointments</h2>
+                     <span class="text-primary font-medium cursor-pointer 2xl:text-lg  text-sm">Upcoming</span>
                   </div>
-                  <div class="p-4">
+                  <div class="p-4 2xl:text-lg lg:text-sm">
                      <!-- Appointment 1 -->
                      <div class="flex justify-between items-center border-b py-3">
                         <div>
-                           <div class="flex items-center">
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
                               <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
                               <span class="font-semibold">Temitope Joshua</span>
-                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
                            </div>
-                           <div class="text-sm text-gray-500">3:00 PM</div>
-                           <div class="text-sm">
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
                               <a href="#" class="text-blue-500 mr-2">View Profile</a>
                               <a href="#" class="text-blue-500">Recordings</a>
                            </div>
                         </div>
                         <a href="#" class="text-red-500">Skip</a>
                      </div>
-                     <!-- Appointment 2 -->
                      <div class="flex justify-between items-center border-b py-3">
                         <div>
-                           <div class="flex items-center">
-                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-500 mr-2"></span>
-                              <span class="font-semibold">Diana Andre</span>
-                              <span class="text-sm text-gray-500 ml-1">• Diabetic</span>
-                           </div>
-                           <div class="text-sm text-gray-500">3:00 PM</div>
-                           <div class="text-sm">
-                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
-                              <a href="#" class="text-blue-500">Recordings</a>
-                           </div>
-                        </div>
-                        <a href="#" class="text-red-500">Skip</a>
-                     </div>
-                     <!-- Appointment 3 -->
-                     <div class="flex justify-between items-center border-b py-3">
-                        <div>
-                           <div class="flex items-center">
-                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-purple-500 mr-2"></span>
-                              <span class="font-semibold">Temitope Esther</span>
-                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
-                           </div>
-                           <div class="text-sm text-gray-500">3:00 PM</div>
-                           <div class="text-sm">
-                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
-                              <a href="#" class="text-blue-500">Recordings</a>
-                           </div>
-                        </div>
-                        <a href="#" class="text-red-500">Skip</a>
-                     </div>
-                     <!-- Appointment 4 -->
-                     <div class="flex justify-between items-center border-b py-3">
-                        <div>
-                           <div class="flex items-center">
-                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-pink-500 mr-2"></span>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
                               <span class="font-semibold">Temitope Joshua</span>
-                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
                            </div>
-                           <div class="text-sm text-gray-500">3:00 PM</div>
-                           <div class="text-sm">
-                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
-                              <a href="#" class="text-blue-500">Recordings</a>
-                           </div>
-                        </div>
-                        <a href="#" class="text-red-500">Skip</a>
-                     </div>
-                     <!-- Appointment 5 -->
-                     <div class="flex justify-between items-center border-b py-3">
-                        <div>
-                           <div class="flex items-center">
-                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
-                              <span class="font-semibold">Temitope Joshua</span>
-                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
-                           </div>
-                           <div class="text-sm text-gray-500">3:00 PM</div>
-                           <div class="text-sm">
-                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
-                              <a href="#" class="text-blue-500">Recordings</a>
-                           </div>
-                        </div>
-                        <a href="#" class="text-red-500">Skip</a>
-                     </div>
-                     <!-- Appointment 5 -->
-                     <div class="flex justify-between items-center border-b py-3">
-                        <div>
-                           <div class="flex items-center">
-                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
-                              <span class="font-semibold">Temitope Joshua</span>
-                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
-                           </div>
-                           <div class="text-sm text-gray-500">3:00 PM</div>
-                           <div class="text-sm">
-                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
-                              <a href="#" class="text-blue-500">Recordings</a>
-                           </div>
-                        </div>
-                        <a href="#" class="text-red-500">Skip</a>
-                     </div>
-                     <!-- Appointment 5 -->
-                     <div class="flex justify-between items-center border-b py-3">
-                        <div>
-                           <div class="flex items-center">
-                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
-                              <span class="font-semibold">Temitope Joshua</span>
-                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
-                           </div>
-                           <div class="text-sm text-gray-500">3:00 PM</div>
-                           <div class="text-sm">
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
                               <a href="#" class="text-blue-500 mr-2">View Profile</a>
                               <a href="#" class="text-blue-500">Recordings</a>
                            </div>
@@ -543,13 +464,13 @@
                      </div>
                      <div class="flex justify-between items-center border-b py-3">
                         <div>
-                           <div class="flex items-center">
-                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
                               <span class="font-semibold">Temitope Joshua</span>
-                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
                            </div>
-                           <div class="text-sm text-gray-500">3:00 PM</div>
-                           <div class="text-sm">
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
                               <a href="#" class="text-blue-500 mr-2">View Profile</a>
                               <a href="#" class="text-blue-500">Recordings</a>
                            </div>
@@ -558,13 +479,13 @@
                      </div>
                      <div class="flex justify-between items-center border-b py-3">
                         <div>
-                           <div class="flex items-center">
-                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
                               <span class="font-semibold">Temitope Joshua</span>
-                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
                            </div>
-                           <div class="text-sm text-gray-500">3:00 PM</div>
-                           <div class="text-sm">
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
                               <a href="#" class="text-blue-500 mr-2">View Profile</a>
                               <a href="#" class="text-blue-500">Recordings</a>
                            </div>
@@ -573,13 +494,133 @@
                      </div>
                      <div class="flex justify-between items-center border-b py-3">
                         <div>
-                           <div class="flex items-center">
-                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
                               <span class="font-semibold">Temitope Joshua</span>
-                              <span class="text-sm text-gray-500 ml-1">• Asthma</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
                            </div>
-                           <div class="text-sm text-gray-500">3:00 PM</div>
-                           <div class="text-sm">
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
+                              <a href="#" class="text-blue-500 mr-2">View Profile</a>
+                              <a href="#" class="text-blue-500">Recordings</a>
+                           </div>
+                        </div>
+                        <a href="#" class="text-red-500">Skip</a>
+                     </div>
+                     <div class="flex justify-between items-center border-b py-3">
+                        <div>
+                           <div class="flex flex-wrap items-center 2xl:text-lg  text-xs">
+                              <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 mr-2"></span>
+                              <span class="font-semibold">Temitope Joshua</span>
+                              <span class="2xl:text-sm  text-xs text-gray-500 ml-1">• Asthma</span>
+                           </div>
+                           <div class="2xl:text-sm text-xs text-gray-500">3:00 PM</div>
+                           <div class="2xl:text-sm text-xs">
                               <a href="#" class="text-blue-500 mr-2">View Profile</a>
                               <a href="#" class="text-blue-500">Recordings</a>
                            </div>
@@ -588,75 +629,64 @@
                      </div>
                   </div>
 
-                  <div class="flex justify-between items-center border-b py-3">
-                     <div>
-                        <div class="flex items-center">
-                           <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 mr-2"></span>
-                           <span class="font-semibold">Temitope Joshua</span>
-                           <span class="text-sm text-gray-500 ml-1">• Asthma</span>
-                        </div>
-                        <div class="text-sm text-gray-500">3:00 PM</div>
-                        <div class="text-sm">
-                           <a href="#" class="text-blue-500 mr-2">View Profile</a>
-                           <a href="#" class="text-blue-500">Recordings</a>
-                        </div>
-                     </div>
-                     <a href="#" class="text-red-500">Skip</a>
-                  </div>
 
                </div>
                <!-- Second row, first and second columns -->
-               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto">
+               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto col-span-2">
                   <div
                      class="flex justify-between items-center mb-4 p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
-                     <h3 class="text-xl font-semibold">Reminders</h3>
+                     <h3 class="2xl:text-lg text-sm font-semibold">Reminders</h3>
                      <span class="material-icons add_circle text-gray-400">add_circle</span>
                   </div>
                   <div class="p-4">
                      <ul>
                         <li class="border-b py-3">
-                           <div class="flex justify-between">
+                           <div class="flex justify-between 2xl:text-sm text-xs">
                               <p class="font-semibold">Upcoming Appointment</p>
                               <p class="text-gray-500">3:00 PM</p>
                            </div>
-                           <p class="text-gray-500 text-sm">Dr. Williams, your next appointment with Mrs. Taylor is in
+                           <p class="text-gray-500 2xl:text-sm text-xs">Dr. Williams, your next appointment with Mrs.
+                              Taylor is in
                               15 minutes.</p>
                         </li>
                         <li class="border-b py-3">
-                           <div class="flex justify-between">
+                           <div class="flex justify-between 2xl:text-sm text-xs">
                               <p class="font-semibold">Medication Review Due</p>
                               <p class="text-gray-500">3:00 PM</p>
                            </div>
-                           <p class="text-gray-500 text-sm">You have 30 minutes left to review Mr. Adams' medication
+                           <p class="text-gray-500 2xl:text-sm text-xs">You have 30 minutes left to review Mr. Adams'
+                              medication
                               list.</p>
                         </li>
                         <li class="border-b py-3">
-                           <div class="flex justify-between">
+                           <div class="flex justify-between 2xl:text-sm text-xs">
                               <p class="font-semibold">Surgery Preparation</p>
                               <p class="text-gray-500">3:00 PM</p>
                            </div>
-                           <p class="text-gray-500 text-sm">Prepare for Mr. Patel's surgery in 30 minutes.</p>
+                           <p class="text-gray-500 2xl:text-sm text-xs">Prepare for Mr. Patel's surgery in 30 minutes.
+                           </p>
                         </li>
                         <li class="border-b py-3">
-                           <div class="flex justify-between">
+                           <div class="flex justify-between 2xl:text-sm text-xs">
                               <p class="font-semibold">Patient Follow-Up Call</p>
                               <p class="text-gray-500">3:00 PM</p>
                            </div>
-                           <p class="text-gray-500 text-sm">Follow up with Mr. Brown about his treatment progress in 15
+                           <p class="text-gray-500 2xl:text-sm text-xs">Follow up with Mr. Brown about his treatment
+                              progress in 15
                               minutes.</p>
                         </li>
                      </ul>
                   </div>
                </div>
-               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto">
+               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto col-span-4">
                   <div
                      class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
-                     <h3 class="text-xl font-semibold">Recent Lab Results</h3>
+                     <h3 class="2xl:text-lg text-sm font-semibold">Recent Lab Results</h3>
                      <p class="text-blue-500">Upcoming</p>
                   </div>
                   <div class="p-4">
                      <div class="overflow-x-auto">
-                        <table class="w-full text-left text-nowrap">
+                        <table class="w-full text-left text-nowrap 2xl:text-sm text-xs">
                            <thead>
                               <tr class="text-gray-500">
                                  <th class="pb-3">Report/Test Name</th>
@@ -669,7 +699,7 @@
                               <tr class="border-t">
                                  <td class="py-3">Echocardiogram</td>
                                  <td class="py-3 flex items-center"><span
-                                       class="inline-block w-6 h-6 bg-orange-500 text-white rounded-full text-center mr-2">Q</span>
+                                       class="inline-block w-5 h-5 bg-orange-500 text-white rounded-full text-center mr-2">Q</span>
                                     Quest Diagnostics</td>
                                  <td class="py-3">Arman soni</td>
                                  <td class="py-3">Aug 20, 2024 - 12:40PM</td>
@@ -677,7 +707,7 @@
                               <tr class="border-t">
                                  <td class="py-3">X-Ray (Shoulder)</td>
                                  <td class="py-3 flex items-center"><span
-                                       class="inline-block w-6 h-6 bg-blue-500 text-white rounded-full text-center mr-2">L</span>
+                                       class="inline-block w-5 h-5 bg-blue-500 text-white rounded-full text-center mr-2">L</span>
                                     LabCorp</td>
                                  <td class="py-3">Arman soni</td>
                                  <td class="py-3">Aug 20, 2024 - 12:40PM</td>
@@ -685,7 +715,7 @@
                               <tr class="border-t">
                                  <td class="py-3">X-Ray (Arms)</td>
                                  <td class="py-3 flex items-center"><span
-                                       class="inline-block w-6 h-6 bg-purple-500 text-white rounded-full text-center mr-2">M</span>
+                                       class="inline-block w-5 h-5 bg-purple text-white rounded-full text-center mr-2">M</span>
                                     Mayo Clinic Lab</td>
                                  <td class="py-3">Arman soni</td>
                                  <td class="py-3">Aug 20, 2024 - 12:40PM</td>
@@ -693,7 +723,7 @@
                               <tr class="border-t">
                                  <td class="py-3">Echocardiogram</td>
                                  <td class="py-3 flex items-center"><span
-                                       class="inline-block w-6 h-6 bg-teal-500 text-white rounded-full text-center mr-2">A</span>
+                                       class="inline-block w-5 h-5 bg-teal-500 text-white rounded-full text-center mr-2">A</span>
                                     ARUP Laboratories</td>
                                  <td class="py-3">Arman soni</td>
                                  <td class="py-3">Aug 20, 2024 - 12:40PM</td>
@@ -701,7 +731,7 @@
                               <tr class="border-t">
                                  <td class="py-3">Echocardiogram</td>
                                  <td class="py-3 flex items-center"><span
-                                       class="inline-block w-6 h-6 bg-pink-500 text-white rounded-full text-center mr-2">B</span>
+                                       class="inline-block w-5 h-5 bg-pink-500 text-white rounded-full text-center mr-2">B</span>
                                     BioReference Lab</td>
                                  <td class="py-3">Arman soni</td>
                                  <td class="py-3">Aug 20, 2024 - 12:40PM</td>
@@ -719,7 +749,7 @@
                <div class="bg-white rounded-lg p-6 shadow-lg w-full max-w-md relative">
                   <span class="absolute top-4 right-4 text-gray-600 cursor-pointer text-2xl"
                      onclick="closePopup('reminderPopup')">&times;</span>
-                  <h3 class="text-xl font-semibold mb-4">Add Reminder</h3>
+                  <h3 class="2xl:text-lg text-sm font-semibold mb-4">Add Reminder</h3>
                   <div class="mb-4">
                      <label for="title" class="block text-gray-700">Title:</label>
                      <input id="title" type="text" class="w-full mt-1 p-2 border rounded-lg"
@@ -759,7 +789,7 @@
             <div id="notificationsPopup" class="absolute right-0 top-50 mt-2 bg-white rounded-lg shadow-lg z-50 hidden"
                style="margin-top:-86em;margin-left: 42em;">
                <div class="p-4 border-b flex justify-between items-center">
-                  <h3 class="text-lg font-semibold">Notifications</h3>
+                  <h3 class="text-lg font-semibold font-dashboard">Notifications</h3>
                   <a href="#" class="text-blue-500 text-sm">Mark all as read</a>
                </div>
                <ul class="max-h-80 overflow-y-auto">
@@ -811,8 +841,8 @@
 
 
    <!-- Chart.js Script for Analytics -->
-   <script src="./assets/js/chart.js?v=1.0.8"></script>
-   <script src="./assets/js/function.js?v=1.0.8"></script>
+   <script src="./assets/js/chart.js?v=1.0.9"></script>
+   <script src="./assets/js/function.js?v=1.0.9"></script>
 </body>
 
 </html>

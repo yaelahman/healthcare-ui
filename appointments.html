@@ -14,9 +14,9 @@
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="./assets/css/style.css?v=1.0.8" rel="stylesheet">
+    <link href="./assets/css/style.css?v=1.0.9" rel="stylesheet">
 
-    <script src="./assets/js/script.js?v=1.0.8"></script>
+    <script src="./assets/js/script.js?v=1.0.9"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -205,13 +205,13 @@
                     <div class="mb-3">
                         <label for="search">Search</label>
                         <div class="relative mt-2">
-                            <input type="text" placeholder="Search by Name or Date of Birth"
+                            <input type="text" placeholder="Search by Name or DOB"
                                 class="w-full rounded-full pe-4 ps-10 py-3 border-grey focus:outline-grey2">
                             <span
                                 class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">search</span>
 
                             <button
-                                class="absolute right-2 top-[6px] px-5 py-2 text-sm rounded-full text-white bg-primary ">Search</button>
+                                class="absolute right-2 top-[6px] px-5 2xl:py-2 py-1 text-sm rounded-full text-white bg-primary ">Search</button>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -238,8 +238,8 @@
                         class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
                         <h2 class="text-lg font-medium">All Appointments</h2>
                         <div class="text-end inline-block">
-                            <button class="bg-primary text-white rounded-full h-8 w-8 text-2xl">
-                                +
+                            <button class="text-primary  rounded-full text-lg flex">
+                                Summary <i class="material-icons pt-1">expand_more</i>
                             </button>
                         </div>
                     </div>
@@ -280,19 +280,20 @@
                                         <span class="text-success">Done</span>
                                     </td>
                                     <td class="py-2 px-4 border-b">
-                                        <button disabled
-                                            class="disabled:opacity-30 disabled:pointer-events-none px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                            Notes</button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
-                                            </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                        <div class="flex justify-between">
+                                            <button disabled
+                                                class="disabled:opacity-30 disabled:pointer-events-none px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View</button>
+                                            <div class="float-right relative">
+                                                <button class="px-3 py-1">
+                                                    <i class="material-icons">more_vert</i>
+                                                </button>
+                                                <div
+                                                    class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -320,19 +321,21 @@
                                         <span class="text-danger">Rejected</span>
                                     </td>
                                     <td class="py-2 px-4 border-b">
-                                        <button onclick="openModal('modalTemplate')"
-                                            class="px-3 py-1 border border-warning rounded-full text-warning hover:bg-warning hover:text-white transition-all duration-150">Start
-                                        </button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
+                                        <div class="flex justify-between">
+                                            <button onclick="openModal('modalTemplate')"
+                                                class="px-3 py-1 border border-warning rounded-full text-warning hover:bg-warning hover:text-white transition-all duration-150">Start
                                             </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                            <div class="float-right relative">
+                                                <button class="px-3 py-1">
+                                                    <i class="material-icons">more_vert</i>
+                                                </button>
+                                                <div
+                                                    class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -360,19 +363,21 @@
                                         <span class="text-info">In Progress</span>
                                     </td>
                                     <td class="py-2 px-4 border-b">
-                                        <button onclick="openModal('modalTemplate')"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                        </button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
+                                        <div class="flex justify-between">
+                                            <button onclick="openModal('modalTemplate')"
+                                                class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
                                             </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                            <div class="float-right relative">
+                                                <button class="px-3 py-1">
+                                                    <i class="material-icons">more_vert</i>
+                                                </button>
+                                                <div
+                                                    class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -400,19 +405,21 @@
                                         <span class="text-success">Done</span>
                                     </td>
                                     <td class="py-2 px-4 border-b">
-                                        <button onclick="openModal('modalTemplate')"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                        </button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
+                                        <div class="flex justify-between">
+                                            <button onclick="openModal('modalTemplate')"
+                                                class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
                                             </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                            <div class="float-right relative">
+                                                <button class="px-3 py-1">
+                                                    <i class="material-icons">more_vert</i>
+                                                </button>
+                                                <div
+                                                    class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -440,19 +447,21 @@
                                         <span class="text-danger">Rejected</span>
                                     </td>
                                     <td class="py-2 px-4 border-b">
-                                        <button onclick="openModal('modalTemplate')"
-                                            class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
-                                        </button>
-                                        <div class="float-right relative">
-                                            <button class="px-3 py-1">
-                                                <i class="material-icons">more_vert</i>
+                                        <div class="flex justify-between">
+                                            <button onclick="openModal('modalTemplate')"
+                                                class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">View
                                             </button>
-                                            <div
-                                                class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                <a href="#"
-                                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                            <div class="float-right relative">
+                                                <button class="px-3 py-1">
+                                                    <i class="material-icons">more_vert</i>
+                                                </button>
+                                                <div
+                                                    class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -654,7 +663,7 @@
     </div>
 
     <!-- Chart.js Script for Analytics -->
-    <script src="./assets/js/function.js?v=1.0.8"></script>
+    <script src="./assets/js/function.js?v=1.0.9"></script>
 </body>
 
 </html>

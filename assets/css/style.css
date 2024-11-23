@@ -61,15 +61,13 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.sidebar {
-    overflow-y: auto;
-}
-
 @media (max-width: 768px) {
     .sidebar {
         position: fixed;
         padding-bottom: 300px !important;
+        overflow-y: auto;
     }
+
 
     .sidebar-visible {
         width: 100% !important;
@@ -94,8 +92,14 @@
     }
 }
 
+#diseasesChartCanvas {
+    /* height: 200px !important; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .main-content-collapsed {
-    width: 100% !important;
+    width: 80% !important;
 }
 
 .main-content-expanded {
@@ -109,6 +113,53 @@
 
 .sidebar-visible {
     width: 20%;
+}
+
+@media (max-width: 1300px) {
+
+    input,
+    textarea,
+    select,
+    p,
+    li,
+    th,
+    td,
+    label,
+    span,
+    button,
+    a,
+    h6 {
+        font-size: 12px !important;
+    }
+
+    .font-dashboard {
+        font-size: 14px !important;
+    }
+
+    .font-dashboard-number {
+        font-size: 32px !important;
+    }
+
+    .font-dashboard-trend {
+        font-size: 16px !important;
+    }
+
+
+
+
+
+    .sidebar-visible {
+        font-size: 10px;
+        text-wrap: nowrap;
+    }
+
+    .sidebar-text {
+        font-size: 12px;
+    }
+
+    .sidebar img {
+        width: 20px;
+    }
 }
 
 
@@ -133,7 +184,7 @@
 }
 
 .sidebar-visible .tab.active {
-    display: block;
+    display: flex;
     position: relative;
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 15px;

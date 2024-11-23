@@ -252,7 +252,7 @@
                                         <button
                                             class="border border-primary text-primary px-4 py-2 rounded-full 2xl:2xl:text-sm text-xs text-xs font-light hover:text-white hover:bg-primary transition-all duration-150">Finish
                                             Consultation</button>
-                                        <button onclick="window.location.href='recordings_record.html'"
+                                        <button
                                             class="bg-primary border border-primary text-white px-4 py-2 rounded-full 2xl:2xl:text-sm text-xs text-xs font-light hover:bg-opacity-[0.9] transition-all duration-150">Start
                                             Recording</button>
                                     </div>
@@ -267,16 +267,39 @@
                                 <h2 class="text-lg font-medium">Recordings</h2>
                                 <h2 class="text-lg font-medium">Time</h2>
                             </div>
-                            <div class="relative ">
-                                <div class="my-32 text-center">
-                                    <h1 class="text-muted text-2xl font-bold my-auto">No Recordings to Show</h1>
+                            <div class="relative">
+                                <div class="flex justify-content-between border-b px-3 pt-4 pb-2">
+                                    <div class="flex gap-2 w-full">
+                                        <span
+                                            class="inline-block bg-danger text-white rounded-full p-1 h-8 w-8 flex items-center justify-center">
+                                            <i class="material-icons">play_arrow</i>
+                                        </span>
+                                        <div class="text-medium text-start">
+                                            <p class="leading-none">Recording 1</p>
+                                            <span class="text-muted 2xl:text-sm text-xs">Just Now</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-muted 2xl:text-sm text-xs text-nowrap my-auto">4 mins 35
+                                        secs</span>
                                 </div>
                             </div>
-
+                            <div class="flex justify-content-between border-b px-3 pt-4 pb-2">
+                                <div class="flex gap-2 w-full">
+                                    <span
+                                        class="inline-block bg-danger text-white rounded-full p-1 h-8 w-8 flex items-center justify-center">
+                                        <i class="material-icons">play_arrow</i>
+                                    </span>
+                                    <div class="text-medium text-start">
+                                        <p class="leading-none">Recording 2</p>
+                                        <span class="text-muted 2xl:text-sm text-xs">6 Mins Ago</span>
+                                    </div>
+                                </div>
+                                <span class="text-muted 2xl:text-sm text-xs text-nowrap my-auto">9 mins 36 secs</span>
+                            </div>
                             <div class="text-end mt-4 space-y-2 p-3">
 
-                                <button disabled
-                                    class="disabled:opacity-50 bg-primary border border-primary text-white px-4 py-2 rounded-full 2xl:text-sm text-xs font-light hover:bg-opacity-[0.9] transition-all duration-150">Analyze
+                                <button
+                                    class="bg-primary border border-primary text-white px-4 py-2 rounded-full 2xl:text-sm text-xs font-light hover:bg-opacity-[0.9] transition-all duration-150">Analyze
                                     & Generate</button>
                             </div>
                         </div>
@@ -288,11 +311,92 @@
                             <h2 class="text-lg font-medium">Recordings Output</h2>
                             <a href="" class="text-primary">Update Data in Profile</a>
                         </div>
-                        <div class="relative ">
-                            <div class="my-48 text-center">
-                                <h1 class="text-muted text-3xl font-bold my-auto">No Data to Show</h1>
-                                <h3 class="text-muted text-sm">Press “Analyse & Generate” Button to Generate Data
-                                    from Recordings.</h3>
+                        <div class="p-4">
+                            <div class="mb-3">
+                                <h3 class="2xl:text-md text-sm font-medium bg-grey px-3 py-2 rounded-lg mb-2">Subjective
+                                </h3>
+                                <p class="text-body px-2">Patient John Doe, a 35-year-old male, reports experiencing
+                                    persistent
+                                    headaches for the past
+                                    two weeks. He describes the pain as a throbbing sensation on the left side of his
+                                    head, which
+                                    worsens with physical activity. He also notes symptoms of nausea and sensitivity to
+                                    light. He
+                                    rates the pain as 7 out of 10.</p>
+                            </div>
+                            <div class="mb-3">
+                                <h3 class="2xl:text-md text-sm font-medium bg-grey px-3 py-2 rounded-lg mb-2">Subjective
+                                </h3>
+                                <div class="px-2">
+                                    <table class="w-full">
+                                        <tr>
+                                            <th class="font-medium text-start">Vitals:</th>
+                                            <th class="font-medium text-start">Exam:</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-body">
+                                                <ul class="ps-5 list-disc">
+                                                    <li>BP: [e.g., 120/80 mmHg]</li>
+                                                    <li>HR: [e.g., 72 bpm]</li>
+                                                    <li>RR: [e.g., 16 breaths/min]</li>
+                                                    <li>Temp: [e.g., 98.6°F]</li>
+                                                </ul>
+                                            </td>
+                                            <td class="text-body">
+                                                <ul class="ps-5 list-disc">
+                                                    <li>BP: [e.g., 120/80 mmHg]</li>
+                                                    <li>HR: [e.g., 72 bpm]</li>
+                                                    <li>RR: [e.g., 16 breaths/min]</li>
+                                                    <li>Temp: [e.g., 98.6°F]</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h3 class="2xl:text-md text-sm font-medium bg-grey px-3 py-2 rounded-lg mb-2">Assessment
+                                </h3>
+                                <div class="px-2 text-body">
+
+                                    <ul class="ps-5 list-disc">
+                                        <li>Likely diagnosis: Migraine without aura</li>
+                                        <li>Other possible diagnoses: None</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h3 class="2xl:text-md text-sm font-medium bg-grey px-3 py-2 rounded-lg mb-2">Plan</h3>
+                                <div class="px-2">
+                                    <table class="w-full">
+                                        <tr>
+                                            <th class="font-medium text-start">Medications:</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-body">
+                                                <ul class="ps-8 list-disc">
+                                                    <li>Sumatriptan 100mg: take at the onset of headache</li>
+                                                    <li>Consider preventive medication: Propranolol or Topiramate if
+                                                        headache is
+                                                        frequent</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="font-medium text-start">Lifestyle Modifications:</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-body">
+                                                <ul class="ps-8 list-disc">
+                                                    <li>Sumatriptan 100mg: take at the onset of headache</li>
+                                                    <li>Consider preventive medication: Propranolol or Topiramate if
+                                                        headache is
+                                                        frequent</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

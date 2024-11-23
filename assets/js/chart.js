@@ -5,6 +5,8 @@ var chart; // Store chart instance
 // Initial load with total patients data
 function loadTotalPatientsData() {
     if (chart) chart.destroy(); // Clear previous chart
+    document.getElementById('analyticsChart').setAttribute('style', 'width: 697px; height: 400px;');
+    document.getElementById('analyticsChart').setAttribute('width', '697');
 
     chart = new Chart(ctx, {
         type: 'line',
@@ -36,6 +38,13 @@ function loadTotalPatientsData() {
             }
         }
     });
+
+    setTimeout(() => {
+        document.getElementById('analyticsChart').setAttribute('style', 'width: 697px; height: 400px;');
+        document.getElementById('analyticsChart').setAttribute('width', '697');
+        document.getElementById('analyticsChart').setAttribute('height', '400');
+        console.log(document.getElementById('analyticsChart'))
+    }, 1);
 }
 
 // Load new patients data
@@ -88,8 +97,17 @@ function loadYearlyData() {
 }
 
 // Event listeners for buttons
-document.getElementById('totalPatientsBtn').addEventListener('click', loadTotalPatientsData);
-document.getElementById('newPatientsBtn').addEventListener('click', loadNewPatientsData);
+document.getElementById('totalPatientsBtn').addEventListener('click', function () {
+    loadTotalPatientsData();
+    this.classList.add('bg-primary', 'text-white');
+    document.getElementById('newPatientsBtn').classList.remove('bg-primary', 'text-white');
+});
+
+document.getElementById('newPatientsBtn').addEventListener('click', function () {
+    loadNewPatientsData();
+    this.classList.add('bg-primary', 'text-white');
+    document.getElementById('totalPatientsBtn').classList.remove('bg-primary', 'text-white');
+});
 
 // Initial load of the total patients chart
 loadTotalPatientsData();
@@ -161,7 +179,7 @@ function loadDiseasesChart(data, labels) {
                 }
             }
         },
-        plugins: [ChartDataLabels]
+        plugins: [ChartDataLabels],
     });
 
     updateLegend(labels, data);

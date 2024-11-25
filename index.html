@@ -13,9 +13,9 @@
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   <link href="./assets/css/style.css?v=1.0.10" rel="stylesheet">
+   <link href="./assets/css/style.css?v=1.0.11" rel="stylesheet">
 
-   <script src="./assets/js/script.js?v=1.0.10"></script>
+   <script src="./assets/js/script.js?v=1.0.11"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -348,9 +348,9 @@
                </div>
             </div>
             <br>
-            <div class="grid xl:grid-cols-8 lg:grid-cols-2 md:grid-cols-1 gap-4">
+            <div class="grid xl:grid-cols-8 lg:grid-cols-2 md:grid-cols-1 gap-4 grid-cols-1">
                <!-- First row, first and second columns -->
-               <div class="bg-white rounded-[20px] shadow-lgoverflow-x-auto col-span-4">
+               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto col-span-4">
                   <div
                      class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
                      <h3 class="2xl:text-xl lg:text-sm font-semibold">Analytics</h3>
@@ -380,7 +380,7 @@
                      <canvas id="analyticsChart" style="width: 100%; min-height: 400px; height: auto;"></canvas>
                   </div>
                </div>
-               <div class="bg-white rounded-[20px] shadow-lgoverflow-x-auto col-span-2">
+               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto lg:col-span-2 col-span-4">
                   <div
                      class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b ">
                      <h2 class="2xl:text-lg lg:text-sm font-medium">Diseases Chart</h2>
@@ -405,7 +405,7 @@
                   </div>
                   <div class="p-4">
                      <!-- Doughnut Chart with fixed size -->
-                     <div class="relative max-w-full h-auto md:mx-auto">
+                     <div class="relative max-w-full h-auto md:mx-auto diseasesChartCanvas">
                         <canvas id="diseasesChartCanvas" style="width: 100%; height: 210px !important;"></canvas>
                         <!-- Center text inside doughnut chart -->
                         <div class="absolute inset-0 flex items-center justify-center">
@@ -425,7 +425,7 @@
                   </div>
                </div>
                <!-- This cell will merge with the row below (spans 2 rows) -->
-               <div class="bg-white rounded-[20px] shadow-lg row-span-2 overflow-x-auto col-span-2">
+               <div class="bg-white rounded-[20px] shadow-lg row-span-2 overflow-x-auto lg:col-span-2 col-span-4">
                   <div
                      class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
                      <h2 class="2xl:text-lg  text-sm font-medium">Appointments</h2>
@@ -633,7 +633,7 @@
 
                </div>
                <!-- Second row, first and second columns -->
-               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto col-span-2">
+               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto lg:col-span-2 col-span-4">
                   <div
                      class="flex justify-between items-center mb-4 p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
                      <h3 class="2xl:text-lg text-sm font-semibold">Reminders</h3>
@@ -842,8 +842,8 @@
 
 
    <!-- Chart.js Script for Analytics -->
-   <script src="./assets/js/chart.js?v=1.0.10"></script>
-   <script src="./assets/js/function.js?v=1.0.10"></script>
+   <script src="./assets/js/chart.js?v=1.0.11"></script>
+   <script src="./assets/js/function.js?v=1.0.11"></script>
 </body>
 
 </html>

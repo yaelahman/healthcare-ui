@@ -43,7 +43,6 @@ function loadTotalPatientsData() {
         document.getElementById('analyticsChart').setAttribute('style', 'width: 697px; height: 400px;');
         document.getElementById('analyticsChart').setAttribute('width', '697');
         document.getElementById('analyticsChart').setAttribute('height', '400');
-        console.log(document.getElementById('analyticsChart'))
     }, 1);
 }
 
@@ -137,6 +136,8 @@ const chartData = {
 // Load the doughnut chart
 function loadDiseasesChart(data, labels) {
     if (diseasesChart) diseasesChart.destroy(); // Clear previous chart
+    // document.getElementById('diseasesChartCanvas').setAttribute('style', 'width: 697px !important; height: 400px;');
+    // document.getElementById('diseasesChartCanvas').setAttribute('width', '697');
 
     diseasesChart = new Chart(diseasesCtx, {
         type: 'doughnut',
@@ -151,6 +152,7 @@ function loadDiseasesChart(data, labels) {
         options: {
             responsive: true,
             layout: {
+                autoPadding: true,
                 padding: {
                     top: 20,
                     bottom: 20,
@@ -233,5 +235,7 @@ document.getElementById('rangeDropdownButton').addEventListener('click', toggleR
 
 
 // Initial load of the diseases chart (monthly)
-updateChartData('monthly');
+setTimeout(() => {
+    updateChartData('monthly');
+}, 100)
 

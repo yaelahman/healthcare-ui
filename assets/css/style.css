@@ -61,6 +61,8 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+
+
 @media (max-width: 768px) {
     .sidebar {
         position: fixed;
@@ -128,7 +130,8 @@
     span,
     button,
     a,
-    h6 {
+    h6,
+    #patientCountDisplay {
         font-size: 12px !important;
     }
 

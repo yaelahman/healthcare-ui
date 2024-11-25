@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,50 +10,66 @@
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<style>
-    .rounded-lg {
-    border-radius: 1.5rem !important;
-}
-</style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/script.js"></script>
+    <style>
+        .rounded-lg {
+            border-radius: 1.5rem !important;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
+
+<body class="bg-grey">
 
     <div class="min-h-screen flex">
         <!-- Left Side - Illustration -->
-        <div class="w-1/2 bg-blue-900 flex justify-center items-center p-8 hidden md:flex">
-            <img src="https://via.placeholder.com/450x600" alt="Doctors Illustration" class="max-w-full h-auto">
+        <div class="w-1/2 flex justify-center items-center hidden md:flex">
+            <img src="./assets/images/login-bg.png" alt="Doctors Illustration" class="max-w-full h-auto">
         </div>
 
         <!-- Right Side - Form -->
-        <div class="w-full md:w-1/2 flex justify-center items-center p-8">
-            <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <div
+            class="w-full md:w-1/2 flex justify-center items-center p-8 bg-[url('./assets/images/login-vector.png')] bg-cover bg-center relative">
+            <div class="absolute inset-0 bg-white opacity-[0.95]"></div>
+            <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md z-10">
                 <!-- Title and Subtitle aligned left -->
                 <div class="mb-6">
-                    <h1 class="text-3xl font-bold text-blue-900 mb-2">MedCure</h1>
-                    <p class="text-gray-500">Log in to Your Account</p>
+                    <div class="flex gap-3">
+                        <img src="./assets/images/LogoIcon.png" alt="">
+                        <h1 class="text-3xl font-bold text-primary mb-2">MEDAIPRO</h1>
+                    </div>
+                    <h1 class="2xl:text-3xl font-semibold">Log in to Your Account</h1>
+                    <span class="text-muted">
+                        Enter your email address and password to log in your account
+                    </span>
                 </div>
 
                 <!-- Role Selection -->
                 <div class="flex justify-around mb-6">
-                    <button class="bg-blue-900 text-white px-8 py-2 rounded-lg focus:outline-none">Admin</button>
-                    <button class="bg-gray-100 text-gray-700 px-8 py-2 rounded-lg focus:outline-none">Doctor</button>
-                    <button class="bg-gray-100 text-gray-700 px-8 py-2 rounded-lg focus:outline-none">Nurse</button>
+                    <button class="bg-grey text-primary px-8 py-2 rounded-lg focus:outline-none">Admin</button>
+                    <button class="bg-primary text-white px-8 py-2 rounded-lg focus:outline-none">Doctor</button>
+                    <button class="bg-grey text-primary px-8 py-2 rounded-lg focus:outline-none">Nurse</button>
                 </div>
 
-                <form action="#">
+                <form action="index.html">
                     <!-- Email Address -->
                     <div class="mb-4">
                         <div class="relative">
-                            <input type="email" id="email" placeholder="Email Address*" class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
-                            <span class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">email</span>
+                            <input type="email" id="email" placeholder="Email Address*"
+                                class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
+                            <span
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">email</span>
                         </div>
                     </div>
 
                     <!-- Password -->
                     <div class="mb-4">
                         <div class="relative">
-                            <input type="password" id="password" placeholder="Password*" class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
-                            <span class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">visibility_off</span>
+                            <input type="password" id="password" placeholder="Password*"
+                                class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
+                            <span
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">visibility_off</span>
                         </div>
                     </div>
 
@@ -60,22 +77,24 @@
                     <div class="flex items-center justify-between mb-6">
                         <label class="inline-flex items-center">
                             <input type="checkbox" class="form-checkbox text-blue-600">
-                            <span class="ml-2 text-gray-700">Remember Me</span>
+                            <span class="ml-2 text-primary">Remember Me</span>
                         </label>
                         <a href="#" class="text-blue-500 hover:underline">Forgot Password?</a>
                     </div>
 
                     <!-- Login Button -->
-                    <button type="submit" class="w-full bg-blue-900 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-200">Login</button>
+                    <button type="submit"
+                        class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition duration-200">Login</button>
                 </form>
 
                 <!-- Don't have an account? -->
                 <p class="text-center text-gray-500 mt-4">
-                    Don't have an account? <a href="#" class="text-blue-500 hover:underline">Sign Up</a>
+                    Don't have an account? <a href="register.html" class="text-blue-500 hover:underline">Sign Up</a>
                 </p>
             </div>
         </div>
     </div>
 
 </body>
+
 </html>

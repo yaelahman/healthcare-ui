@@ -208,6 +208,8 @@ function updateChartData(period) {
     document.getElementById('patientCountDisplay').innerText = totalPatients;
     loadDiseasesChart(data, labels);
 
+    document.getElementById('patientCountDisplay').classList.add('2xl:text-xl', 'text-sm');
+
     // Update the dropdown button text with the selected period
     const dropdownButton = document.getElementById('rangeDropdownButton');
     if (period === 'weekly') {

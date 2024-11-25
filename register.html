@@ -1,73 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedCure - Sign Up</title>
+    <title>MedCure - Login</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/script.js"></script>
+    <style>
+        .rounded-lg {
+            border-radius: 1.5rem !important;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
+
+<body class="bg-grey">
 
     <div class="min-h-screen flex">
         <!-- Left Side - Illustration -->
-        <div class="w-1/2 bg-blue-900 flex justify-center items-center p-8 hidden md:flex">
-            <img src="https://via.placeholder.com/450x600" alt="Doctors Illustration" class="max-w-full h-auto">
+        <div class="w-1/2 flex justify-center items-center hidden md:flex">
+            <img src="./assets/images/login-bg.png" alt="Doctors Illustration" class="max-w-full h-auto">
         </div>
 
         <!-- Right Side - Form -->
-        <div class="w-full md:w-1/2 flex justify-center items-center p-8">
-            <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-                <div class="text-left mb-6">
-                    <h1 class="text-3xl font-bold text-blue-900 mb-2">MedCure</h1>
-                    <p class="text-gray-500 font-bold" style="font-size: 28px;">Create a New Account</p>
+        <div
+            class="w-full md:w-1/2 flex justify-center items-center p-8 bg-[url('./assets/images/login-vector.png')] bg-cover bg-center relative">
+            <div class="absolute inset-0 bg-white opacity-[0.95]"></div>
+            <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md z-10">
+                <!-- Title and Subtitle aligned left -->
+                <div class="mb-6">
+                    <div class="flex gap-3">
+                        <img src="./assets/images/LogoIcon.png" alt="">
+                        <h1 class="text-3xl font-bold text-primary mb-2">MEDAIPRO</h1>
+                    </div>
+                    <h1 class="2xl:text-3xl font-semibold">Create a New Account</h1>
+                    <span class="text-muted">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, ut.
+                    </span>
                 </div>
-                <form action="#">
+
+                <form action="index.html">
                     <!-- Email Address -->
                     <div class="mb-4">
                         <div class="relative">
-                            <input type="email" id="email" placeholder="Email Address*" class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
-                            <span class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">email</span>
+                            <input type="email" id="email" placeholder="Email Address*"
+                                class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
+                            <span
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">email</span>
                         </div>
                     </div>
 
                     <!-- Full Name -->
                     <div class="mb-4">
                         <div class="relative">
-                            <input type="text" id="fullName" placeholder="Full Name*" class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
-                            <span class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">person</span>
+                            <input type="text" id="fullName" placeholder="Full Name*"
+                                class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
+                            <span
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">person</span>
                         </div>
                     </div>
 
                     <!-- Password -->
                     <div class="mb-4">
                         <div class="relative">
-                            <input type="password" id="password" placeholder="Password*" class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
-                            <span class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">lock</span>
+                            <input type="password" id="password" placeholder="Password*"
+                                class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
+                            <span
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">lock</span>
                         </div>
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="mb-6">
                         <div class="relative">
-                            <input type="password" id="confirmPassword" placeholder="Confirm Password*" class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
-                            <span class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">lock</span>
+                            <input type="password" id="confirmPassword" placeholder="Confirm Password*"
+                                class="py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10 pl-4">
+                            <span
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">lock</span>
                         </div>
                     </div>
 
                     <!-- Create Account Button -->
-                    <button type="submit" class="w-full bg-blue-900 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-200">Create an Account</button>
+                    <button type="submit"
+                        class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-opacity-90 transition duration-200">Create
+                        an Account</button>
                 </form>
 
                 <!-- Already have an account -->
                 <p class="text-center text-gray-500 mt-4">
-                    Already have an account? <a href="#" class="text-blue-500 hover:underline">Log in</a>
+                    Already have an account? <a href="login.html" class="text-blue-500 hover:underline">Log in</a>
                 </p>
             </div>
         </div>
     </div>
 
 </body>
+
 </html>

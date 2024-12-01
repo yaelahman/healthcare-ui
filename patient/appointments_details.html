@@ -121,69 +121,33 @@
                     </div>
                 </div>
             </div>
-            <!-- Top Bar with Menu Button -->
-            <!-- Dashboard Content -->
             <div id="patient_add" class="tab-content">
 
-                <div class="flex justify-between mb-4 w-full">
-                    <div class="grid lg:grid-cols-5 grid-cols-1 gap-4 mb-4 w-full">
-                        <div class="bg-white p-3 rounded-2xl col-span-2">
-                            <div class="flex gap-3">
-                                <div class="relative">
-                                    <img src="../assets/images/johnson.png" class="rounded-xl h-20" alt="">
-                                    <div
-                                        class="absolute cursor-pointer bg-white h-5 w-5 right-1 bottom-2 text-center rounded-full">
-                                        <i class="material-icons text-gray-500 text-sm cursor-pointer">edit</i>
-                                    </div>
-                                </div>
-                                <div class="text-start">
-                                    <h6 class="text-2xl text-darkBlue font-medium">Henry Johnson</h6>
-                                    <div class="flex gap-1 ">
-                                        <span>Date of Birth :</span>
-                                        <span class="text-muted">May 20, 2000</span>
-                                    </div>
-                                    <div class="flex gap-1 ">
-                                        <span>Last Visit :</span>
-                                        <span class="text-muted">August 12, 2025 - 2:00PM</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-3 rounded-2xl col-span-2">
-                            <div class="flex gap-3">
-                                <div class="text-start w-full">
-                                    <div class="flex justify-between mb-2">
-                                        <h6 class="font-medium text-lg">Next Appointment: </h6>
-                                        <a href="" class="text-darkBlue text-sm">Request to Edit</a>
-                                    </div>
-                                    <table class=" w-full text-wrap">
-                                        <tr>
-                                            <td>Date:</td>
-                                            <td>Time:</td>
-                                            <td>Doctor:</td>
-                                            <td>Reason or Disease:</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-muted">August 21, 2024</td>
-                                            <td class="text-muted">12:00PM</td>
-                                            <td class="text-muted">John Smith</td>
-                                            <td class="text-muted">Jaundice</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col gap-1"><button
-                                class="px-8 py-3 text-sm bg-primary border border-primary rounded-full text-white hover:bg-primary hover:text-white transition-all duration-150">Save
-                                Changes</button>
-                            <button
-                                class="px-8 py-3 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
 
-
+                <div class="flex justify-between mb-4">
+                    <div class="flex gap-2">
+                        <div>
+                            <div class="bg-white rounded-full p-2 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
+                                onclick="goBack()">
+                                <i class="material-icons">chevron_left</i>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="flex justify-end mb-4 gap-2">
+
+                        <button
+                            class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
+                        <button onclick="openModal('modalTemplate')"
+                            class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Save
+                            & Next</button>
+                    </div>
                 </div>
-                <div class="bg-white rounded-2xl px-3 py-3">
+                <div class="bg-white shadow-md rounded-2xl pb-4">
+                    <div
+                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
+                        <h2 class="text-lg font-medium">Add Your Details</h2>
+                    </div>
 
                     <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
                         <div class="p-4">
@@ -256,6 +220,38 @@
         </div>
     </div>
 
+    <!-- Modal Template -->
+    <div id="modalTemplate"
+        class="modal overflow-y-auto fixed inset-0 flex items-start justify-center bg-black bg-opacity-50 transition-opacity duration-300 ease-out opacity-100 hidden"
+        onclick="closeModal(event)">
+        <div class="lg:my-20 md:my-20 my-10 lg:min-w-[400px] min-w-[8%] bg-white rounded-2xl overflow-hidden shadow-xl transform transition-transform duration-300 ease-out sm:max-w-lg sm:w-full translate-y-[-100%]"
+            onclick="event.stopPropagation()">
+            <div class="bg-white">
+                <div class="bg-white flex justify-between items-center px-4 py-3 pb-0">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modalTitle">
+                        Hey!
+                    </h3>
+                    <button onclick="closeModal(event)" class="text-gray-500 hover:text-gray-700">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+                <div class="px-4 pb-4 sm:pb-4">
+                    <h1 class="text-success font-semibold 2xl:text-3xl text-xl">Henry Johnson</h1>
+                    <p class="text-muted leading-1 py-2 text-sm">As You are Requesting to Schedule your First
+                        appointment, So
+                        We
+                        request to fill some of your
+                        Personal, Health and Medicals Records. </p>
+                    <div class="flex justify-end pt-4">
+                        <button
+                            class="bg-white text-danger px-8 py-2 rounded-full text-sm font-light transition-all duration-150">Skip</button>
+                        <button
+                            class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Chart.js Script for Analytics -->
     <script src="../assets/js/chart_patient.js?v=1.0.11"></script>

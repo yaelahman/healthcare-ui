@@ -52,6 +52,7 @@ function getActiveClass(tabElement) {
 
     // Add 'active' class to the clicked tab
     console.log(tabElement)
+    document.getElementById(`tab-${tabElement.split('_')[0]}`).classList.add('active');
     document.getElementById(`tab-${tabElement}`).classList.add('active');
 
     // Hide all tab content sections
@@ -95,6 +96,10 @@ window.onresize = function () {
         // mainContent.classList.remove('main-content-expanded');
     }
 };
+
+function goBack() {
+    window.history.back();
+}
 
 setTimeout(() => {
     window.onresize();

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPro Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for the analytics chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--to show percentage on Doughnut  -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../assets/css/style.css?v=1.0.11" rel="stylesheet">
+
+    <script src="../assets/js/script.js?v=1.0.11"></script>
+</head>
+
+<body class="bg-gray-100">
+    <div class="min-h-screen flex transition-all">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-visible transition-all text-white p-4 sidebar"
+            style="background-color: rgb(23 37 78);">
+            <div class="flex items-center justify-center mb-6 bg-white text-primary rounded-xl h-24">
+                <img src="../assets/images/LogoIcon.png" alt="Logo" class="mr-3">
+                <h2 class="text-2xl font-bold sidebar-text">MEDAIPRO</h2>
+                <button class="material-icons text-3xl cursor-pointer block md:hidden"
+                    onclick="toggleSidebar()">close</button>
+            </div>
+            <ul>
+                <li id="tab-dashboard" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/index')">
+                    <img src="../assets/icons/Dashboard.svg" alt="">
+                    <span class="ml-2 sidebar-text">Dashboard</span>
+                </li>
+                <li id="tab-appointments" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/appointments')">
+                    <img src="../assets/icons/Appointments.svg" alt="">
+                    <span class="ml-2 sidebar-text">Appointments</span>
+                </li>
+                <li id="tab-health_profile" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/health_profile')">
+                    <img src="../assets/icons/Health Profile.svg" alt="">
+                    <span class="ml-2 sidebar-text">Health Profile</span>
+                </li>
+                <li id="tab-medical_records" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/medical_records')">
+                    <img src="../assets/icons/Medical Records.svg" alt="">
+                    <span class="ml-2 sidebar-text">Medical Records</span>
+                </li>
+                <li id="tab-lab_results" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/lab_results')">
+                    <img src="../assets/icons/Labs Results.svg" alt="">
+                    <span class="ml-2 sidebar-text">Labs Results</span>
+                </li>
+                <li id="tab-prescriptions" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/prescriptions')">
+                    <img src="../assets/icons/Prescriptions.svg" alt="">
+                    <span class="ml-2 sidebar-text">Prescriptions</span>
+                </li>
+                <li id="tab-diagnosis_info" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/diagnosis_info')">
+                    <img src="../assets/icons/Diagnosis & Info.svg" alt="">
+                    <span class="ml-2 sidebar-text">Diagnosis & Info</span>
+                </li>
+                <li id="tab-documents" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/documents')">
+                    <img src="../assets/icons/Documents.svg" alt="">
+                    <span class="ml-2 sidebar-text">Documents</span>
+                </li>
+                <li id="tab-chat_support" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/chat_support')">
+                    <img src="../assets/icons/Chat Support.svg" alt="">
+                    <span class="ml-2 sidebar-text">Chat Support</span>
+                </li>
+                <li id="tab-billing_payments" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/billing_payments')">
+                    <img src="../assets/icons/Billing & Payments.svg" alt="">
+                    <span class="ml-2 sidebar-text">Billing & Payments</span>
+                </li>
+                <li id="tab-security" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/security')">
+                    <img src="../assets/icons/Security.svg" alt="">
+                    <span class="ml-2 sidebar-text">Security</span>
+                </li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <div id="main-content" class="main-content-collapsed transition-all bg-gray-100 p-0">
+            <div class="flex justify-between items-center mb-6 bg-white p-6 shadow ">
+                <div class="flex">
+                    <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer"
+                        onclick="toggleSidebar()">menu</span>
+                    <h1 class="text-2xl font-semibold text-[#585858]">Dashboard</h1>
+                </div>
+                <!-- Profile Section -->
+                <div class="flex items-center">
+                    <span class="material-icons notifications text-gray-500 mr-4 cursor-pointer">notifications</span>
+                    <div class="flex items-center space-x-4">
+                        <img src="../assets/images/flag.png" alt="flag" class="w-6 h-4">
+                        <div class="relative flex gap-2 bg-grey rounded-full p-1 pe-3">
+                            <img src="../assets/images/profile.png" onclick="toggleDropdownNavbar()" alt="profile"
+                                class="rounded-full w-6 h-6">
+                            <span
+                                class="text-gray-600 font-medium my-auto md:block hidden hover:bg-opacity-50 cursor-pointer"
+                                onclick="toggleDropdownNavbar()">Jennifer Perry</span>
+                            <div id="dropdownMenuNavbar"
+                                class="absolute hidden bg-white shadow-lg rounded-2xl mt-2 top-6 py-1">
+                                <a href="profile.html"
+                                    class="block px-4 py-1 text-gray-800 text-link hover:bg-gray-200 rounded-2xl">Personal
+                                    Details</a>
+                                <a href="#"
+                                    class="block px-4 py-1 text-gray-800 text-link hover:bg-gray-200 rounded-2xl">Change
+                                    Password</a>
+                                <a href="#"
+                                    class="block px-4 py-1 text-gray-800 text-link hover:bg-gray-200 rounded-2xl">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="patient_add" class="tab-content">
+
+
+                <div class="flex justify-between mb-4">
+                    <div class="flex gap-2">
+                        <div>
+                            <div class="bg-white rounded-full p-2 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
+                                onclick="goBack()">
+                                <i class="material-icons">chevron_left</i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end mb-4 gap-2">
+
+                        <button
+                            class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
+                        <button
+                            class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Request
+                            to Schedule</button>
+                    </div>
+                </div>
+                <div class="bg-white shadow-md rounded-2xl pb-4">
+                    <div
+                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
+                        <h2 class="text-lg font-medium">Schedule New Appointment</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="visitDate" class="block text-nowrap my-auto">Appointment Date:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <input id="visitDate" type="date"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                                </div>
+                            </div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="disease" class="block text-nowrap my-auto">Disease:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <select id="disease"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                                        <option value="" disabled selected>Select Disease</option>
+                                        <!-- Add disease options here -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="doctor" class="block text-nowrap my-auto">Doctor Name:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <select id="doctor"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                                        <option value="" disabled selected>Select Doctor</option>
+                                        <option value="dr_smith">Dr. Smith</option>
+                                        <option value="dr_jones">Dr. Jones</option>
+                                        <option value="dr_williams">Dr. Williams</option>
+                                        <option value="dr_brown">Dr. Brown</option>
+                                        <option value="dr_johnson">Dr. Johnson</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="visitTime" class="block text-nowrap my-auto">Time:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <input id="visitTime" type="time"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                                </div>
+                            </div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="reasonsOfVisit" class="block text-nowrap mb-auto">Reason of Visit:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <textarea id="reasonsOfVisit"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-2xl"
+                                        placeholder="Enter Reason of Visit" rows="4" cols="30"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js Script for Analytics -->
+    <script src="../assets/js/chart_patient.js?v=1.0.11"></script>
+    <script src="../assets/js/function.js?v=1.0.11"></script>
+</body>
+
+</html>

@@ -13,9 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../assets/css/style.css?v=1.0.11" rel="stylesheet">
+    <link href="../assets/css/style.css?v=1.0.12" rel="stylesheet">
 
-    <script src="../assets/js/script.js?v=1.0.11"></script>
+    <script src="../assets/js/script.js?v=1.0.12"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -50,6 +50,11 @@
                     <img src="../assets/icons/Medical Records.svg" alt="">
                     <span class="ml-2 sidebar-text">Medical Records</span>
                 </li>
+                <li id="tab-medications" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/medications')">
+                    <img src="../assets/icons/Medications.svg" alt="">
+                    <span class="ml-2 sidebar-text">Medications</span>
+                </li>
                 <li id="tab-lab_results" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/lab_results')">
                     <img src="../assets/icons/Labs Results.svg" alt="">
@@ -70,11 +75,25 @@
                     <img src="../assets/icons/Documents.svg" alt="">
                     <span class="ml-2 sidebar-text">Documents</span>
                 </li>
-                <li id="tab-chat_support" class="tab active p-4 rounded cursor-pointer flex gap-2"
-                    onclick="changeTab('patient/chat_support')">
-                    <img src="../assets/icons/Chat Support.svg" alt="">
-                    <span class="ml-2 sidebar-text">Chat Support</span>
+                <li id="tab-chat_support" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-chat_support')">
+                    <i class="material-icons align-middle">chat</i>
+                    <span class="ml-2 sidebar-text">AI Support</span>
+                    <i class="material-icons ml-auto">expand_more</i>
                 </li>
+
+                <ul id="sub-tabs-chat_support" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patient/chat_ai')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">AI Chat Support</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patient_chat_with_agent')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Chat With Agent</a>
+                    </li>
+                </ul>
                 <li id="tab-billing_payments" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/billing_payments')">
                     <img src="../assets/icons/Billing & Payments.svg" alt="">
@@ -138,7 +157,7 @@
 
                         <button
                             class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
-                        <button onclick="openModal('modalTemplate')"
+                        <button onclick="window.location.href= 'appointments_details_2.html'"
                             class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Save
                             & Next</button>
                     </div>
@@ -149,8 +168,51 @@
                         <h2 class="text-lg font-medium">Add Your Details</h2>
                     </div>
 
+                    <div class="mx-auto pt-8 pb-4 2xl:max-w-[60%] md:max-w-[60%] max-w-[80%] relative mb-8">
+                        <div class="bg-gray-300 h-[1px] w-full relative">
+
+                            <div class="bg-primary w-[0%] h-[1px] absolute"></div>
+                        </div>
+                        <div class="absolute text-primary flex justify-between w-full">
+                            <div class="relative">
+                                <div
+                                    class="w-4 h-4 bg-white border-4 border-primary rounded-full outline outline-white absolute -top-[9px] ">
+                                </div>
+                                <h6 class="pt-3 text-center absolute md:-left-10 -left-4 md:text-nowrap text-body">
+                                    Personal
+                                    Details
+                                </h6>
+                            </div>
+
+                            <div class="relative">
+                                <div
+                                    class="w-4 h-4 bg-white border-4 border-gray-300 rounded-full outline outline-white absolute -top-[9px] ">
+                                </div>
+                                <h6 class="pt-3 text-center absolute md:-left-9 -left-4 md:text-nowrap text-gray-300">
+                                    Health
+                                    Records
+                                </h6>
+                            </div>
+                            <div class="relative">
+                                <div
+                                    class="w-4 h-4 bg-white border-4 border-gray-300 rounded-full outline outline-white absolute -top-[9px] ">
+                                </div>
+                                <h6 class="pt-3 text-center absolute -left-10 md:text-nowrap text-gray-300">Medical
+                                    Records
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 w-full pb-3 relative">
+                        <div class="bg-grey rounded-xl px-4 py-2">
+                            <span class="text-header">
+                                • Personal Details
+                            </span>
+                        </div>
+                    </div>
                     <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
-                        <div class="p-4">
+                        <div class="p-4 pt-0">
                             <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
                                 <label for="patientName" class="block text-nowrap my-auto">Patient's Name:</label>
                                 <div class="flex items-center w-full col-span-2">
@@ -220,42 +282,9 @@
         </div>
     </div>
 
-    <!-- Modal Template -->
-    <div id="modalTemplate"
-        class="modal overflow-y-auto fixed inset-0 flex items-start justify-center bg-black bg-opacity-50 transition-opacity duration-300 ease-out opacity-100 hidden"
-        onclick="closeModal(event)">
-        <div class="lg:my-20 md:my-20 my-10 lg:min-w-[400px] min-w-[8%] bg-white rounded-2xl overflow-hidden shadow-xl transform transition-transform duration-300 ease-out sm:max-w-lg sm:w-full translate-y-[-100%]"
-            onclick="event.stopPropagation()">
-            <div class="bg-white">
-                <div class="bg-white flex justify-between items-center px-4 py-3 pb-0">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modalTitle">
-                        Hey!
-                    </h3>
-                    <button onclick="closeModal(event)" class="text-gray-500 hover:text-gray-700">
-                        <i class="material-icons">close</i>
-                    </button>
-                </div>
-                <div class="px-4 pb-4 sm:pb-4">
-                    <h1 class="text-success font-semibold 2xl:text-3xl text-xl">Henry Johnson</h1>
-                    <p class="text-muted leading-1 py-2 text-sm">As You are Requesting to Schedule your First
-                        appointment, So
-                        We
-                        request to fill some of your
-                        Personal, Health and Medicals Records. </p>
-                    <div class="flex justify-end pt-4">
-                        <button
-                            class="bg-white text-danger px-8 py-2 rounded-full text-sm font-light transition-all duration-150">Skip</button>
-                        <button
-                            class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Next</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Chart.js Script for Analytics -->
-    <script src="../assets/js/chart_patient.js?v=1.0.11"></script>
-    <script src="../assets/js/function.js?v=1.0.11"></script>
+    <script src="../assets/js/chart_patient.js?v=1.0.12"></script>
+    <script src="../assets/js/function.js?v=1.0.12"></script>
 </body>
 
 </html>

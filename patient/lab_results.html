@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPro Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for the analytics chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--to show percentage on Doughnut  -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../assets/css/style.css?v=1.0.12" rel="stylesheet">
+
+    <script src="../assets/js/script.js?v=1.0.12"></script>
+</head>
+
+<body class="bg-gray-100">
+    <div class="min-h-screen flex transition-all">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-visible transition-all text-white p-4 sidebar"
+            style="background-color: rgb(23 37 78);">
+            <div class="flex items-center justify-center mb-6 bg-white text-primary rounded-xl h-24">
+                <img src="../assets/images/LogoIcon.png" alt="Logo" class="mr-3">
+                <h2 class="text-2xl font-bold sidebar-text">MEDAIPRO</h2>
+                <button class="material-icons text-3xl cursor-pointer block md:hidden"
+                    onclick="toggleSidebar()">close</button>
+            </div>
+            <ul>
+                <li id="tab-dashboard" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/index')">
+                    <img src="../assets/icons/Dashboard.svg" alt="">
+                    <span class="ml-2 sidebar-text">Dashboard</span>
+                </li>
+                <li id="tab-appointments" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/appointments')">
+                    <img src="../assets/icons/Appointments.svg" alt="">
+                    <span class="ml-2 sidebar-text">Appointments</span>
+                </li>
+                <li id="tab-health_profile" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/health_profile')">
+                    <img src="../assets/icons/Health Profile.svg" alt="">
+                    <span class="ml-2 sidebar-text">Health Profile</span>
+                </li>
+                <li id="tab-medical_records" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/medical_records')">
+                    <img src="../assets/icons/Medical Records.svg" alt="">
+                    <span class="ml-2 sidebar-text">Medical Records</span>
+                </li>
+                <li id="tab-medications" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/medications')">
+                    <img src="../assets/icons/Medications.svg" alt="">
+                    <span class="ml-2 sidebar-text">Medications</span>
+                </li>
+                <li id="tab-lab_results" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/lab_results')">
+                    <img src="../assets/icons/Labs Results.svg" alt="">
+                    <span class="ml-2 sidebar-text">Labs Results</span>
+                </li>
+                <li id="tab-prescriptions" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/prescriptions')">
+                    <img src="../assets/icons/Prescriptions.svg" alt="">
+                    <span class="ml-2 sidebar-text">Prescriptions</span>
+                </li>
+                <li id="tab-diagnosis_info" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/diagnosis_info')">
+                    <img src="../assets/icons/Diagnosis & Info.svg" alt="">
+                    <span class="ml-2 sidebar-text">Diagnosis & Info</span>
+                </li>
+                <li id="tab-documents" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/documents')">
+                    <img src="../assets/icons/Documents.svg" alt="">
+                    <span class="ml-2 sidebar-text">Documents</span>
+                </li>
+                <li id="tab-chat_support" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-chat_support')">
+                    <i class="material-icons align-middle">chat</i>
+                    <span class="ml-2 sidebar-text">AI Support</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+
+                <ul id="sub-tabs-chat_support" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patient/chat_ai')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">AI Chat Support</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patient_chat_with_agent')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Chat With Agent</a>
+                    </li>
+                </ul>
+                <li id="tab-billing_payments" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/billing_payments')">
+                    <img src="../assets/icons/Billing & Payments.svg" alt="">
+                    <span class="ml-2 sidebar-text">Billing & Payments</span>
+                </li>
+                <li id="tab-security" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/security')">
+                    <img src="../assets/icons/Security.svg" alt="">
+                    <span class="ml-2 sidebar-text">Security</span>
+                </li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <div id="main-content" class="main-content-collapsed transition-all bg-gray-100 p-0">
+            <div class="flex justify-between items-center mb-6 bg-white p-6 shadow ">
+                <div class="flex">
+                    <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer"
+                        onclick="toggleSidebar()">menu</span>
+                    <h1 class="text-2xl font-semibold text-[#585858]">Dashboard</h1>
+                </div>
+                <!-- Profile Section -->
+                <div class="flex items-center">
+                    <span class="material-icons notifications text-gray-500 mr-4 cursor-pointer">notifications</span>
+                    <div class="flex items-center space-x-4">
+                        <img src="../assets/images/flag.png" alt="flag" class="w-6 h-4">
+                        <div class="relative flex gap-2 bg-grey rounded-full p-1 pe-3">
+                            <img src="../assets/images/profile.png" onclick="toggleDropdownNavbar()" alt="profile"
+                                class="rounded-full w-6 h-6">
+                            <span
+                                class="text-gray-600 font-medium my-auto md:block hidden hover:bg-opacity-50 cursor-pointer"
+                                onclick="toggleDropdownNavbar()">Jennifer Perry</span>
+                            <div id="dropdownMenuNavbar"
+                                class="absolute hidden bg-white shadow-lg rounded-2xl mt-2 top-6 py-1">
+                                <a href="profile.html"
+                                    class="block px-4 py-1 text-gray-800 text-link hover:bg-gray-200 rounded-2xl">Personal
+                                    Details</a>
+                                <a href="#"
+                                    class="block px-4 py-1 text-gray-800 text-link hover:bg-gray-200 rounded-2xl">Change
+                                    Password</a>
+                                <a href="#"
+                                    class="block px-4 py-1 text-gray-800 text-link hover:bg-gray-200 rounded-2xl">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Top Bar with Menu Button -->
+            <!-- Dashboard Content -->
+            <div id="lab_results" class="tab-content">
+                <div class="mb-3 grid grid-cols-1 md:grid-cols-3 md:gap-4">
+                    <div class="mb-3">
+                        <label for="search">Search</label>
+                        <div class="relative mt-2">
+                            <input type="text" placeholder="Search by Test"
+                                class="w-full rounded-full pe-4 ps-10 py-3 border-grey focus:outline-grey2">
+                            <span
+                                class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">search</span>
+
+                            <button
+                                class="absolute right-2 top-[6px] px-5 2xl:py-2 py-1 text-sm rounded-full text-white bg-primary ">Search</button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="search">Select by Lab Name</label>
+                        <div class="relative mt-2 text-muted">
+                            <select
+                                class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
+                                <option value="" disabled selected>Search by Lab Name</option>
+                                <!-- Add options here -->
+                            </select>
+                            <i
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">arrow_drop_down</i>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="search">Select by Doctor Name</label>
+                        <div class="relative mt-2 text-muted">
+                            <select
+                                class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
+                                <option value="" disabled selected>Search by Doctor Name</option>
+                                <!-- Add options here -->
+                            </select>
+                            <i
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">arrow_drop_down</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white shadow-md rounded-2xl pb-4">
+                    <div
+                        class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                        <h2 class="text-lg font-medium">Lab Reports</h2>
+                        <div class="text-end inline-block">
+                            <span class="text-muted">Total 1460 Lab Results Found</span>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white overflow-x-auto text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Report Name</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Test Date & Time</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Lab Name</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Doctor Name</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Uploaded On</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-body">
+                                <tr>
+                                    <td class="py-2 px-4 border-b">X-Ray</td>
+                                    <td class="py-2 px-4 border-b">August 15, 2024</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex items-center cursor-pointer">
+                                            <img src="../assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div class="text-start">
+                                                <p>John Doe</p>
+                                                <!-- <span class="text-muted">#12345678</span> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex items-center cursor-pointer">
+                                            <img src="../assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div class="text-start">
+                                                <p>Michael Johnson</p>
+                                                <!-- <span class="text-muted">#34567890</span> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">N/A</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex justify-between">
+                                            <button
+                                                class="disabled:opacity-30 disabled:pointer-events-none px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Download
+                                                Report</button>
+                                            <div class="float-right relative">
+                                                <button class="px-3 py-1">
+                                                    <i class="material-icons">more_vert</i>
+                                                </button>
+                                                <div
+                                                    class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">MRI Scan</td>
+                                    <td class="py-2 px-4 border-b">September 20, 2024</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex items-center cursor-pointer">
+                                            <img src="../assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div class="text-start">
+                                                <p>Emily Davis</p>
+                                                <!-- <span class="text-muted">#45678901</span> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex items-center cursor-pointer">
+                                            <img src="../assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div class="text-start">
+                                                <p>Jessica Taylor</p>
+                                                <!-- <span class="text-muted">#67890123</span> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">N/A</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex justify-between">
+                                            <button
+                                                class="disabled:opacity-30 disabled:pointer-events-none px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Download
+                                                Report</button>
+                                            <div class="float-right relative">
+                                                <button class="px-3 py-1">
+                                                    <i class="material-icons">more_vert</i>
+                                                </button>
+                                                <div
+                                                    class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">CT Scan</td>
+                                    <td class="py-2 px-4 border-b">October 5, 2024</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex items-center cursor-pointer">
+                                            <img src="../assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div class="text-start">
+                                                <p>David Wilson</p>
+                                                <!-- <span class="text-muted">#78901234</span> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex items-center cursor-pointer">
+                                            <img src="../assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div class="text-start">
+                                                <p>Robert Garcia</p>
+                                                <!-- <span class="text-muted">#90123456</span> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">N/A</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex justify-between">
+                                            <button
+                                                class="disabled:opacity-30 disabled:pointer-events-none px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Download
+                                                Report</button>
+                                            <div class="float-right relative">
+                                                <button class="px-3 py-1">
+                                                    <i class="material-icons">more_vert</i>
+                                                </button>
+                                                <div
+                                                    class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">Urine Test</td>
+                                    <td class="py-2 px-4 border-b">November 12, 2024</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex items-center cursor-pointer">
+                                            <img src="../assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div class="text-start">
+                                                <p>Patricia Lee</p>
+                                                <!-- <span class="text-muted">#01234567</span> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex items-center cursor-pointer">
+                                            <img src="../assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div class="text-start">
+                                                <p>Daniel Harris</p>
+                                                <!-- <span class="text-muted">#23456789</span> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">N/A</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex justify-between">
+                                            <button
+                                                class="disabled:opacity-30 disabled:pointer-events-none px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Download
+                                                Report</button>
+                                            <div class="float-right relative">
+                                                <button class="px-3 py-1">
+                                                    <i class="material-icons">more_vert</i>
+                                                </button>
+                                                <div
+                                                    class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="flex justify-end items-center mt-4 mx-4">
+                            <div class="space-x-1">
+                                <span>Page</span>
+                                <button
+                                    class="px-4 border border-muted rounded-full text-muted hover:bg-muted hover:text-white transition-all duration-150">1</button>
+                                <span>of 100</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Chart.js Script for Analytics -->
+    <script src="../assets/js/chart_patient.js?v=1.0.12"></script>
+    <script src="../assets/js/function.js?v=1.0.12"></script>
+</body>
+
+</html>

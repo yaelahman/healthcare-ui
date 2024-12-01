@@ -13,9 +13,9 @@
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   <link href="../assets/css/style.css?v=1.0.11" rel="stylesheet">
+   <link href="../assets/css/style.css?v=1.0.12" rel="stylesheet">
 
-   <script src="../assets/js/script.js?v=1.0.11"></script>
+   <script src="../assets/js/script.js?v=1.0.12"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -70,11 +70,25 @@
                <img src="../assets/icons/Documents.svg" alt="">
                <span class="ml-2 sidebar-text">Documents</span>
             </li>
-            <li id="tab-chat_support" class="tab active p-4 rounded cursor-pointer flex gap-2"
-               onclick="changeTab('patient/chat_support')">
-               <img src="../assets/icons/Chat Support.svg" alt="">
-               <span class="ml-2 sidebar-text">Chat Support</span>
+            <li id="tab-chat_support" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+               onclick="toggleSubTabs('sub-tabs-chat_support')">
+               <i class="material-icons align-middle">chat</i>
+               <span class="ml-2 sidebar-text">AI Support</span>
+               <i class="material-icons ml-auto">expand_more</i>
             </li>
+
+            <ul id="sub-tabs-chat_support" class="hidden pl-6 space-y-2">
+               <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                  onclick="changeTab('patient/chat_ai')">
+                  <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                  <a href="#" class="text-sm sidebar-text">AI Chat Support</a>
+               </li>
+               <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                  onclick="changeTab('patient_chat_with_agent')">
+                  <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                  <a href="#" class="text-sm sidebar-text">Chat With Agent</a>
+               </li>
+            </ul>
             <li id="tab-billing_payments" class="tab active p-4 rounded cursor-pointer flex gap-2"
                onclick="changeTab('patient/billing_payments')">
                <img src="../assets/icons/Billing & Payments.svg" alt="">
@@ -748,8 +762,8 @@
 
 
    <!-- Chart.js Script for Analytics -->
-   <script src="../assets/js/chart_patient.js?v=1.0.11"></script>
-   <script src="../assets/js/function.js?v=1.0.11"></script>
+   <script src="../assets/js/chart_patient.js?v=1.0.12"></script>
+   <script src="../assets/js/function.js?v=1.0.12"></script>
 </body>
 
 </html>

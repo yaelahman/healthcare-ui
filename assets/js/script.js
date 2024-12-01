@@ -52,8 +52,10 @@ function getActiveClass(tabElement) {
 
     // Add 'active' class to the clicked tab
     console.log(tabElement)
-    document.getElementById(`tab-${tabElement.split('_')[0]}`).classList.add('active');
-    document.getElementById(`tab-${tabElement}`).classList.add('active');
+    if (document.getElementById(`tab-${tabElement.split('_')[0]}`))
+        document.getElementById(`tab-${tabElement.split('_')[0]}`).classList.add('active');
+    if (document.getElementById(`tab-${tabElement}`))
+        document.getElementById(`tab-${tabElement}`).classList.add('active');
 
     // Hide all tab content sections
     document.querySelectorAll('.tab-content').forEach(tabContent => {

@@ -8,9 +8,16 @@ function toggleDropdown2() {
     const menu = document.getElementById('dropdownMenu2');
     menu.classList.toggle('hidden');
 }
+// Toggle dropdown visibility
+function toggleDropdownNavbar() {
+    const menu = document.getElementById('dropdownMenuNavbar');
+    menu.classList.toggle('hidden');
+}
 
 document.getElementById('dropdownButton').addEventListener('click', toggleDropdown);
 document.getElementById('dropdownButton2').addEventListener('click', toggleDropdown2);
+document.getElementById('dropdownButtonNavbar').addEventListener('click', toggleDropdownNavbar);
+
 
 function showPopup(popupId) {
     document.getElementById(popupId).style.display = 'flex';

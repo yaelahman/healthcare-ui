@@ -51,6 +51,7 @@ function getActiveClass(tabElement) {
     });
 
     // Add 'active' class to the clicked tab
+    console.log(tabElement)
     document.getElementById(`tab-${tabElement}`).classList.add('active');
 
     // Hide all tab content sections
@@ -63,7 +64,8 @@ function getActiveClass(tabElement) {
     document.getElementById(tabElement).classList.remove('hidden');
 }
 
-const page = window.location.pathname.split('/')[1]
+let page = window.location.pathname.split('/')[1]
+if (page == 'patient') page = window.location.pathname.split('/')[2]
 if (page && page != 'index.html') {
     setTimeout(() => {
         getActiveClass(page.replace('.html', ''))

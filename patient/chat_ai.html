@@ -65,6 +65,7 @@
                     <img src="../assets/icons/Prescriptions.svg" alt="">
                     <span class="ml-2 sidebar-text">Prescriptions</span>
                 </li>
+
                 <li id="tab-diagnosis_info" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-diagnosis')">
                     <img src="../assets/icons/Diagnosis & Info.svg" alt="">
@@ -154,147 +155,138 @@
                     </div>
                 </div>
             </div>
-            <div id="patient_add" class="tab-content">
 
+            <div id="recordings" class="tab-content">
 
-                <div class="flex justify-between mb-4">
-                    <div class="flex gap-2">
-                        <div>
-                            <div class="bg-white rounded-full p-2 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
-                                onclick="goBack()">
-                                <i class="material-icons">chevron_left</i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-end mb-4 gap-2">
-
-                        <button
-                            class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
-                        <button onclick="window.location.href= 'appointments_details_2.html'"
-                            class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Save
-                            & Next</button>
-                    </div>
-                </div>
-                <div class="bg-white shadow-md rounded-2xl pb-4">
-                    <div
-                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
-                        <h2 class="text-lg font-medium">Add Your Details</h2>
-                    </div>
-
-                    <div class="mx-auto pt-8 pb-4 2xl:max-w-[60%] md:max-w-[60%] max-w-[80%] relative mb-8">
-                        <div class="bg-gray-300 h-[1px] w-full relative">
-
-                            <div class="bg-primary w-[0%] h-[1px] absolute"></div>
-                        </div>
-                        <div class="absolute text-primary flex justify-between w-full">
-                            <div class="relative">
-                                <div
-                                    class="w-4 h-4 bg-white border-4 border-primary rounded-full outline outline-white absolute -top-[9px] ">
-                                </div>
-                                <h6 class="pt-3 text-center absolute md:-left-10 -left-4 md:text-nowrap text-body">
-                                    Personal
-                                    Details
-                                </h6>
-                            </div>
-
-                            <div class="relative">
-                                <div
-                                    class="w-4 h-4 bg-white border-4 border-gray-300 rounded-full outline outline-white absolute -top-[9px] ">
-                                </div>
-                                <h6 class="pt-3 text-center absolute md:-left-9 -left-4 md:text-nowrap text-gray-300">
-                                    Health
-                                    Records
-                                </h6>
+                <div class="grid md:gap-4 md:grid-cols-3 grid-cols-1">
+                    <div class="bg-white rounded-[20px] shadow-lg mb-4 flex flex-col">
+                        <!-- Recordings -->
+                        <div class=" h-full">
+                            <div
+                                class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
+                                <h2 class="text-lg font-medium">Chat History</h2>
                             </div>
                             <div class="relative">
                                 <div
-                                    class="w-4 h-4 bg-white border-4 border-gray-300 rounded-full outline outline-white absolute -top-[9px] ">
+                                    class="flex justify-content-between border-b px-3 pt-4 pb-2 cursor-pointer hover:bg-black hover:bg-opacity-[0.1]">
+                                    <div class="flex gap-2 w-full">
+                                        <span
+                                            class="inline-block bg-danger text-primary bg-grey rounded-full p-1 px-2 h-8 w-8 flex items-center justify-center">
+                                            <i class="material-icons text-sm">chat</i>
+                                        </span>
+                                        <div class="text-medium text-start">
+                                            <p class="leading-none">Advanced Pharmacology and Drug Management</p>
+                                            <span class="text-muted text-sm">Just Now</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h6 class="pt-3 text-center absolute -left-10 md:text-nowrap text-gray-300">Medical
-                                    Records
-                                </h6>
+                                <div
+                                    class="flex justify-content-between border-b px-3 pt-4 pb-2 cursor-pointer hover:bg-black hover:bg-opacity-[0.1]">
+                                    <div class="flex gap-2 w-full">
+                                        <span
+                                            class="inline-block bg-danger text-primary bg-grey rounded-full p-1 px-2 h-8 w-8 flex items-center justify-center">
+                                            <i class="material-icons text-sm">chat</i>
+                                        </span>
+                                        <div class="text-medium text-start">
+                                            <p class="leading-none">Advanced Pharmacology and Drug Management</p>
+                                            <span class="text-muted text-sm">Just Now</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex justify-content-between border-b px-3 pt-4 pb-2 cursor-pointer hover:bg-black hover:bg-opacity-[0.1]">
+                                    <div class="flex gap-2 w-full">
+                                        <span
+                                            class="inline-block bg-danger text-primary bg-grey rounded-full p-1 px-2 h-8 w-8 flex items-center justify-center">
+                                            <i class="material-icons text-sm">chat</i>
+                                        </span>
+                                        <div class="text-medium text-start">
+                                            <p class="leading-none">Advanced Pharmacology and Drug Management</p>
+                                            <span class="text-muted text-sm">Just Now</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex justify-content-between border-b px-3 pt-4 pb-2 cursor-pointer hover:bg-black hover:bg-opacity-[0.1]">
+                                    <div class="flex gap-2 w-full">
+                                        <span
+                                            class="inline-block bg-danger text-primary bg-grey rounded-full p-1 px-2 h-8 w-8 flex items-center justify-center">
+                                            <i class="material-icons text-sm">chat</i>
+                                        </span>
+                                        <div class="text-medium text-start">
+                                            <p class="leading-none">Advanced Pharmacology and Drug Management</p>
+                                            <span class="text-muted text-sm">Just Now</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="p-3">
+                            <button
+                                class="bg-primary w-full border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Start
+                                New Conversation</button>
+                        </div>
                     </div>
+                    <!-- Recordings Output -->
+                    <div class="bg-white rounded-[20px] shadow-lg mb-4 col-span-2">
+                        <div
+                            class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
+                            <h2 class="text-lg font-medium">AI Chat Support Agent</h2>
+                        </div>
+                        <div class="p-4 min-h-96">
+                            <div class="mb-6 flex gap-2">
+                                <div class="bg-primary px-3 py-2 text-white h-[40px] w-[40px] text-center rounded-full">
+                                    <span>AI</span>
+                                </div>
+                                <div class="bg-grey text-body p-4 rounded-2xl max-w-lg">
+                                    Hi!, I am your AI Chat support agent, How can I help you ?
+                                </div>
+                            </div>
+                            <div class="mb-6 flex gap-2 flex-row-reverse">
+                                <div class="bg-primary px-3 py-2 text-white h-[40px] w-[40px] text-center rounded-full">
+                                    <span>JP</span>
+                                </div>
+                                <div class="bg-grey text-body p-4 rounded-2xl max-w-lg">
+                                    What are the latest advancements in biologics for autoimmune diseases like
+                                    rheumatoid arthritis or psoriasis?
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3">
 
-                    <div class="p-4 w-full pb-3 relative">
-                        <div class="bg-grey rounded-xl px-4 py-2">
-                            <span class="text-header">
-                                • Personal Details
-                            </span>
-                        </div>
-                    </div>
-                    <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
-                        <div class="p-4 pt-0">
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="patientName" class="block text-nowrap my-auto">Patient's Name:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="patientName" type="text" value="Henry Johnson"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        placeholder="Enter Patient's Name">
+                            <div class="flex gap-2">
+                                <div class="relative w-full">
+                                    <input id="patientName" type="text"
+                                        class="focus:outline-none w-full mt-1 px-14 py-3 bg-grey text-muted border rounded-full"
+                                        placeholder="Type a message">
+                                    <div class="absolute left-1 top-2">
+                                        <button class="bg-white rounded-full p-2 pb-1 transform rotate-45">
+                                            <i class="material-icons text-body">attach_file</i>
+                                        </button>
+                                    </div>
+                                    <div class="absolute right-2 top-2">
+                                        <button class="rounded-full p-2 pb-1">
+                                            <i class="material-icons text-body">mic</i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="relative pt-1">
+                                    <button
+                                        class="bg-primary w-full px-3 py-2 border border-primary text-white rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">
+
+                                        <i class="material-icons">send</i>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="gender" class="block text-nowrap my-auto">Gender:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <select id="gender"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full">
-                                        <option value="" disabled selected>Male</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="dob" class="block text-nowrap my-auto">Date of Birth:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="dob" type="date"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        value="2024-11-20" placeholder="Enter Date of Birth">
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="nationality" class="block text-nowrap my-auto">Nationality:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <select id="nationality"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full">
-                                        <option value="" disabled selected>Indian</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="email" class="block text-nowrap my-auto">Email:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="email" type="email"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        value="yaelahman0810@gmail.com" placeholder="Enter Email">
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="mobile" class="block text-nowrap my-auto">Mobile Number:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="mobile" type="text"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        value="+91 86500-65231" placeholder="Enter Mobile Number">
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="patientAddress" class="block text-nowrap mb-auto mt-3">Residental
-                                    Address:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <textarea id="patientAddress"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-2xl"
-                                        placeholder="Enter Address" rows="6"
-                                        cols="30">867 Shemika Trail, South Rosalbaborough, AR 84252-6233</textarea>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- Chart.js Script for Analytics -->
     <script src="../assets/js/chart_patient.js?v=1.0.13"></script>

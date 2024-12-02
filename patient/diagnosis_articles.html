@@ -65,6 +65,7 @@
                     <img src="../assets/icons/Prescriptions.svg" alt="">
                     <span class="ml-2 sidebar-text">Prescriptions</span>
                 </li>
+
                 <li id="tab-diagnosis_info" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-diagnosis')">
                     <img src="../assets/icons/Diagnosis & Info.svg" alt="">
@@ -103,7 +104,7 @@
                         <a href="#" class="text-sm sidebar-text">AI Chat Support</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
-                        onclick="changeTab('patient_chat_with_agent')">
+                        onclick="changeTab('patient/chat_agent')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
                         <a href="#" class="text-sm sidebar-text">Chat With Agent</a>
                     </li>
@@ -154,123 +155,180 @@
                     </div>
                 </div>
             </div>
-            <div id="patient_add" class="tab-content">
+            <!-- Top Bar with Menu Button -->
+            <!-- Dashboard Content -->
+            <div id="diagnosis_articles" class="tab-content">
+                <div class="mb-3 grid grid-cols-1 md:grid-cols-3 md:gap-4">
+                    <div class="mb-3">
+                        <label for="search">Search</label>
+                        <div class="relative mt-2">
+                            <input type="text" placeholder="Search by Article Name"
+                                class="w-full rounded-full pe-4 ps-10 py-3 border-grey focus:outline-grey2">
+                            <span
+                                class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">search</span>
 
-
-                <div class="flex justify-between mb-4">
-                    <div class="flex gap-2">
-                        <div>
-                            <div class="bg-white rounded-full p-2 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
-                                onclick="goBack()">
-                                <i class="material-icons">chevron_left</i>
-                            </div>
+                            <button
+                                class="absolute right-2 top-[6px] px-5 2xl:py-2 py-1 text-sm rounded-full text-white bg-primary ">Search</button>
                         </div>
                     </div>
-
-                    <div class="flex justify-end mb-4 gap-2">
-
-                        <button
-                            class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
-                        <button onclick="openModal('modalTemplate')"
-                            class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Request
-                            to Schedule</button>
+                    <div class="mb-3">
+                        <label for="search">Filter by Article Category</label>
+                        <div class="relative mt-2 text-muted">
+                            <select
+                                class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
+                                <option value="" disabled selected>Ongoing</option>
+                                <!-- Add options here -->
+                            </select>
+                            <i
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">arrow_drop_down</i>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="search">Filter By Date</label>
+                        <div class="relative mt-2 text-muted">
+                            <input type="date" class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2">
+                            <i
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">calendar_today</i>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-white shadow-md rounded-2xl pb-4">
-                    <div
-                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
-                        <h2 class="text-lg font-medium">Schedule New Appointment</h2>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div>
-                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
-                                <label for="visitDate" class="block text-nowrap my-auto">Appointment Date:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="visitDate" type="date"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
-                                </div>
-                            </div>
-                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
-                                <label for="disease" class="block text-nowrap my-auto">Disease:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <select id="disease"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
-                                        <option value="" disabled selected>Select Disease</option>
-                                        <!-- Add disease options here -->
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
-                                <label for="doctor" class="block text-nowrap my-auto">Doctor Name:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <select id="doctor"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
-                                        <option value="" disabled selected>Select Doctor</option>
-                                        <option value="dr_smith">Dr. Smith</option>
-                                        <option value="dr_jones">Dr. Jones</option>
-                                        <option value="dr_williams">Dr. Williams</option>
-                                        <option value="dr_brown">Dr. Brown</option>
-                                        <option value="dr_johnson">Dr. Johnson</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                <div class="grid 2xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 gap-2">
 
-                        <div>
-                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
-                                <label for="visitTime" class="block text-nowrap my-auto">Time:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="visitTime" type="time"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
-                                </div>
-                            </div>
-                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
-                                <label for="reasonsOfVisit" class="block text-nowrap mb-auto">Reason of Visit:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <textarea id="reasonsOfVisit"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-2xl"
-                                        placeholder="Enter Reason of Visit" rows="4" cols="30"></textarea>
-                                </div>
-                            </div>
+                    <!-- Recordings Output -->
+                    <div class="bg-white rounded-[20px] shadow-lg p-3 space-y-1">
+                        <div class="p-0">
+                            <img class="h-46" src="../assets/images/image 1 (1).png" alt="">
                         </div>
+                        <div class="flex justify-between text-muted text-xs">
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                        </div>
+                        <h3 class="font-semibold 2xl:text-xl text-lg">
+                            Lorem, ipsum dolor.
+                        </h3>
+                        <button
+                            class="bg-primary border border-primary text-white px-4 py-1 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Read
+                            More</button>
                     </div>
+                    <div class="bg-white rounded-[20px] shadow-lg p-3 space-y-1">
+                        <div class="p-0">
+                            <img class="h-46" src="../assets/images/weak-young.png" alt="">
+                        </div>
+                        <div class="flex justify-between text-muted text-xs">
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                        </div>
+                        <h3 class="font-semibold 2xl:text-xl text-lg">
+                            Lorem, ipsum dolor.
+                        </h3>
+                        <button
+                            class="bg-primary border border-primary text-white px-4 py-1 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Read
+                            More</button>
+                    </div>
+                    <div class="bg-white rounded-[20px] shadow-lg p-3 space-y-1">
+                        <div class="p-0">
+                            <img class="h-46" src="../assets/images/weak-young.png" alt="">
+                        </div>
+                        <div class="flex justify-between text-muted text-xs">
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                        </div>
+                        <h3 class="font-semibold 2xl:text-xl text-lg">
+                            Lorem, ipsum dolor.
+                        </h3>
+                        <button
+                            class="bg-primary border border-primary text-white px-4 py-1 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Read
+                            More</button>
+                    </div>
+                    <div class="bg-white rounded-[20px] shadow-lg p-3 space-y-1">
+                        <div class="p-0">
+                            <img class="h-46" src="../assets/images/weak-young.png" alt="">
+                        </div>
+                        <div class="flex justify-between text-muted text-xs">
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                        </div>
+                        <h3 class="font-semibold 2xl:text-xl text-lg">
+                            Lorem, ipsum dolor.
+                        </h3>
+                        <button
+                            class="bg-primary border border-primary text-white px-4 py-1 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Read
+                            More</button>
+                    </div>
+                    <div class="bg-white rounded-[20px] shadow-lg p-3 space-y-1">
+                        <div class="p-0">
+                            <img class="h-46" src="../assets/images/weak-young.png" alt="">
+                        </div>
+                        <div class="flex justify-between text-muted text-xs">
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                        </div>
+                        <h3 class="font-semibold 2xl:text-xl text-lg">
+                            Lorem, ipsum dolor.
+                        </h3>
+                        <button
+                            class="bg-primary border border-primary text-white px-4 py-1 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Read
+                            More</button>
+                    </div>
+                    <div class="bg-white rounded-[20px] shadow-lg p-3 space-y-1">
+                        <div class="p-0">
+                            <img class="h-46" src="../assets/images/weak-young.png" alt="">
+                        </div>
+                        <div class="flex justify-between text-muted text-xs">
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                        </div>
+                        <h3 class="font-semibold 2xl:text-xl text-lg">
+                            Lorem, ipsum dolor.
+                        </h3>
+                        <button
+                            class="bg-primary border border-primary text-white px-4 py-1 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Read
+                            More</button>
+                    </div>
+                    <div class="bg-white rounded-[20px] shadow-lg p-3 space-y-1">
+                        <div class="p-0">
+                            <img class="h-46" src="../assets/images/weak-young.png" alt="">
+                        </div>
+                        <div class="flex justify-between text-muted text-xs">
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                        </div>
+                        <h3 class="font-semibold 2xl:text-xl text-lg">
+                            Lorem, ipsum dolor.
+                        </h3>
+                        <button
+                            class="bg-primary border border-primary text-white px-4 py-1 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Read
+                            More</button>
+                    </div>
+                    <div class="bg-white rounded-[20px] shadow-lg p-3 space-y-1">
+                        <div class="p-0">
+                            <img class="h-46" src="../assets/images/weak-young.png" alt="">
+                        </div>
+                        <div class="flex justify-between text-muted text-xs">
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                            <span class="text-xs">Category: Lorem Ipsum</span>
+                        </div>
+                        <h3 class="font-semibold 2xl:text-xl text-lg">
+                            Lorem, ipsum dolor.
+                        </h3>
+                        <button
+                            class="bg-primary border border-primary text-white px-4 py-1 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Read
+                            More</button>
+                    </div>
+                </div>
+
+                <div class="flex justify-center py-3 gap-2">
+                    <span class="text-primary">
+                        View More
+                    </span>
+                    <span class="material-icons">
+                        expand_more
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Template -->
-    <div id="modalTemplate"
-        class="modal overflow-y-auto fixed inset-0 flex items-start justify-center bg-black bg-opacity-50 transition-opacity duration-300 ease-out opacity-100 hidden"
-        onclick="closeModal(event)">
-        <div class="lg:my-20 md:my-20 my-10 lg:min-w-[400px] min-w-[8%] bg-white rounded-2xl overflow-hidden shadow-xl transform transition-transform duration-300 ease-out sm:max-w-lg sm:w-full translate-y-[-100%]"
-            onclick="event.stopPropagation()">
-            <div class="bg-white">
-                <div class="bg-white flex justify-between items-center px-4 py-3 pb-0">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modalTitle">
-                        Hey!
-                    </h3>
-                    <button onclick="closeModal(event)" class="text-gray-500 hover:text-gray-700">
-                        <i class="material-icons">close</i>
-                    </button>
-                </div>
-                <div class="px-4 pb-4 sm:pb-4">
-                    <h1 class="text-success font-semibold 2xl:text-3xl text-xl">Henry Johnson</h1>
-                    <p class="text-muted leading-1 py-2 text-sm">As You are Requesting to Schedule your First
-                        appointment, So
-                        We
-                        request to fill some of your
-                        Personal, Health and Medicals Records. </p>
-                    <div class="flex justify-end pt-4">
-                        <button
-                            class="bg-white text-danger px-8 py-2 rounded-full text-sm font-light transition-all duration-150">Skip</button>
-                        <button onclick="window.location.href = 'appointments_details.html'"
-                            class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Next</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Chart.js Script for Analytics -->
     <script src="../assets/js/chart_patient.js?v=1.0.12"></script>

@@ -65,6 +65,7 @@
                     <img src="../assets/icons/Prescriptions.svg" alt="">
                     <span class="ml-2 sidebar-text">Prescriptions</span>
                 </li>
+
                 <li id="tab-diagnosis_info" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-diagnosis')">
                     <img src="../assets/icons/Diagnosis & Info.svg" alt="">
@@ -154,147 +155,136 @@
                     </div>
                 </div>
             </div>
-            <div id="patient_add" class="tab-content">
+            <!-- Top Bar with Menu Button -->
+            <!-- Dashboard Content -->
+            <div id="diagnosis_info" class="tab-content">
+                <div class="mb-3 grid grid-cols-1 md:grid-cols-3 md:gap-4">
+                    <div class="mb-3">
+                        <label for="search">Search</label>
+                        <div class="relative mt-2">
+                            <input type="text" placeholder="Search by Diagnosis"
+                                class="w-full rounded-full pe-4 ps-10 py-3 border-grey focus:outline-grey2">
+                            <span
+                                class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">search</span>
 
-
-                <div class="flex justify-between mb-4">
-                    <div class="flex gap-2">
-                        <div>
-                            <div class="bg-white rounded-full p-2 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
-                                onclick="goBack()">
-                                <i class="material-icons">chevron_left</i>
-                            </div>
+                            <button
+                                class="absolute right-2 top-[6px] px-5 2xl:py-2 py-1 text-sm rounded-full text-white bg-primary ">Search</button>
                         </div>
                     </div>
-
-                    <div class="flex justify-end mb-4 gap-2">
-
-                        <button
-                            class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
-                        <button onclick="window.location.href= 'appointments_details_2.html'"
-                            class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Save
-                            & Next</button>
+                    <div class="mb-3">
+                        <label for="search">Filter by Treatment Status</label>
+                        <div class="relative mt-2 text-muted">
+                            <select
+                                class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
+                                <option value="" disabled selected>Ongoing</option>
+                                <!-- Add options here -->
+                            </select>
+                            <i
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">arrow_drop_down</i>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="search">Filter By Date</label>
+                        <div class="relative mt-2 text-muted">
+                            <input type="date" class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2">
+                            <i
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">calendar_today</i>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-white shadow-md rounded-2xl pb-4">
-                    <div
-                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
-                        <h2 class="text-lg font-medium">Add Your Details</h2>
-                    </div>
+                <div class="grid lg:grid-cols-3 grid-cols-1 gap-2">
 
-                    <div class="mx-auto pt-8 pb-4 2xl:max-w-[60%] md:max-w-[60%] max-w-[80%] relative mb-8">
-                        <div class="bg-gray-300 h-[1px] w-full relative">
-
-                            <div class="bg-primary w-[0%] h-[1px] absolute"></div>
-                        </div>
-                        <div class="absolute text-primary flex justify-between w-full">
-                            <div class="relative">
-                                <div
-                                    class="w-4 h-4 bg-white border-4 border-primary rounded-full outline outline-white absolute -top-[9px] ">
-                                </div>
-                                <h6 class="pt-3 text-center absolute md:-left-10 -left-4 md:text-nowrap text-body">
-                                    Personal
-                                    Details
-                                </h6>
-                            </div>
-
-                            <div class="relative">
-                                <div
-                                    class="w-4 h-4 bg-white border-4 border-gray-300 rounded-full outline outline-white absolute -top-[9px] ">
-                                </div>
-                                <h6 class="pt-3 text-center absolute md:-left-9 -left-4 md:text-nowrap text-gray-300">
-                                    Health
-                                    Records
-                                </h6>
-                            </div>
-                            <div class="relative">
-                                <div
-                                    class="w-4 h-4 bg-white border-4 border-gray-300 rounded-full outline outline-white absolute -top-[9px] ">
-                                </div>
-                                <h6 class="pt-3 text-center absolute -left-10 md:text-nowrap text-gray-300">Medical
-                                    Records
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-4 w-full pb-3 relative">
-                        <div class="bg-grey rounded-xl px-4 py-2">
-                            <span class="text-header">
-                                • Personal Details
-                            </span>
-                        </div>
-                    </div>
-                    <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
-                        <div class="p-4 pt-0">
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="patientName" class="block text-nowrap my-auto">Patient's Name:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="patientName" type="text" value="Henry Johnson"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        placeholder="Enter Patient's Name">
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="gender" class="block text-nowrap my-auto">Gender:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <select id="gender"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full">
-                                        <option value="" disabled selected>Male</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="dob" class="block text-nowrap my-auto">Date of Birth:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="dob" type="date"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        value="2024-11-20" placeholder="Enter Date of Birth">
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="nationality" class="block text-nowrap my-auto">Nationality:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <select id="nationality"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full">
-                                        <option value="" disabled selected>Indian</option>
-                                    </select>
-                                </div>
-                            </div>
+                    <!-- Recordings Output -->
+                    <div class="bg-white rounded-[20px] shadow-lg mb-4 col-span-2">
+                        <div
+                            class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] ">
+                            <h2 class="text-lg font-medium">Hypertension</h2>
                         </div>
                         <div class="p-4">
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="email" class="block text-nowrap my-auto">Email:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="email" type="email"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        value="yaelahman0810@gmail.com" placeholder="Enter Email">
+                            <div class="mb-3">
+                                <h3 class="2xl:text-md text-sm font-medium bg-grey px-3 py-2 rounded-lg mb-2">Condition
+                                    Overview
+                                </h3>
+                                <div class="px-2 text-black">
+
+                                    <ul class="ps-5 list-disc">
+                                        <li>
+                                            <strong>What is Hypertension?</strong> <br>
+                                            <p class="text-body">
+                                                Hypertension, or high blood pressure, is a condition where the force of
+                                                the blood against your artery walls is too high. If left untreated, it
+                                                can lead to heart disease or stroke.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <strong>How Does It Work?</strong> <br>
+                                            <p class="text-body">
+                                                Your heart pumps blood through your arteries. When this pressure becomes
+                                                too high, it puts extra strain on your heart and blood vessels, which
+                                                can lead to damage over time.
+                                            </p>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="mobile" class="block text-nowrap my-auto">Mobile Number:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="mobile" type="text"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        value="+91 86500-65231" placeholder="Enter Mobile Number">
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="patientAddress" class="block text-nowrap mb-auto mt-3">Residental
-                                    Address:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <textarea id="patientAddress"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-2xl"
-                                        placeholder="Enter Address" rows="6"
-                                        cols="30">867 Shemika Trail, South Rosalbaborough, AR 84252-6233</textarea>
+                            <div class="mb-3">
+                                <h3 class="2xl:text-md text-sm font-medium bg-grey px-3 py-2 rounded-lg mb-2">Treatment
+                                    Options
+                                </h3>
+                                <div class="px-2 text-black">
+
+                                    <ul class="ps-5 list-disc">
+                                        <li>
+                                            <strong>Your Treatment Choices</strong> <br>
+                                            <p class="text-body">
+                                                <strong class="text-black">Medications:</strong> Doctors may prescribe
+                                                blood
+                                                pressure-lowering medications such as ACE inhibitors, diuretics, or
+                                                beta-blockers. <br>
+                                                <strong class="text-black">Lifestyle Changes:</strong> Maintaining a
+                                                healthy diet, regular
+                                                exercise, and reducing salt intake can help control your blood pressure.
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <strong>What to Expect from Treatment</strong> <br>
+                                            <p class="text-body">
+                                                Medications may need to be taken daily. Regular monitoring of your blood
+                                                pressure will help track the treatment's effectiveness.
+                                                Lifestyle changes can take time, but consistent habits can significantly
+                                                lower your blood pressure.
+                                            </p>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="space-y-2">
+                        <img src="../assets/images/weak-young.png" class="rounded-xl" alt="">
+                        <div class="p-3 py-2 bg-white rounded-xl">
+                            Context
+                        </div>
+                        <ul class="ps-5 list-disc">
+                            <li>
+                                <strong>Condition Overview</strong>
+                            </li>
+                            <li>
+                                Treatment Options
+                            </li>
+                            <li>
+                                Next Step & Recommendations
+                            </li>
+                            <li>
+                                FAQs and Common Concerns
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- Chart.js Script for Analytics -->
     <script src="../assets/js/chart_patient.js?v=1.0.13"></script>

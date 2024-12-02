@@ -13,9 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../assets/css/style.css?v=1.0.12" rel="stylesheet">
+    <link href="../assets/css/style.css?v=1.0.13" rel="stylesheet">
 
-    <script src="../assets/js/script.js?v=1.0.12"></script>
+    <script src="../assets/js/script.js?v=1.0.13"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -103,7 +103,7 @@
                         <a href="#" class="text-sm sidebar-text">AI Chat Support</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
-                        onclick="changeTab('patient_chat_with_agent')">
+                        onclick="changeTab('patient/chat_agent')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
                         <a href="#" class="text-sm sidebar-text">Chat With Agent</a>
                     </li>
@@ -156,22 +156,17 @@
             </div>
             <!-- Top Bar with Menu Button -->
             <!-- Dashboard Content -->
-            <div id="prescriptions" class="tab-content">
+            <div id="lab_results" class="tab-content">
                 <div class="mb-3 grid grid-cols-1 md:grid-cols-3 md:gap-4">
                     <div class="mb-3">
-                        <label for="search">Search</label>
+                        <label for="search">Select by Appointment Date</label>
                         <div class="relative mt-2">
-                            <input type="text" placeholder="Search by Name or DOB"
+                            <input type="date" placeholder="Search by Test"
                                 class="w-full rounded-full pe-4 ps-10 py-3 border-grey focus:outline-grey2">
-                            <span
-                                class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">search</span>
-
-                            <button
-                                class="absolute right-2 top-[6px] px-5 2xl:py-2 py-1 text-sm rounded-full text-white bg-primary ">Search</button>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="search">Disease or Allergy</label>
+                        <label for="search">Disease Or Allergy</label>
                         <div class="relative mt-2 text-muted">
                             <select
                                 class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
@@ -183,60 +178,73 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="search">Date</label>
+                        <label for="search">Select by Payment Status</label>
                         <div class="relative mt-2 text-muted">
-                            <input type="date" class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2">
+                            <select
+                                class="w-full rounded-full px-4 py-3 border-grey focus:outline-grey2 appearance-none">
+                                <option value="" disabled selected>Search by Payment Status</option>
+                                <!-- Add options here -->
+                            </select>
                             <i
-                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">calendar_today</i>
+                                class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">arrow_drop_down</i>
                         </div>
                     </div>
                 </div>
                 <div class="bg-white shadow-md rounded-2xl pb-4">
                     <div
-                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
-                        <h2 class="text-lg font-medium">All Prescriptions</h2>
+                        class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                        <h2 class="text-lg font-medium">Lab Reports</h2>
+                        <div class="relative inline-block">
+                            <button id="dropdownButton"
+                                class="text-primary font-medium flex items-center 2xl:text-lg text-sm">
+                                Lab Tests
+                                <span class="material-icons ml-1">expand_more</span>
+                            </button>
+                            <!-- Dropdown Menu -->
+                            <ul id="dropdownMenu" class="hidden absolute bg-white shadow-md mt-2 rounded-lg p-2 w-32">
+                                <li class="py-1 cursor-pointer hover:bg-gray-100"
+                                    onclick="window.location.href = 'billing_payments.html'">Past Appointments
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full bg-white overflow-x-auto text-nowrap">
                             <thead>
                                 <tr>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Doctor Name <i
-                                            class="material-icons align-middle">arrow_drop_down</i></th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Date of Birth</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Disease</th>
                                     <th class="py-2 px-4 border-b text-start font-medium">Date & Time</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium">Refill in</th>
-                                    <th class="py-2 px-4 border-b text-start font-medium"></th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Lab Test/Report Name</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Disease</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Lab Name</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Payment Status</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="text-body">
                                 <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer">
-                                            <img src="../assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <span>Michael Brown</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">01/01/1980</td>
+                                    <td class="py-2 px-4 border-b">August 15, 2024</td>
+                                    <td class="py-2 px-4 border-b">Lorem ipsum dolor sit amet.</td>
                                     <td class="py-2 px-4 border-b">
                                         <span
                                             class="px-2 py-1 border rounded-full border-warning text-warning">Typhoid</span>
                                     </td>
-                                    <td class="py-2 px-4 border-b">November 12, 2024, 11:00 AM</td>
-                                    <td class="py-2 px-4 border-b">5 days</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <div class="flex items-center cursor-pointer">
+                                            <img src="../assets/images/profile.png" alt="profile"
+                                                class="w-10 h-10 rounded-full mr-3">
+                                            <div class="text-start">
+                                                <p>John Doe</p>
+                                                <!-- <span class="text-muted">#12345678</span> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-4 border-b text-danger">Pending</td>
                                     <td class="py-2 px-4 border-b">
                                         <div class="flex justify-between">
                                             <button
-                                                class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Send
-                                                Request</button>
+                                                class="disabled:opacity-30 disabled:pointer-events-none px-3 py-1 border border-warning rounded-full text-warning hover:bg-warning hover:text-white transition-all duration-150">Pay
+                                                Now</button>
                                             <div class="float-right relative">
-                                                <button class="px-3 py-1">
-                                                    <i class="material-icons">file_download</i>
-                                                </button>
-                                                <button class="px-3 py-1">
-                                                    <i class="material-icons">print</i>
-                                                </button>
                                                 <button class="px-3 py-1">
                                                     <i class="material-icons">more_vert</i>
                                                 </button>
@@ -252,31 +260,28 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="py-2 px-4 border-b ">
+                                    <td class="py-2 px-4 border-b">August 15, 2024</td>
+                                    <td class="py-2 px-4 border-b">Lorem ipsum dolor sit amet.</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <span class="px-2 py-1 border rounded-full border-info text-info">Cold</span>
+                                    </td>
+                                    <td class="py-2 px-4 border-b">
                                         <div class="flex items-center cursor-pointer">
                                             <img src="../assets/images/profile.png" alt="profile"
                                                 class="w-10 h-10 rounded-full mr-3">
-                                            <span>Michael Brown</span>
+                                            <div class="text-start">
+                                                <p>John Doe</p>
+                                                <!-- <span class="text-muted">#12345678</span> -->
+                                            </div>
                                         </div>
                                     </td>
-                                    <td class="py-2 px-4 border-b">02/02/1990</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span class="px-2 py-1 border rounded-full border-info text-info">Cholera</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">November 12, 2024, 12:00 PM</td>
-                                    <td class="py-2 px-4 border-b">10 days</td>
+                                    <td class="py-2 px-4 border-b text-success">Completed</td>
                                     <td class="py-2 px-4 border-b">
                                         <div class="flex justify-between">
                                             <button
-                                                class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Send
-                                                Request</button>
+                                                class="disabled:opacity-30 disabled:pointer-events-none px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Download
+                                                Report</button>
                                             <div class="float-right relative">
-                                                <button class="px-3 py-1">
-                                                    <i class="material-icons">file_download</i>
-                                                </button>
-                                                <button class="px-3 py-1">
-                                                    <i class="material-icons">print</i>
-                                                </button>
                                                 <button class="px-3 py-1">
                                                     <i class="material-icons">more_vert</i>
                                                 </button>
@@ -291,89 +296,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer">
-                                            <img src="../assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <span>Michael Brown</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">03/03/1985</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span
-                                            class="px-2 py-1 border rounded-full border-danger text-danger">Fever</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">November 12, 2024, 01:00 PM</td>
-                                    <td class="py-2 px-4 border-b">15 days</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <div class="flex justify-between">
-                                            <button
-                                                class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Send
-                                                Request</button>
-                                            <div class="float-right relative">
-                                                <button class="px-3 py-1">
-                                                    <i class="material-icons">file_download</i>
-                                                </button>
-                                                <button class="px-3 py-1">
-                                                    <i class="material-icons">print</i>
-                                                </button>
-                                                <button class="px-3 py-1">
-                                                    <i class="material-icons">more_vert</i>
-                                                </button>
-                                                <div
-                                                    class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                    <a href="#"
-                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                    <a href="#"
-                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 px-4 border-b ">
-                                        <div class="flex items-center cursor-pointer">
-                                            <img src="../assets/images/profile.png" alt="profile"
-                                                class="w-10 h-10 rounded-full mr-3">
-                                            <span>Michael Brown</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">04/04/1975</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <span
-                                            class="px-2 py-1 border rounded-full border-purple text-purple">Malaria</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b">November 12, 2024, 02:00 PM</td>
-                                    <td class="py-2 px-4 border-b">20 days</td>
-                                    <td class="py-2 px-4 border-b">
-                                        <div class="flex justify-between">
-                                            <button
-                                                class="px-3 py-1 border border-primary rounded-full text-primary hover:bg-primary hover:text-white transition-all duration-150">Send
-                                                Request</button>
-                                            <div class="float-right relative">
-                                                <button class="px-3 py-1">
-                                                    <i class="material-icons">file_download</i>
-                                                </button>
-                                                <button class="px-3 py-1">
-                                                    <i class="material-icons">print</i>
-                                                </button>
-                                                <button class="px-3 py-1">
-                                                    <i class="material-icons">more_vert</i>
-                                                </button>
-                                                <div
-                                                    class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg hidden">
-                                                    <a href="#"
-                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit</a>
-                                                    <a href="#"
-                                                        class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Delete</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <!-- Add more rows as needed -->
                             </tbody>
                         </table>
                         <div class="flex justify-end items-center mt-4 mx-4">
@@ -392,8 +314,8 @@
 
 
     <!-- Chart.js Script for Analytics -->
-    <script src="../assets/js/chart_patient.js?v=1.0.12"></script>
-    <script src="../assets/js/function.js?v=1.0.12"></script>
+    <script src="../assets/js/chart_patient.js?v=1.0.13"></script>
+    <script src="../assets/js/function.js?v=1.0.13"></script>
 </body>
 
 </html>

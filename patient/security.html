@@ -65,6 +65,7 @@
                     <img src="../assets/icons/Prescriptions.svg" alt="">
                     <span class="ml-2 sidebar-text">Prescriptions</span>
                 </li>
+
                 <li id="tab-diagnosis_info" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-diagnosis')">
                     <img src="../assets/icons/Diagnosis & Info.svg" alt="">
@@ -154,147 +155,51 @@
                     </div>
                 </div>
             </div>
-            <div id="patient_add" class="tab-content">
-
-
-                <div class="flex justify-between mb-4">
-                    <div class="flex gap-2">
-                        <div>
-                            <div class="bg-white rounded-full p-2 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
-                                onclick="goBack()">
-                                <i class="material-icons">chevron_left</i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-end mb-4 gap-2">
-
-                        <button
-                            class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
-                        <button onclick="window.location.href= 'appointments_details_2.html'"
-                            class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Save
-                            & Next</button>
-                    </div>
-                </div>
+            <!-- Top Bar with Menu Button -->
+            <!-- Dashboard Content -->
+            <div id="security" class="tab-content">
                 <div class="bg-white shadow-md rounded-2xl pb-4">
-                    <div
-                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4]">
-                        <h2 class="text-lg font-medium">Add Your Details</h2>
-                    </div>
-
-                    <div class="mx-auto pt-8 pb-4 2xl:max-w-[60%] md:max-w-[60%] max-w-[80%] relative mb-8">
-                        <div class="bg-gray-300 h-[1px] w-full relative">
-
-                            <div class="bg-primary w-[0%] h-[1px] absolute"></div>
+                    <div class="flex flex-col items-center justify-center py-12">
+                        <div class="shadow-lg border p-3 rounded-2xl">
+                            <img src="../assets/images/lock.png" alt="">
                         </div>
-                        <div class="absolute text-primary flex justify-between w-full">
-                            <div class="relative">
-                                <div
-                                    class="w-4 h-4 bg-white border-4 border-primary rounded-full outline outline-white absolute -top-[9px] ">
-                                </div>
-                                <h6 class="pt-3 text-center absolute md:-left-10 -left-4 md:text-nowrap text-body">
-                                    Personal
-                                    Details
-                                </h6>
-                            </div>
-
-                            <div class="relative">
-                                <div
-                                    class="w-4 h-4 bg-white border-4 border-gray-300 rounded-full outline outline-white absolute -top-[9px] ">
-                                </div>
-                                <h6 class="pt-3 text-center absolute md:-left-9 -left-4 md:text-nowrap text-gray-300">
-                                    Health
-                                    Records
-                                </h6>
-                            </div>
-                            <div class="relative">
-                                <div
-                                    class="w-4 h-4 bg-white border-4 border-gray-300 rounded-full outline outline-white absolute -top-[9px] ">
-                                </div>
-                                <h6 class="pt-3 text-center absolute -left-10 md:text-nowrap text-gray-300">Medical
-                                    Records
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-4 w-full pb-3 relative">
-                        <div class="bg-grey rounded-xl px-4 py-2">
-                            <span class="text-header">
-                                • Personal Details
-                            </span>
-                        </div>
-                    </div>
-                    <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
-                        <div class="p-4 pt-0">
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="patientName" class="block text-nowrap my-auto">Patient's Name:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="patientName" type="text" value="Henry Johnson"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        placeholder="Enter Patient's Name">
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="gender" class="block text-nowrap my-auto">Gender:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <select id="gender"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full">
-                                        <option value="" disabled selected>Male</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="dob" class="block text-nowrap my-auto">Date of Birth:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="dob" type="date"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        value="2024-11-20" placeholder="Enter Date of Birth">
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="nationality" class="block text-nowrap my-auto">Nationality:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <select id="nationality"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full">
-                                        <option value="" disabled selected>Indian</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="email" class="block text-nowrap my-auto">Email:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="email" type="email"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        value="yaelahman0810@gmail.com" placeholder="Enter Email">
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="mobile" class="block text-nowrap my-auto">Mobile Number:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <input id="mobile" type="text"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-full"
-                                        value="+91 86500-65231" placeholder="Enter Mobile Number">
-                                </div>
-                            </div>
-                            <div class="grid lg:grid-cols-3 grid-cols-1 mb-2">
-                                <label for="patientAddress" class="block text-nowrap mb-auto mt-3">Residental
-                                    Address:</label>
-                                <div class="flex items-center w-full col-span-2">
-                                    <textarea id="patientAddress"
-                                        class="focus:outline-none w-full mt-1 px-5 py-3 border rounded-2xl"
-                                        placeholder="Enter Address" rows="6"
-                                        cols="30">867 Shemika Trail, South Rosalbaborough, AR 84252-6233</textarea>
-                                </div>
-                            </div>
-                        </div>
+                        <h6 class="text-2xl font-medium text-center py-4">You all Data is End to End Encrypted</h6>
+                        <p class="text-gray-500 text-center max-w-[90%]">Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit.
+                            Nobis sapiente qui aliquid inventore
+                            modi, eaque asperiores numquam rem adipisci eos.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. In deleniti id dolorum nobis
+                            possimus reiciendis distinctio omnis dolor quos consequatur!</p>
+                        <table class="text-start">
+                            <tr>
+                                <td class="p-3">
+                                    <i class="material-icons text-green-500 pt-1">check</i> Lorem ipsum dolor sit amet,
+                                    consectetur adipisicing elit. Fugit, optio?
+                                </td>
+                                <td class="p-3">
+                                    <i class="material-icons text-green-500">check</i>
+                                    <span>Lorem ipsum dolor sit amet,
+                                        consectetur adipisicing elit. Fugit, optio?</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">
+                                    <i class="material-icons text-green-500 pt-1">check</i> Lorem ipsum dolor sit amet,
+                                    consectetur adipisicing elit. Fugit, optio?
+                                </td>
+                                <td class="p-3">
+                                    <i class="material-icons text-green-500">check</i>
+                                    <span>Lorem ipsum dolor sit amet,
+                                        consectetur adipisicing elit. Fugit, optio?</span>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- Chart.js Script for Analytics -->
     <script src="../assets/js/chart_patient.js?v=1.0.13"></script>

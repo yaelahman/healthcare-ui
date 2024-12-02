@@ -13,9 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../assets/css/style.css?v=1.0.12" rel="stylesheet">
+    <link href="../assets/css/style.css?v=1.0.13" rel="stylesheet">
 
-    <script src="../assets/js/script.js?v=1.0.12"></script>
+    <script src="../assets/js/script.js?v=1.0.13"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -65,11 +65,25 @@
                     <img src="../assets/icons/Prescriptions.svg" alt="">
                     <span class="ml-2 sidebar-text">Prescriptions</span>
                 </li>
-                <li id="tab-diagnosis_info" class="tab active p-4 rounded cursor-pointer flex gap-2"
-                    onclick="changeTab('patient/diagnosis_info')">
+                <li id="tab-diagnosis_info" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-diagnosis')">
                     <img src="../assets/icons/Diagnosis & Info.svg" alt="">
                     <span class="ml-2 sidebar-text">Diagnosis & Info</span>
+                    <i class="material-icons ml-auto">expand_more</i>
                 </li>
+
+                <ul id="sub-tabs-diagnosis" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patient/diagnosis_info')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Diagnosis Overview</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patient/diagnosis_articles')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Educational Articles</a>
+                    </li>
+                </ul>
                 <li id="tab-documents" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/documents')">
                     <img src="../assets/icons/Documents.svg" alt="">
@@ -77,7 +91,7 @@
                 </li>
                 <li id="tab-chat_support" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-chat_support')">
-                    <i class="material-icons align-middle">chat</i>
+                    <img src="../assets/icons/Chat Support.svg" alt="">
                     <span class="ml-2 sidebar-text">AI Support</span>
                     <i class="material-icons ml-auto">expand_more</i>
                 </li>
@@ -89,7 +103,7 @@
                         <a href="#" class="text-sm sidebar-text">AI Chat Support</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
-                        onclick="changeTab('patient_chat_with_agent')">
+                        onclick="changeTab('patient/chat_agent')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
                         <a href="#" class="text-sm sidebar-text">Chat With Agent</a>
                     </li>
@@ -328,8 +342,8 @@
 
 
     <!-- Chart.js Script for Analytics -->
-    <script src="../assets/js/chart_patient.js?v=1.0.12"></script>
-    <script src="../assets/js/function.js?v=1.0.12"></script>
+    <script src="../assets/js/chart_patient.js?v=1.0.13"></script>
+    <script src="../assets/js/function.js?v=1.0.13"></script>
 </body>
 
 </html>

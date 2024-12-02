@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPro Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for the analytics chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--to show percentage on Doughnut  -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../assets/css/style.css?v=1.0.12" rel="stylesheet">
+
+    <script src="../assets/js/script.js?v=1.0.12"></script>
+</head>
+
+<body class="bg-gray-100">
+    <div class="min-h-screen flex transition-all">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar-visible transition-all text-white p-4 sidebar"
+            style="background-color: rgb(23 37 78);">
+            <div class="flex items-center justify-center mb-6 bg-white text-primary rounded-xl h-24">
+                <img src="../assets/images/LogoIcon.png" alt="Logo" class="mr-3">
+                <h2 class="text-2xl font-bold sidebar-text">MEDAIPRO</h2>
+                <button class="material-icons text-3xl cursor-pointer block md:hidden"
+                    onclick="toggleSidebar()">close</button>
+            </div>
+            <ul>
+                <li id="tab-dashboard" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/index')">
+                    <img src="../assets/icons/Dashboard.svg" alt="">
+                    <span class="ml-2 sidebar-text">Dashboard</span>
+                </li>
+                <li id="tab-appointments" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/appointments')">
+                    <img src="../assets/icons/Appointments.svg" alt="">
+                    <span class="ml-2 sidebar-text">Appointments</span>
+                </li>
+                <li id="tab-health_profile" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/health_profile')">
+                    <img src="../assets/icons/Health Profile.svg" alt="">
+                    <span class="ml-2 sidebar-text">Health Profile</span>
+                </li>
+                <li id="tab-medical_records" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/medical_records')">
+                    <img src="../assets/icons/Medical Records.svg" alt="">
+                    <span class="ml-2 sidebar-text">Medical Records</span>
+                </li>
+                <li id="tab-medications" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/medications')">
+                    <img src="../assets/icons/Medications.svg" alt="">
+                    <span class="ml-2 sidebar-text">Medications</span>
+                </li>
+                <li id="tab-lab_results" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/lab_results')">
+                    <img src="../assets/icons/Labs Results.svg" alt="">
+                    <span class="ml-2 sidebar-text">Labs Results</span>
+                </li>
+                <li id="tab-prescriptions" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/prescriptions')">
+                    <img src="../assets/icons/Prescriptions.svg" alt="">
+                    <span class="ml-2 sidebar-text">Prescriptions</span>
+                </li>
+                <li id="tab-diagnosis_info" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/diagnosis_info')">
+                    <img src="../assets/icons/Diagnosis & Info.svg" alt="">
+                    <span class="ml-2 sidebar-text">Diagnosis & Info</span>
+                </li>
+                <li id="tab-documents" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/documents')">
+                    <img src="../assets/icons/Documents.svg" alt="">
+                    <span class="ml-2 sidebar-text">Documents</span>
+                </li>
+                <li id="tab-chat_support" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
+                    onclick="toggleSubTabs('sub-tabs-chat_support')">
+                    <i class="material-icons align-middle">chat</i>
+                    <span class="ml-2 sidebar-text">AI Support</span>
+                    <i class="material-icons ml-auto">expand_more</i>
+                </li>
+
+                <ul id="sub-tabs-chat_support" class="hidden pl-6 space-y-2">
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patient/chat_ai')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">AI Chat Support</a>
+                    </li>
+                    <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
+                        onclick="changeTab('patient_chat_with_agent')">
+                        <i class="material-icons text-xs mr-2">fiber_manual_record</i>
+                        <a href="#" class="text-sm sidebar-text">Chat With Agent</a>
+                    </li>
+                </ul>
+                <li id="tab-billing_payments" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/billing_payments')">
+                    <img src="../assets/icons/Billing & Payments.svg" alt="">
+                    <span class="ml-2 sidebar-text">Billing & Payments</span>
+                </li>
+                <li id="tab-security" class="tab active p-4 rounded cursor-pointer flex gap-2"
+                    onclick="changeTab('patient/security')">
+                    <img src="../assets/icons/Security.svg" alt="">
+                    <span class="ml-2 sidebar-text">Security</span>
+                </li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <div id="main-content" class="main-content-collapsed transition-all bg-gray-100 p-0">
+            <div class="flex justify-between items-center mb-6 bg-white p-6 shadow ">
+                <div class="flex">
+                    <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer"
+                        onclick="toggleSidebar()">menu</span>
+                    <h1 class="text-2xl font-semibold text-[#585858]">Dashboard</h1>
+                </div>
+                <!-- Profile Section -->
+                <div class="flex items-center">
+                    <span class="material-icons notifications text-gray-500 mr-4 cursor-pointer">notifications</span>
+                    <div class="flex items-center space-x-4">
+                        <img src="../assets/images/flag.png" alt="flag" class="w-6 h-4">
+                        <div class="relative flex gap-2 bg-grey rounded-full p-1 pe-3">
+                            <img src="../assets/images/profile.png" onclick="toggleDropdownNavbar()" alt="profile"
+                                class="rounded-full w-6 h-6">
+                            <span
+                                class="text-gray-600 font-medium my-auto md:block hidden hover:bg-opacity-50 cursor-pointer"
+                                onclick="toggleDropdownNavbar()">Jennifer Perry</span>
+                            <div id="dropdownMenuNavbar"
+                                class="absolute hidden bg-white shadow-lg rounded-2xl mt-2 top-6 py-1">
+                                <a href="profile.html"
+                                    class="block px-4 py-1 text-gray-800 text-link hover:bg-gray-200 rounded-2xl">Personal
+                                    Details</a>
+                                <a href="#"
+                                    class="block px-4 py-1 text-gray-800 text-link hover:bg-gray-200 rounded-2xl">Change
+                                    Password</a>
+                                <a href="#"
+                                    class="block px-4 py-1 text-gray-800 text-link hover:bg-gray-200 rounded-2xl">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Top Bar with Menu Button -->
+            <!-- Dashboard Content -->
+            <div id="medications" class="tab-content">
+                <div class="bg-white shadow-md rounded-2xl pb-4 mb-3">
+                    <div
+                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                        <h2 class="text-lg font-medium">Current Medications</h2>
+                        <a href="" class="text-primary">Set Reminder</a>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white overflow-x-auto text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 px-4 text-start font-medium">Medicine Name</th>
+                                    <th class="py-2 px-4 text-start font-medium">Type</th>
+                                    <th class="py-2 px-4 text-start font-medium">Quantity</th>
+                                    <th class="py-2 px-4 text-start font-medium">Dosage</th>
+                                    <th class="py-2 px-4 text-start font-medium">Frequency</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-body">
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">
+                                        Amoxicillin
+                                    </td>
+                                    <td class="py-2 px-4 border-b">Antibiotic</td>
+                                    <td class="py-2 px-4 border-b">30</td>
+                                    <td class="py-2 px-4 border-b">500 mg</td>
+                                    <td class="py-2 px-4 border-b">3 times a day</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">
+                                        Lisinopril
+                                    </td>
+                                    <td class="py-2 px-4 border-b">Antihypertensive</td>
+                                    <td class="py-2 px-4 border-b">60</td>
+                                    <td class="py-2 px-4 border-b">10 mg</td>
+                                    <td class="py-2 px-4 border-b">Once a day</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">
+                                        Metformin
+                                    </td>
+                                    <td class="py-2 px-4 border-b">Antidiabetic</td>
+                                    <td class="py-2 px-4 border-b">90</td>
+                                    <td class="py-2 px-4 border-b">500 mg</td>
+                                    <td class="py-2 px-4 border-b">Twice a day</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">
+                                        Atorvastatin
+                                    </td>
+                                    <td class="py-2 px-4 border-b">Cholesterol-lowering</td>
+                                    <td class="py-2 px-4 border-b">45</td>
+                                    <td class="py-2 px-4 border-b">20 mg</td>
+                                    <td class="py-2 px-4 border-b">Once a day</td>
+                                </tr>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+                        <div class="flex justify-end items-center mt-4 mx-4">
+                            <button onclick="openModal('modalTemplate')"
+                                class="px-6 py-1 text-sm bg-primary border border-primary rounded-full text-white hover:bg-primary hover:text-white transition-all duration-150">Request
+                                to Refill</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white shadow-md rounded-2xl pb-4 mb-3">
+                    <div
+                        class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                        <h2 class="text-lg font-medium">August 20, 2024 - August 30, 2024</h2>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white overflow-x-auto text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 px-4 text-start font-medium">Medicine Name</th>
+                                    <th class="py-2 px-4 text-start font-medium">Type</th>
+                                    <th class="py-2 px-4 text-start font-medium">Quantity</th>
+                                    <th class="py-2 px-4 text-start font-medium">Dosage</th>
+                                    <th class="py-2 px-4 text-start font-medium">Frequency</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-body">
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">
+                                        Amoxicillin
+                                    </td>
+                                    <td class="py-2 px-4 border-b">Antibiotic</td>
+                                    <td class="py-2 px-4 border-b">30</td>
+                                    <td class="py-2 px-4 border-b">500 mg</td>
+                                    <td class="py-2 px-4 border-b">3 times a day</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">
+                                        Lisinopril
+                                    </td>
+                                    <td class="py-2 px-4 border-b">Antihypertensive</td>
+                                    <td class="py-2 px-4 border-b">60</td>
+                                    <td class="py-2 px-4 border-b">10 mg</td>
+                                    <td class="py-2 px-4 border-b">Once a day</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">
+                                        Metformin
+                                    </td>
+                                    <td class="py-2 px-4 border-b">Antidiabetic</td>
+                                    <td class="py-2 px-4 border-b">90</td>
+                                    <td class="py-2 px-4 border-b">500 mg</td>
+                                    <td class="py-2 px-4 border-b">Twice a day</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">
+                                        Atorvastatin
+                                    </td>
+                                    <td class="py-2 px-4 border-b">Cholesterol-lowering</td>
+                                    <td class="py-2 px-4 border-b">45</td>
+                                    <td class="py-2 px-4 border-b">20 mg</td>
+                                    <td class="py-2 px-4 border-b">Once a day</td>
+                                </tr>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Template -->
+    <div id="modalTemplate"
+        class="modal overflow-y-auto fixed inset-0 flex items-start justify-center bg-black bg-opacity-50 transition-opacity duration-300 ease-out opacity-100 hidden"
+        onclick="closeModal(event)">
+        <div class="lg:my-20 md:my-20 my-10 lg:min-w-[40%] min-w-[80%] bg-white rounded-2xl overflow-hidden shadow-xl transform transition-transform duration-300 ease-out sm:max-w-lg sm:w-[80%] translate-y-[-100%]"
+            onclick="event.stopPropagation()">
+            <div class="bg-white">
+                <div class="bg-grey flex justify-between items-center px-4 py-3 border-b">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modalTitle">
+                        Set Reminder
+                    </h3>
+                    <button onclick="closeModal(event)" class="text-gray-500 hover:text-gray-700">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+                <div class="mt-2 px-4 pt-3 pb-4 sm:pb-4">
+
+                    <div class="mb-3">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2 px-4 text-start font-medium">Doctor Name</th>
+                                        <th class="py-2 px-4 text-start font-medium text-end">AI Visit Notes Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-body">
+                                    <tr>
+                                        <td class="py-2 px-4">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="reminderCheckbox"
+                                                    class="form-checkbox h-5 w-5 text-success checked:bg-white" checked>
+                                                <label for="reminderCheckbox" class="ml-2 text-gray-700">To Edit Patient
+                                                    Profile</label>
+                                            </div>
+                                        </td>
+                                        <td class="py-2 px-4 text-end text-success">Selected</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="reminderCheckbox"
+                                                    class="form-checkbox h-5 w-5 text-success checked:bg-white" checked>
+                                                <label for="reminderCheckbox" class="ml-2 text-gray-700">To Set Self
+                                                    Reminders</label>
+                                            </div>
+                                        </td>
+                                        <td class="py-2 px-4 text-end text-success">Selected</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" id="reminderCheckbox"
+                                                    class="form-checkbox h-5 w-5 text-success checked:bg-white">
+                                                <label for="reminderCheckbox" class="ml-2 text-gray-700">To Schedule An
+                                                    Appointment</label>
+                                            </div>
+                                        </td>
+                                        <td class="py-2 px-4 text-end text-muted">Disabled</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                            <label for="disease" class="block text-nowrap my-auto">Notify Before:</label>
+                            <div class="flex items-center w-full col-span-2">
+                                <select id="disease"
+                                    class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                                    <option value="" disabled selected>30 mins</option>
+                                    <!-- Add disease options here -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end mb-4 gap-2">
+
+                            <button
+                                class="bg-primary border border-primary text-white px-8 py-2 rounded-full text-sm font-light hover:bg-opacity-[0.9] transition-all duration-150">Set
+                                Reminder</button>
+                            <button
+                                class="px-8 py-1 text-sm bg-white border border-danger rounded-full text-danger hover:bg-danger hover:text-white transition-all duration-150">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Chart.js Script for Analytics -->
+    <script src="../assets/js/chart_patient.js?v=1.0.12"></script>
+    <script src="../assets/js/function.js?v=1.0.12"></script>
+</body>
+
+</html>

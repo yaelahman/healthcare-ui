@@ -13,9 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../assets/css/style.css?v=1.0.13" rel="stylesheet">
+    <link href="../assets/css/style.css?v=1.0.14" rel="stylesheet">
 
-    <script src="../assets/js/script.js?v=1.0.13"></script>
+    <script src="../assets/js/script.js?v=1.0.14"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -144,7 +144,7 @@
                                 <a href="profile.html"
                                     class="block px-4 py-1 text-gray-800 text-link hover:bg-gray-200 rounded-2xl">Personal
                                     Details</a>
-                                <a href="#"
+                                <a href="profile_change_password.html"
                                     class="block px-4 py-1 text-gray-800 text-link hover:bg-gray-200 rounded-2xl">Change
                                     Password</a>
                                 <a href="#"
@@ -161,7 +161,7 @@
                     <div
                         class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
                         <h2 class="text-lg font-medium">Current Medications</h2>
-                        <a href="" class="text-primary">Set Reminder</a>
+                        <a href="#" class="text-primary" onclick="openModal('modalTemplate')">Set Reminder</a>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full bg-white overflow-x-auto text-nowrap">
@@ -214,11 +214,11 @@
                                 <!-- Add more rows as needed -->
                             </tbody>
                         </table>
-                        <div class="flex justify-end items-center mt-4 mx-4">
-                            <button onclick="openModal('modalTemplate')"
-                                class="px-6 py-1 text-sm bg-primary border border-primary rounded-full text-white hover:bg-primary hover:text-white transition-all duration-150">Request
-                                to Refill</button>
-                        </div>
+                    </div>
+                    <div class="flex justify-end items-center mt-4 mx-4">
+                        <button
+                            class="px-6 py-1 text-sm bg-primary border border-primary rounded-full text-white hover:bg-primary hover:text-white transition-all duration-150">Request
+                            to Refill</button>
                     </div>
                 </div>
                 <div class="bg-white shadow-md rounded-2xl pb-4 mb-3">
@@ -373,8 +373,8 @@
         </div>
     </div>
     <!-- Chart.js Script for Analytics -->
-    <script src="../assets/js/chart_patient.js?v=1.0.13"></script>
-    <script src="../assets/js/function.js?v=1.0.13"></script>
+    <script src="../assets/js/chart_patient.js?v=1.0.14"></script>
+    <script src="../assets/js/function.js?v=1.0.14"></script>
 </body>
 
 </html>

@@ -50,9 +50,21 @@ function getActiveClass(tabElement) {
         tab.classList.remove('active');
     });
 
+    // Add 'active' class to the clicked tab
+    console.log(tabElement)
+    if (document.getElementById(`tab-${tabElement.split('_')[0]}`))
+        document.getElementById(`tab-${tabElement.split('_')[0]}`).classList.add('active');
+    if (document.getElementById(`tab-${tabElement}`))
+        document.getElementById(`tab-${tabElement}`).classList.add('active');
+
+    // Hide all tab content sections
+    // document.querySelectorAll('.tab-content').forEach(tabContent => {
+    //     tabContent.classList.add('hidden');
+    // });
+
 
     // Show the content of the clicked tab
-    document.querySelectorAll('.tab-content').classList.remove('hidden');
+    document.getElementById(tabElement).classList.remove('hidden');
 }
 
 let page = window.location.pathname.split('/')[1]

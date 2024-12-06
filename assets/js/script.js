@@ -94,6 +94,9 @@ window.onresize = function () {
             toggleSidebar();
         }
     } else {
+        if (sidebar.classList.contains('sidebar-hidden')) {
+            toggleSidebar();
+        }
         // sidebar.classList.remove('sidebar-collapsed');
         // mainContent.classList.remove('main-content-expanded');
     }

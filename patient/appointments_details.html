@@ -13,19 +13,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../assets/css/style.css?v=1.0.14" rel="stylesheet">
+    <link href="../assets/css/style.css?v=1.0.15" rel="stylesheet">
 
-    <script src="../assets/js/script.js?v=1.0.14"></script>
+    <script src="../assets/js/script.js?v=1.0.15"></script>
 </head>
 
 <body class="bg-gray-100">
     <div class="min-h-screen flex transition-all">
         <!-- Sidebar -->
-        <div id="sidebar" class="sidebar-visible transition-all text-white p-4 sidebar"
+        <div id="sidebar" class="md:sidebar-visible sidebar-hidden transition-all text-white p-4 sidebar"
             style="background-color: rgb(23 37 78);">
             <div class="flex items-center justify-center mb-6 bg-white text-primary rounded-xl h-24">
                 <img src="../assets/images/LogoIcon.png" alt="Logo" class="mr-3">
-                <h2 class="text-2xl font-bold sidebar-text">MEDAIPRO</h2>
+                <h2 class="text-2xl font-bold sidebar-text hide-text">MEDAIPRO</h2>
                 <button class="material-icons text-3xl cursor-pointer block md:hidden"
                     onclick="toggleSidebar()">close</button>
             </div>
@@ -33,42 +33,42 @@
                 <li id="tab-dashboard" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/index')">
                     <img src="../assets/icons/Dashboard.svg" alt="">
-                    <span class="ml-2 sidebar-text">Dashboard</span>
+                    <span class="ml-2 sidebar-text hide-text">Dashboard</span>
                 </li>
                 <li id="tab-appointments" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/appointments')">
                     <img src="../assets/icons/Appointments.svg" alt="">
-                    <span class="ml-2 sidebar-text">Appointments</span>
+                    <span class="ml-2 sidebar-text hide-text">Appointments</span>
                 </li>
                 <li id="tab-health_profile" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/health_profile')">
                     <img src="../assets/icons/Health Profile.svg" alt="">
-                    <span class="ml-2 sidebar-text">Health Profile</span>
+                    <span class="ml-2 sidebar-text hide-text">Health Profile</span>
                 </li>
                 <li id="tab-medical_records" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/medical_records')">
                     <img src="../assets/icons/Medical Records.svg" alt="">
-                    <span class="ml-2 sidebar-text">Medical Records</span>
+                    <span class="ml-2 sidebar-text hide-text">Medical Records</span>
                 </li>
                 <li id="tab-medications" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/medications')">
                     <img src="../assets/icons/Medications.svg" alt="">
-                    <span class="ml-2 sidebar-text">Medications</span>
+                    <span class="ml-2 sidebar-text hide-text">Medications</span>
                 </li>
                 <li id="tab-lab_results" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/lab_results')">
                     <img src="../assets/icons/Labs Results.svg" alt="">
-                    <span class="ml-2 sidebar-text">Labs Results</span>
+                    <span class="ml-2 sidebar-text hide-text">Labs Results</span>
                 </li>
                 <li id="tab-prescriptions" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/prescriptions')">
                     <img src="../assets/icons/Prescriptions.svg" alt="">
-                    <span class="ml-2 sidebar-text">Prescriptions</span>
+                    <span class="ml-2 sidebar-text hide-text">Prescriptions</span>
                 </li>
                 <li id="tab-diagnosis_info" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-diagnosis')">
                     <img src="../assets/icons/Diagnosis & Info.svg" alt="">
-                    <span class="ml-2 sidebar-text">Diagnosis & Info</span>
+                    <span class="ml-2 sidebar-text hide-text">Diagnosis & Info</span>
                     <i class="material-icons ml-auto">expand_more</i>
                 </li>
 
@@ -76,23 +76,23 @@
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('patient/diagnosis_info')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">Diagnosis Overview</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">Diagnosis Overview</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('patient/diagnosis_articles')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">Educational Articles</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">Educational Articles</a>
                     </li>
                 </ul>
                 <li id="tab-documents" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/documents')">
                     <img src="../assets/icons/Documents.svg" alt="">
-                    <span class="ml-2 sidebar-text">Documents</span>
+                    <span class="ml-2 sidebar-text hide-text">Documents</span>
                 </li>
                 <li id="tab-chat_support" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-chat_support')">
                     <img src="../assets/icons/Chat Support.svg" alt="">
-                    <span class="ml-2 sidebar-text">AI Support</span>
+                    <span class="ml-2 sidebar-text hide-text">AI Support</span>
                     <i class="material-icons ml-auto">expand_more</i>
                 </li>
 
@@ -100,28 +100,28 @@
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('patient/chat_ai')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">AI Chat Support</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">AI Chat Support</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('patient/chat_agent')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">Chat With Agent</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">Chat With Agent</a>
                     </li>
                 </ul>
                 <li id="tab-billing_payments" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/billing_payments')">
                     <img src="../assets/icons/Billing & Payments.svg" alt="">
-                    <span class="ml-2 sidebar-text">Billing & Payments</span>
+                    <span class="ml-2 sidebar-text hide-text">Billing & Payments</span>
                 </li>
                 <li id="tab-security" class="tab active p-4 rounded cursor-pointer flex gap-2"
                     onclick="changeTab('patient/security')">
                     <img src="../assets/icons/Security.svg" alt="">
-                    <span class="ml-2 sidebar-text">Security</span>
+                    <span class="ml-2 sidebar-text hide-text">Security</span>
                 </li>
             </ul>
         </div>
         <!-- Main Content -->
-        <div id="main-content" class="main-content-collapsed transition-all bg-gray-100 p-0">
+        <div id="main-content" class="md:main-content-collapsed main-content-expanded transition-all bg-gray-100 p-0">
             <div class="flex justify-between items-center mb-6 bg-white p-6 shadow ">
                 <div class="flex">
                     <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer"
@@ -297,8 +297,8 @@
     </div>
 
     <!-- Chart.js Script for Analytics -->
-    <script src="../assets/js/chart_patient.js?v=1.0.14"></script>
-    <script src="../assets/js/function.js?v=1.0.14"></script>
+    <script src="../assets/js/chart_patient.js?v=1.0.15"></script>
+    <script src="../assets/js/function.js?v=1.0.15"></script>
 </body>
 
 </html>

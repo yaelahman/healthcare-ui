@@ -14,36 +14,36 @@
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="./assets/css/style.css?v=1.0.14" rel="stylesheet">
+    <link href="./assets/css/style.css?v=1.0.15" rel="stylesheet">
 
-    <script src="./assets/js/script.js?v=1.0.14"></script>
+    <script src="./assets/js/script.js?v=1.0.15"></script>
 </head>
 
 <body class="bg-gray-100">
     <div class="min-h-screen flex transition-all">
         <!-- Sidebar -->
-        <div id="sidebar" class="sidebar-visible transition-all text-white p-4 sidebar"
+        <div id="sidebar" class="md:sidebar-visible sidebar-hidden transition-all text-white p-4 sidebar"
             style="background-color: rgb(23 37 78);">
             <div class="flex items-center justify-center mb-6 bg-white text-primary rounded-xl h-24">
                 <img src="assets/images/LogoIcon.png" alt="Logo" class="mr-3">
-                <h2 class="text-2xl font-bold sidebar-text">MEDAIPRO</h2>
+                <h2 class="text-2xl font-bold sidebar-text hide-text">MEDAIPRO</h2>
                 <button class="material-icons text-3xl cursor-pointer block md:hidden"
                     onclick="toggleSidebar()">close</button>
             </div>
             <ul>
                 <li id="tab-dashboard" class="tab active p-4 mb-2 rounded cursor-pointer" onclick="changeTab('index')">
                     <i class="material-icons align-middle">dashboard</i>
-                    <span class="ml-2 sidebar-text">Dashboard</span>
+                    <span class="ml-2 sidebar-text hide-text">Dashboard</span>
                 </li>
                 <li id="tab-recordings" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('recordings')">
                     <i class="material-icons align-middle">mic</i>
-                    <span class="ml-2 sidebar-text">Recordings</span>
+                    <span class="ml-2 sidebar-text hide-text">Recordings</span>
                 </li>
                 <!-- Patients -->
                 <li id="tab-patients" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-patients')">
                     <i class="material-icons align-middle">people</i>
-                    <span class="ml-2 sidebar-text">Patients</span>
+                    <span class="ml-2 sidebar-text hide-text">Patients</span>
                     <i class="material-icons ml-auto">expand_more</i>
                 </li>
                 <!-- Sub-Tabs (Initially Hidden) -->
@@ -51,69 +51,69 @@
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('patients')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">All Patients</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">All Patients</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('patient_add')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">Add New Patient</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">Add New Patient</a>
                     </li>
                 </ul>
                 <!-- Appointments -->
                 <li id="tab-appointments" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-appointments')">
                     <i class="material-icons align-middle">event</i>
-                    <span class="ml-2 sidebar-text">Appointments</span>
+                    <span class="ml-2 sidebar-text hide-text">Appointments</span>
                     <i class="material-icons ml-auto">expand_more</i>
                 </li>
                 <ul id="sub-tabs-appointments" class="hidden pl-6 space-y-2">
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('appointments')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">All Appointments</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">All Appointments</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('appointment_add')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">Add New Appointment</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">Add New Appointment</a>
                     </li>
                 </ul>
                 <!-- Consultation -->
                 <li id="tab-consultation" class="tab p-4 mb-2 rounded cursor-pointer"
                     onclick="changeTab('consultation')">
                     <i class="material-icons align-middle">local_hospital</i>
-                    <span class="ml-2 sidebar-text">Consultation</span>
+                    <span class="ml-2 sidebar-text hide-text">Consultation</span>
                 </li>
                 <!-- Prescriptions -->
                 <li id="tab-prescriptions" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-prescriptions')">
                     <i class="material-icons align-middle">description</i>
-                    <span class="ml-2 sidebar-text">Prescriptions</span>
+                    <span class="ml-2 sidebar-text hide-text">Prescriptions</span>
                     <i class="material-icons ml-auto">expand_more</i>
                 </li>
                 <ul id="sub-tabs-prescriptions" class="hidden pl-6 space-y-2">
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('prescriptions')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">All Prescriptions</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">All Prescriptions</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('prescriptions_add')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">Create New</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">Create New</a>
                     </li>
                 </ul>
                 <!-- Labs -->
                 <li id="tab-labs" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('labs')">
                     <i class="material-icons align-middle">science</i>
-                    <span class="ml-2 sidebar-text">Labs/Radiology</span>
+                    <span class="ml-2 sidebar-text hide-text">Labs/Radiology</span>
                 </li>
                 <!-- AI Support -->
 
                 <li id="tab-ai" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-ai')">
                     <i class="material-icons align-middle">chat</i>
-                    <span class="ml-2 sidebar-text">AI Support</span>
+                    <span class="ml-2 sidebar-text hide-text">AI Support</span>
                     <i class="material-icons ml-auto">expand_more</i>
                 </li>
 
@@ -121,39 +121,39 @@
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('ai_visit_notes')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">AI Visit Notes</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">AI Visit Notes</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('ai_chat_support')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">AI Chat Support</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">AI Chat Support</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('chat_with_agent')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">Chat With Agent</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">Chat With Agent</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('email_support')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">Email Support</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">Email Support</a>
                     </li>
                 </ul>
                 <!-- Doctors -->
                 <li id="tab-doctors" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('doctors')">
                     <i class="material-icons align-middle">medical_services</i>
-                    <span class="ml-2 sidebar-text">Doctors</span>
+                    <span class="ml-2 sidebar-text hide-text">Doctors</span>
                 </li>
                 <!-- Super Bills -->
                 <li id="tab-super-bills" class="tab p-4 mb-2 rounded cursor-pointer" onclick="changeTab('super-bills')">
                     <i class="material-icons align-middle">receipt</i>
-                    <span class="ml-2 sidebar-text">Super Bills</span>
+                    <span class="ml-2 sidebar-text hide-text">Super Bills</span>
                 </li>
                 <!-- Customizations -->
                 <li id="tab-customizations" class="tab p-4 mb-2 rounded cursor-pointer"
                     onclick="changeTab('customizations')">
                     <i class="material-icons align-middle">tune</i>
-                    <span class="ml-2 sidebar-text">Customizations</span>
+                    <span class="ml-2 sidebar-text hide-text">Customizations</span>
                 </li>
 
                 <!-- Compl & Security -->
@@ -161,7 +161,7 @@
                 <li id="tab-compl-security" class="tab p-4 mb-2 rounded cursor-pointer flex items-center"
                     onclick="toggleSubTabs('sub-tabs-compl-security')">
                     <i class="material-icons align-middle">lock</i>
-                    <span class="ml-2 sidebar-text">Compl. & Security</span>
+                    <span class="ml-2 sidebar-text hide-text">Compl. & Security</span>
                     <i class="material-icons ml-auto">expand_more</i>
                 </li>
 
@@ -169,18 +169,18 @@
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('hippa_compliance')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">HIPPA Compliance</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">HIPPA Compliance</a>
                     </li>
                     <li class="text-gray-300 hover:text-white cursor-pointer flex items-center"
                         onclick="changeTab('user_access_control')">
                         <i class="material-icons text-xs mr-2">fiber_manual_record</i>
-                        <a href="#" class="text-sm sidebar-text">User Access Control</a>
+                        <a href="#" class="text-sm sidebar-text hide-text">User Access Control</a>
                     </li>
                 </ul>
             </ul>
         </div>
         <!-- Main Content -->
-        <div id="main-content" class="main-content-collapsed transition-all bg-gray-100 p-0">
+        <div id="main-content" class="md:main-content-collapsed main-content-expanded transition-all bg-gray-100 p-0">
             <div class="flex justify-between items-center mb-6 bg-white p-6 shadow ">
                 <div class="flex">
                     <span class="material-icons text-gray-500 text-3xl mr-3 cursor-pointer"
@@ -448,7 +448,7 @@
 
 
     <!-- Chart.js Script for Analytics -->
-    <script src="./assets/js/function.js?v=1.0.14"></script>
+    <script src="./assets/js/function.js?v=1.0.15"></script>
 </body>
 
 </html>

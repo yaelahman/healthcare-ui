@@ -637,7 +637,8 @@
                   <div
                      class="flex justify-between items-center mb-4 p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
                      <h3 class="2xl:text-lg text-sm font-semibold">Reminders</h3>
-                     <span class="material-icons add_circle text-gray-400">add_circle</span>
+                     <span class="material-icons add_circle text-gray-400 cursor-pointer"
+                        onclick="showPopup('reminderPopup');">add_circle</span>
                   </div>
                   <div class="p-4">
                      <ul>
@@ -751,32 +752,46 @@
                   <span class="absolute top-4 right-4 text-gray-600 cursor-pointer text-2xl"
                      onclick="closePopup('reminderPopup')">&times;</span>
                   <h3 class="2xl:text-lg text-sm font-semibold mb-4">Add Reminder</h3>
-                  <div class="mb-4">
-                     <label for="title" class="block text-gray-700">Title:</label>
-                     <input id="title" type="text" class="w-full mt-1 p-2 border rounded-lg"
-                        placeholder="Add Your Title Here">
+                  <div class="mb-3 grid lg:grid-cols-3 grid-cols-1">
+                     <label for="title" class="block text-nowrap my-auto">Title:</label>
+                     <div class="flex items-center w-full col-span-2">
+                        <input id="title" type="text"
+                           class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                           placeholder="Add Your Title">
+                     </div>
                   </div>
-                  <div class="mb-4">
-                     <label for="date" class="block text-gray-700">Date:</label>
-                     <input id="date" type="text" class="w-full mt-1 p-2 border rounded-lg"
-                        placeholder="August 25, 2024">
+                  <div class="mb-3 grid lg:grid-cols-3 grid-cols-1">
+                     <label for="title" class="block text-nowrap my-auto">Date:</label>
+                     <div class="flex items-center w-full col-span-2">
+                        <input id="Date" type="date"
+                           class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                           placeholder="Add Your Date">
+                     </div>
                   </div>
-                  <div class="mb-4">
-                     <label for="time" class="block text-gray-700">Time:</label>
-                     <input id="time" type="text" class="w-full mt-1 p-2 border rounded-lg" placeholder="12:00 PM">
+                  <div class="mb-3 grid lg:grid-cols-3 grid-cols-1">
+                     <label for="title" class="block text-nowrap my-auto">Time:</label>
+                     <div class="flex items-center w-full col-span-2">
+                        <input id="Time" type="time"
+                           class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                           placeholder="Add Your Time">
+                     </div>
                   </div>
-                  <div class="mb-4">
-                     <label for="description" class="block text-gray-700">Description:</label>
-                     <textarea id="description" class="w-full mt-1 p-2 border rounded-lg"
-                        placeholder="Add Description Here"></textarea>
+                  <div class="mb-3 grid lg:grid-cols-3 grid-cols-1">
+                     <label for="doctor" class="block text-gray-700 text-nowrap mb-auto mt-3">Description:</label>
+                     <div class="flex items-center w-full col-span-2">
+                        <textarea id="patientAddress"
+                           class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-2xl"
+                           placeholder="Enter Description" rows="3" cols="10"></textarea>
+                     </div>
                   </div>
-                  <div class="mb-4">
-                     <label for="notify" class="block text-gray-700">Notify Before:</label>
-                     <select id="notify" class="w-full mt-1 p-2 border rounded-lg">
-                        <option>30 Mins</option>
-                        <option>1 Hour</option>
-                        <option>2 Hours</option>
-                     </select>
+                  <div class="mb-3 grid lg:grid-cols-3 grid-cols-1">
+                     <label for="doctor" class="block text-nowrap my-auto">Notify Before:</label>
+                     <div class="flex items-center w-full col-span-2">
+                        <select id="doctor"
+                           class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full">
+                           <option value="" disabled selected>30 Mins</option>
+                        </select>
+                     </div>
                   </div>
                   <div class="flex justify-end">
                      <button class="bg-red-500 text-white px-4 py-2 rounded-lg mr-2"

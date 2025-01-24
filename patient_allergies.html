@@ -270,8 +270,7 @@
                         class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
                         Vitals
                     </a>
-                    <a href="patient_allergies.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                    <a href="patient_allergies.html" class="bg-primary px-5 py-2 text-white rounded-full font-light">
                         Allergies
                     </a>
                     <a href="patient_medical_history.html"
@@ -283,7 +282,7 @@
                         Lab Reports
                     </a>
                     <a href="patient_current_medication.html"
-                        class="bg-primary px-5 py-2 text-white rounded-full font-light">
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
                         Current Medications
                     </a>
                     <a href="patient_appointment.html"
@@ -291,77 +290,104 @@
                         Appointment & AI Visit Notes
                     </a>
                 </div>
-                <div class="bg-white rounded-2xl grid lg:grid-cols-2 grid-cols-1 p-6 gap-4">
-                    <div class="bg-grey rounded-2xl">
-                        <div class="rounded-t-2xl py-3 px-5 border-b">
-                            <h6 class="text-xl">Current Medication</h6>
-                        </div>
-                        <div class="p-6">
-                            <div class="pb-3">
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="medicineName" class="block text-nowrap my-auto">Medicine
-                                        Name:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="medicineName" type="text" value="Paracetamol"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Medicine Name">
-                                    </div>
-                                </div>
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="dosage" class="block text-nowrap my-auto">Dosage:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="dosage" type="text" value="500mg"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Dosage">
-                                    </div>
-                                </div>
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="frequency" class="block text-nowrap my-auto">Frequency:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="frequency" type="text" value="Twice a day"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Frequency">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex justify-end">
-                                <button
-                                    class="px-8 py-3 bg-primary border border-primary rounded-full text-white hover:bg-opacity-[0.9] transition-all duration-150">Add
-                                    Current Medication</button>
-                            </div>
+                <div class="bg-white shadow-md rounded-2xl pb-4">
+                    <div
+                        class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                        <h2 class="text-lg font-medium">All Allergies</h2>
+                        <div class="text-end inline-block">
+                            <button class="bg-primary text-white rounded-full text-nowrap px-3 py-2"
+                                onclick="openModal('modalTemplate')">
+                                + Add Allergies
+                            </button>
                         </div>
                     </div>
-                    <div class="bg-grey rounded-2xl">
-                        <div class="rounded-t-2xl py-3 px-5 border-b">
-                            <h6 class="text-xl">Current Medication List</h6>
-                        </div>
-                        <div class="p-6">
-                            <ol class="list-decimal ps-3">
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Paracetamol</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Once
-                                            a Day</span>
-                                    </div>
-                                </li>
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Ibuprofen</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Twice
-                                            a Day</span>
-                                    </div>
-                                </li>
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Amoxicillin</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Three
-                                            times a Day</span>
-                                    </div>
-                                </li>
-                            </ol>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white overflow-x-auto text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Allergen*</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Reaction(s)</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Allergy Severities</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Date of Onset</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Comments</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-body">
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">Allergen 1</td>
+                                    <td class="py-2 px-4 border-b">Reaction 1</td>
+                                    <td class="py-2 px-4 border-b">Mild</td>
+                                    <td class="py-2 px-4 border-b">01/01/2022</td>
+                                    <td class="py-2 px-4 border-b">No comments</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <button class="text-blue-500 hover:underline"
+                                            onclick="editAllergy(1)">Edit</button>
+                                        <button class="text-red-500 hover:underline"
+                                            onclick="deleteAllergy(1)">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">Allergen 2</td>
+                                    <td class="py-2 px-4 border-b">Reaction 2</td>
+                                    <td class="py-2 px-4 border-b">Moderate</td>
+                                    <td class="py-2 px-4 border-b">02/01/2022</td>
+                                    <td class="py-2 px-4 border-b">Follow-up needed</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <button class="text-blue-500 hover:underline"
+                                            onclick="editAllergy(2)">Edit</button>
+                                        <button class="text-red-500 hover:underline"
+                                            onclick="deleteAllergy(2)">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">Allergen 3</td>
+                                    <td class="py-2 px-4 border-b">Reaction 3</td>
+                                    <td class="py-2 px-4 border-b">Severe</td>
+                                    <td class="py-2 px-4 border-b">03/01/2022</td>
+                                    <td class="py-2 px-4 border-b">Immediate attention required</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <button class="text-blue-500 hover:underline"
+                                            onclick="editAllergy(3)">Edit</button>
+                                        <button class="text-red-500 hover:underline"
+                                            onclick="deleteAllergy(3)">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">Allergen 4</td>
+                                    <td class="py-2 px-4 border-b">Reaction 4</td>
+                                    <td class="py-2 px-4 border-b">Mild</td>
+                                    <td class="py-2 px-4 border-b">04/01/2022</td>
+                                    <td class="py-2 px-4 border-b">No comments</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <button class="text-blue-500 hover:underline"
+                                            onclick="editAllergy(4)">Edit</button>
+                                        <button class="text-red-500 hover:underline"
+                                            onclick="deleteAllergy(4)">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">Allergen 5</td>
+                                    <td class="py-2 px-4 border-b">Reaction 5</td>
+                                    <td class="py-2 px-4 border-b">Moderate</td>
+                                    <td class="py-2 px-4 border-b">05/01/2022</td>
+                                    <td class="py-2 px-4 border-b">Monitor closely</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <button class="text-blue-500 hover:underline"
+                                            onclick="editAllergy(5)">Edit</button>
+                                        <button class="text-red-500 hover:underline"
+                                            onclick="deleteAllergy(5)">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="flex justify-end items-center mt-4 mx-4">
+                            <div class="space-x-1">
+                                <span>Page</span>
+                                <button
+                                    class="px-4 border border-muted rounded-full text-muted hover:bg-muted hover:text-white transition-all duration-150">1</button>
+                                <span>of 100</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -369,6 +395,64 @@
         </div>
     </div>
 
+    <!-- Modal Template -->
+    <div id="modalTemplate"
+        class="modal overflow-y-auto fixed inset-0 flex items-start justify-center bg-black bg-opacity-50 transition-opacity duration-300 ease-out opacity-100 hidden"
+        onclick="closeModal(event)">
+        <div class="lg:my-20 md:my-20 my-10 lg:min-w-[1000px] min-w-[90%] bg-white rounded-2xl overflow-hidden shadow-xl transform transition-transform duration-300 ease-out sm:max-w-lg sm:w-full translate-y-[-100%]"
+            onclick="event.stopPropagation()">
+            <div class="bg-white">
+                <div class="bg-grey flex justify-between items-center px-4 py-3 border-b">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modalTitle">
+                        Add Allergies
+                    </h3>
+                    <button onclick="closeModal(event)" class="text-gray-500 hover:text-gray-700">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+                <div class="mt-2 px-4 pt-3 pb-4 sm:pb-4">
+                    <form id="addNotesForm" class="space-y-4">
+                        <div>
+                            <label for="allergen" class="block text-sm font-medium text-gray-700">Allergen*</label>
+                            <input id="allergen" name="allergen" type="text"
+                                class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                required />
+                        </div>
+                        <div>
+                            <label for="reaction" class="block text-sm font-medium text-gray-700">Reaction(s)</label>
+                            <input type="text" id="reaction" name="reaction"
+                                class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                required />
+                        </div>
+                        <div>
+                            <label for="severity" class="block text-sm font-medium text-gray-700">Allergy
+                                Severities</label>
+                            <input type="text" id="severity" name="severity"
+                                class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full" />
+                        </div>
+                        <div>
+                            <label for="dateOfOnset" class="block text-sm font-medium text-gray-700">Date of
+                                Onset</label>
+                            <input type="date" id="dateOfOnset" name="dateOfOnset"
+                                class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full"
+                                required />
+                        </div>
+                        <div>
+                            <label for="comments" class="block text-sm font-medium text-gray-700">Comments</label>
+                            <input id="comments" name="comments" type="text" rows="3"
+                                class="focus:outline-none w-full mt-1 px-5 py-3 bg-grey text-muted border rounded-full" />
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" onclick="closeModal(event)"
+                                class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all duration-150">Add
+                                Allergies</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Chart.js Script for Analytics -->
     <script src="./assets/js/function.js?v=1.0.12"></script>

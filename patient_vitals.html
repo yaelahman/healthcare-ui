@@ -266,8 +266,7 @@
                         class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
                         Notes
                     </a>
-                    <a href="patient_vitals.html"
-                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
+                    <a href="patient_vitals.html" class="bg-primary px-5 py-2 text-white rounded-full font-light">
                         Vitals
                     </a>
                     <a href="patient_allergies.html"
@@ -283,7 +282,7 @@
                         Lab Reports
                     </a>
                     <a href="patient_current_medication.html"
-                        class="bg-primary px-5 py-2 text-white rounded-full font-light">
+                        class="bg-white px-5 py-2 text-primary rounded-full font-light transition-all duration-150 hover:bg-primary hover:text-white">
                         Current Medications
                     </a>
                     <a href="patient_appointment.html"
@@ -291,77 +290,128 @@
                         Appointment & AI Visit Notes
                     </a>
                 </div>
-                <div class="bg-white rounded-2xl grid lg:grid-cols-2 grid-cols-1 p-6 gap-4">
-                    <div class="bg-grey rounded-2xl">
-                        <div class="rounded-t-2xl py-3 px-5 border-b">
-                            <h6 class="text-xl">Current Medication</h6>
-                        </div>
-                        <div class="p-6">
-                            <div class="pb-3">
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="medicineName" class="block text-nowrap my-auto">Medicine
-                                        Name:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="medicineName" type="text" value="Paracetamol"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Medicine Name">
-                                    </div>
-                                </div>
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="dosage" class="block text-nowrap my-auto">Dosage:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="dosage" type="text" value="500mg"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Dosage">
-                                    </div>
-                                </div>
-                                <div class="mb-4 grid lg:grid-cols-3">
-                                    <label for="frequency" class="block text-nowrap my-auto">Frequency:</label>
-                                    <div class="flex items-center w-full col-span-2">
-                                        <input id="frequency" type="text" value="Twice a day"
-                                            class="text-body focus:outline-none w-full mt-1 px-5 py-3 bg-white border rounded-full"
-                                            placeholder="Enter Frequency">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex justify-end">
-                                <button
-                                    class="px-8 py-3 bg-primary border border-primary rounded-full text-white hover:bg-opacity-[0.9] transition-all duration-150">Add
-                                    Current Medication</button>
-                            </div>
+                <div class="bg-white shadow-md rounded-2xl pb-4">
+                    <div
+                        class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
+                        <h2 class="text-lg font-medium">All Vitals</h2>
+                        <div class="text-end inline-block">
+                            <button class="bg-primary text-white rounded-full text-nowrap px-3 py-2"
+                                onclick="openModal('modalTemplate')">
+                                + Add Vitals
+                            </button>
                         </div>
                     </div>
-                    <div class="bg-grey rounded-2xl">
-                        <div class="rounded-t-2xl py-3 px-5 border-b">
-                            <h6 class="text-xl">Current Medication List</h6>
-                        </div>
-                        <div class="p-6">
-                            <ol class="list-decimal ps-3">
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Paracetamol</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Once
-                                            a Day</span>
-                                    </div>
-                                </li>
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Ibuprofen</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Twice
-                                            a Day</span>
-                                    </div>
-                                </li>
-                                <li class="ps-3 mb-4">
-                                    <div class="relative bg-white text-body rounded-full px-5 py-3">
-                                        <span>Amoxicillin</span>
-                                        <span
-                                            class="bg-grey rounded-full px-5 py-2 absolute right-1 top-[4px] cursor-pointer">Three
-                                            times a Day</span>
-                                    </div>
-                                </li>
-                            </ol>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white overflow-x-auto text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 px-4 border-b text-start font-medium">For (Disease or Allergy)</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Blood Group</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Blood Pressure</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Weight</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Heart Rate</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Height</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Respiratory Rate</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Smoking Status</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Temperature</th>
+                                    <th class="py-2 px-4 border-b text-start font-medium">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-body">
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">Subjective 1</td>
+                                    <td class="py-2 px-4 border-b">A+</td>
+                                    <td class="py-2 px-4 border-b">120/80</td>
+                                    <td class="py-2 px-4 border-b">70 kg</td>
+                                    <td class="py-2 px-4 border-b">72 bpm</td>
+                                    <td class="py-2 px-4 border-b">175 cm</td>
+                                    <td class="py-2 px-4 border-b">16 breaths/min</td>
+                                    <td class="py-2 px-4 border-b">Non-Smoker</td>
+                                    <td class="py-2 px-4 border-b">98.6°F</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <button class="text-blue-500 hover:underline"
+                                            onclick="editVital(1)">Edit</button>
+                                        <button class="text-red-500 hover:underline"
+                                            onclick="deleteVital(1)">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">Subjective 2</td>
+                                    <td class="py-2 px-4 border-b">O-</td>
+                                    <td class="py-2 px-4 border-b">130/85</td>
+                                    <td class="py-2 px-4 border-b">80 kg</td>
+                                    <td class="py-2 px-4 border-b">75 bpm</td>
+                                    <td class="py-2 px-4 border-b">180 cm</td>
+                                    <td class="py-2 px-4 border-b">18 breaths/min</td>
+                                    <td class="py-2 px-4 border-b">Smoker</td>
+                                    <td class="py-2 px-4 border-b">99.1°F</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <button class="text-blue-500 hover:underline"
+                                            onclick="editVital(2)">Edit</button>
+                                        <button class="text-red-500 hover:underline"
+                                            onclick="deleteVital(2)">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">Subjective 3</td>
+                                    <td class="py-2 px-4 border-b">B+</td>
+                                    <td class="py-2 px-4 border-b">125/82</td>
+                                    <td class="py-2 px-4 border-b">65 kg</td>
+                                    <td class="py-2 px-4 border-b">70 bpm</td>
+                                    <td class="py-2 px-4 border-b">170 cm</td>
+                                    <td class="py-2 px-4 border-b">15 breaths/min</td>
+                                    <td class="py-2 px-4 border-b">Non-Smoker</td>
+                                    <td class="py-2 px-4 border-b">98.4°F</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <button class="text-blue-500 hover:underline"
+                                            onclick="editVital(3)">Edit</button>
+                                        <button class="text-red-500 hover:underline"
+                                            onclick="deleteVital(3)">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">Subjective 4</td>
+                                    <td class="py-2 px-4 border-b">AB-</td>
+                                    <td class="py-2 px-4 border-b">140/90</td>
+                                    <td class="py-2 px-4 border-b">90 kg</td>
+                                    <td class="py-2 px-4 border-b">80 bpm</td>
+                                    <td class="py-2 px-4 border-b">160 cm</td>
+                                    <td class="py-2 px-4 border-b">20 breaths/min</td>
+                                    <td class="py-2 px-4 border-b">Smoker</td>
+                                    <td class="py-2 px-4 border-b">100.2°F</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <button class="text-blue-500 hover:underline"
+                                            onclick="editVital(4)">Edit</button>
+                                        <button class="text-red-500 hover:underline"
+                                            onclick="deleteVital(4)">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b ">Subjective 5</td>
+                                    <td class="py-2 px-4 border-b">A+</td>
+                                    <td class="py-2 px-4 border-b">118/76</td>
+                                    <td class="py-2 px-4 border-b">68 kg</td>
+                                    <td class="py-2 px-4 border-b">68 bpm</td>
+                                    <td class="py-2 px-4 border-b">172 cm</td>
+                                    <td class="py-2 px-4 border-b">14 breaths/min</td>
+                                    <td class="py-2 px-4 border-b">Non-Smoker</td>
+                                    <td class="py-2 px-4 border-b">98.7°F</td>
+                                    <td class="py-2 px-4 border-b">
+                                        <button class="text-blue-500 hover:underline"
+                                            onclick="editVital(5)">Edit</button>
+                                        <button class="text-red-500 hover:underline"
+                                            onclick="deleteVital(5)">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="flex justify-end items-center mt-4 mx-4">
+                            <div class="space-x-1">
+                                <span>Page</span>
+                                <button
+                                    class="px-4 border border-muted rounded-full text-muted hover:bg-muted hover:text-white transition-all duration-150">1</button>
+                                <span>of 100</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -369,6 +419,126 @@
         </div>
     </div>
 
+    <!-- Modal Template -->
+    <div id="modalTemplate"
+        class="modal overflow-y-auto fixed inset-0 flex items-start justify-center bg-black bg-opacity-50 transition-opacity duration-300 ease-out opacity-100 hidden"
+        onclick="closeModal(event)">
+        <div class="lg:my-20 md:my-20 my-10 lg:min-w-[1000px] min-w-[90%] bg-white rounded-2xl overflow-hidden shadow-xl transform transition-transform duration-300 ease-out sm:max-w-lg sm:w-full translate-y-[-100%]"
+            onclick="event.stopPropagation()">
+            <div class="bg-white">
+                <div class="bg-grey flex justify-between items-center px-4 py-3 border-b">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modalTitle">
+                        Add Vitals
+                    </h3>
+                    <button onclick="closeModal(event)" class="text-gray-500 hover:text-gray-700">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+                <div class="mt-2 px-4 pt-3 pb-4 sm:pb-4">
+                    <form id="addNotesForm" class="space-y-4">
+
+                        <div class="bg-white rounded-2xl grid lg:grid-cols-2 grid-cols-1 p-6">
+                            <div class="col-span-2 bg-grey mb-2 rounded-2xl">
+
+                                <div class="grid lg:grid-cols-2 p-3">
+                                    <div class="p-4 flex flex-col">
+                                        <label for="bloodGroup" class="block text-nowrap my-auto">Consulting
+                                            Doctor:</label>
+                                        <div class="flex items-center w-full col-span-2">
+                                            <select id="bloodGroup"
+                                                class="focus:outline-none w-full mt-1 px-5 py-3  border rounded-full">
+                                                <option value="" disabled selected>Edna Gilbert</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 flex flex-col">
+                                        <label for="bloodGroup" class="block text-nowrap my-auto">For (Disease or
+                                            Allergy)</label>
+                                        <div class="flex items-center w-full col-span-2">
+                                            <select id="bloodGroup"
+                                                class="focus:outline-none w-full mt-1 px-5 py-3  border rounded-full">
+                                                <option value="" disabled selected>Jaundice</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="bloodGroup" class="block text-nowrap my-auto">Blood Group:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <input readonly id="bloodGroup" type="text" value="O+"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3  border rounded-full"
+                                        placeholder="Enter Blood Group">
+                                </div>
+                            </div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="bloodPressure" class="block text-nowrap my-auto">Blood Pressure:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <input readonly id="bloodPressure" type="text" value="120/80 mmHg"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3  border rounded-full"
+                                        placeholder="Enter Blood Pressure">
+                                </div>
+                            </div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="weight" class="block text-nowrap my-auto">Weight:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <input readonly id="weight" type="text" value="56.600Kg"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3  border rounded-full"
+                                        placeholder="Enter Weight">
+                                </div>
+                            </div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="heartRate" class="block text-nowrap my-auto">Heart Rate:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <input readonly id="heartRate" type="text" value="72bpm"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3  border rounded-full"
+                                        placeholder="Enter Heart Rate">
+                                </div>
+                            </div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="height" class="block text-nowrap my-auto">Height:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <input readonly id="height" type="text" value="5feet 8inches"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3  border rounded-full"
+                                        placeholder="Enter Height">
+                                </div>
+                            </div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="respiratoryRate" class="block text-nowrap my-auto">Respiratory Rate:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <input readonly id="respiratoryRate" type="text" value="16 breaths/min"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3  border rounded-full"
+                                        placeholder="Enter Respiratory Rate">
+                                </div>
+                            </div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="smokingStatus" class="block text-nowrap my-auto">Smoking Status:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <input readonly id="smokingStatus" type="text" value="Non-Smoker"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3  border rounded-full"
+                                        placeholder="Enter Smoking Status">
+                                </div>
+                            </div>
+                            <div class="p-4 grid lg:grid-cols-3 grid-cols-1">
+                                <label for="temperature" class="block text-nowrap my-auto">Temperature:</label>
+                                <div class="flex items-center w-full col-span-2">
+                                    <input readonly id="temperature" type="text" value="98.6F"
+                                        class="focus:outline-none w-full mt-1 px-5 py-3  border rounded-full"
+                                        placeholder="Enter Temperature">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" onclick="closeModal(event)"
+                                class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-all duration-150">Add
+                                Vitals</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Chart.js Script for Analytics -->
     <script src="./assets/js/function.js?v=1.0.12"></script>

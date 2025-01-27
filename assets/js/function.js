@@ -61,6 +61,12 @@ function closeModal(event) {
     const modal = event.currentTarget.closest('.modal');
     modal.classList.add('opacity-0');
     modal.querySelector('div').classList.add('translate-y-[-100%]');
+
+    document.querySelectorAll('input, textarea').forEach(element => {
+        element.value = null;
+    });
+
+
     setTimeout(() => {
         modal.classList.remove('opacity-100');
         modal.querySelector('div').classList.remove('-translate-y-full');

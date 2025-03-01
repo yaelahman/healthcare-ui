@@ -355,7 +355,7 @@
             <br>
             <div class="grid xl:grid-cols-8 lg:grid-cols-2 md:grid-cols-1 gap-4 grid-cols-1">
                <!-- First row, first and second columns -->
-               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto col-span-2">
+               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto col-span-3">
                   <div
                      class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
                      <h3 class="2xl:text-xl lg:text-sm font-semibold">Appointments Date</h3>
@@ -390,7 +390,7 @@
                      </div>
                   </div>
                </div>
-               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto lg:col-span-4 col-span-4">
+               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto lg:col-span-3 col-span-4">
                   <div
                      class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b ">
                      <h2 class="2xl:text-lg lg:text-sm font-medium">Diseases Chart</h2>
@@ -872,7 +872,7 @@
          inline: true,        // Make the calendar inline
          mode: "single",      // Allow only one date to be selected
          dateFormat: "Y-m-d", // Change the date format (Year-Month-Day)
-         disableMobile: true, // Disable mobile view (optional, forces desktop view on mobile)
+         // disableMobile: true, // Disable mobile view (optional, forces desktop view on mobile)
          static: true,        // Remove border
          onChange: function (selectedDates, dateStr, instance) {
             window.location.href = window.location.origin + '/appointments_date.html?date=' + dateStr;

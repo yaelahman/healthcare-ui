@@ -16,6 +16,11 @@
    <link href="./assets/css/style.css?v=1.0.12" rel="stylesheet">
 
    <script src="./assets/js/script.js?v=1.0.12"></script>
+
+   <!-- Include Flatpickr CSS -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
 </head>
 
 <body class="bg-gray-100">
@@ -350,37 +355,42 @@
             <br>
             <div class="grid xl:grid-cols-8 lg:grid-cols-2 md:grid-cols-1 gap-4 grid-cols-1">
                <!-- First row, first and second columns -->
-               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto col-span-4">
+               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto col-span-2">
                   <div
                      class="flex justify-between p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b">
-                     <h3 class="2xl:text-xl lg:text-sm font-semibold">Analytics</h3>
-                     <div class="relative inline-block">
+                     <h3 class="2xl:text-xl lg:text-sm font-semibold">Appointments Date</h3>
+
+                     <!-- <div class="relative inline-block">
                         <button id="dropdownButton"
                            class="text-primary font-medium flex items-center 2xl:text-lg text-sm">
                            Weekly
                            <span class="material-icons ml-1">expand_more</span>
                         </button>
-                        <!-- Dropdown Menu -->
                         <ul id="dropdownMenu" class="hidden absolute bg-white shadow-md mt-2 rounded-lg p-2 w-32">
                            <li class="py-1 cursor-pointer hover:bg-gray-100" onclick="loadWeeklyData()">Weekly</li>
                            <li class="py-1 cursor-pointer hover:bg-gray-100" onclick="loadMonthlyData()">Monthly</li>
                            <li class="py-1 cursor-pointer hover:bg-gray-100" onclick="loadYearlyData()">Yearly</li>
                         </ul>
-                     </div>
+                     </div> -->
                   </div>
                   <div class="p-4">
+                     <div class="inline-block">
+                        <input id="datepicker" class="border p-2 rounded-md focus:outline-none text-white border-0" />
+                     </div>
                      <!-- Buttons for Patients -->
-                     <div class="flex space-x-2 mb-4">
+                     <div class="flex space-x-2 mb-4 hidden">
                         <button id="totalPatientsBtn" class="px-4 py-2 bg-primary text-white rounded-lg"
                            style="border-radius: 1.5rem;">Total Patients</button>
                         <button id="newPatientsBtn" class="px-4 py-2 bg-[#F4F7F9] text-primary rounded-lg"
                            style="border-radius: 1.5rem;">New Patients</button>
                      </div>
                      <!-- Chart.js Canvas -->
-                     <canvas id="analyticsChart" style="width: 100%; min-height: 400px; height: auto;"></canvas>
+                     <div class="hidden">
+                        <canvas id="analyticsChart" style="display: none;"></canvas>
+                     </div>
                   </div>
                </div>
-               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto lg:col-span-2 col-span-4">
+               <div class="bg-white rounded-[20px] shadow-lg overflow-x-auto lg:col-span-4 col-span-4">
                   <div
                      class="flex justify-between items-center p-4 border-b-2 rounded-t-2xl bg-grey bg-opacity-[0.4] shadow shadow-b ">
                      <h2 class="2xl:text-lg lg:text-sm font-medium">Diseases Chart</h2>
@@ -855,7 +865,20 @@
       </div>
    </div>
 
+   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+   <script>
+      flatpickr("#datepicker", {
+         inline: true,        // Make the calendar inline
+         mode: "single",      // Allow only one date to be selected
+         dateFormat: "Y-m-d", // Change the date format (Year-Month-Day)
+         disableMobile: true, // Disable mobile view (optional, forces desktop view on mobile)
+         static: true,        // Remove border
+         onChange: function (selectedDates, dateStr, instance) {
+            window.location.href = window.location.origin + '/appointments_date.html?date=' + dateStr;
+         }
+      });
+   </script>
    <!-- Chart.js Script for Analytics -->
    <script src="./assets/js/chart.js?v=1.0.12"></script>
    <script src="./assets/js/function.js?v=1.0.12"></script>

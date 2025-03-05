@@ -20,6 +20,21 @@
    <!-- Include Flatpickr CSS -->
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+   <style>
+      .flatpickr-wrapper,
+      .flatpickr-calendar,
+      .flatpickr-innerContainer,
+      .flatpickr-rContainer,
+      .flatpickr-days {
+         width: 100% !important;
+      }
+
+      .dayContainer,
+      .flatpickr-day {
+         width: unset !important;
+         max-width: unset !important;
+      }
+   </style>
 
 </head>
 
@@ -374,7 +389,7 @@
                      </div> -->
                   </div>
                   <div class="p-4">
-                     <div class="inline-block">
+                     <div class="inline-block w-full">
                         <input id="datepicker" class="border p-2 rounded-md focus:outline-none text-white border-0" />
                      </div>
                      <!-- Buttons for Patients -->
